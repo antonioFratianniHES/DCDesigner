@@ -21,12 +21,18 @@ namespace DC_Designer
 
         private void cmdCreateNewDC_Click(object sender, EventArgs e)
         {
-            tabLayout.Visible = true;
-            /*  frmLayout f = new frmLayout();
+
+            frmLayout f = new frmLayout();
             f.TopLevel = false;
-            splitContainer1.Panel2.Controls.Add(f);
             f.Show();
-            splitContainer1.Panel2.Show(); */
+            tabLayout.Visible = true;
+            TabPage newTab = new TabPage();
+            newTab.Name = "tabPage"+tabLayout.TabPages.Count;
+            newTab.Text = "New Layout"+ tabLayout.TabPages.Count;
+            newTab.Controls.Add(f);
+            tabLayout.TabPages.Add(newTab);
+           
+         
         }
 
   
