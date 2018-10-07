@@ -15,18 +15,18 @@ namespace DC_Designer
         public frmMenuHome()
         {
             InitializeComponent();
-            //splitContainer1.Panel2.Hide();
             frmConnexion f = new frmConnexion();
             f.ShowDialog(this);
         }
 
         private void cmdCreateNewDC_Click(object sender, EventArgs e)
         {
-            frmLayout f = new frmLayout();
+            tabLayout.Visible = true;
+            /*  frmLayout f = new frmLayout();
             f.TopLevel = false;
             splitContainer1.Panel2.Controls.Add(f);
             f.Show();
-            splitContainer1.Panel2.Show(); 
+            splitContainer1.Panel2.Show(); */
         }
 
   
