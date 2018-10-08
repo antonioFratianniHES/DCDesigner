@@ -23,5 +23,19 @@ namespace DC_Designer
             frmAjoutRack f = new frmAjoutRack();
             f.ShowDialog(this);
         }
+
+        private void button1_MouseDown(object sender, MouseEventArgs e)
+        {
+            button1.DoDragDrop(button1.Text, DragDropEffects.Copy |
+      DragDropEffects.Move);
+        }
+
+        private void tableLayoutPanel1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
     }
 }
