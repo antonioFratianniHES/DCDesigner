@@ -41,18 +41,19 @@ namespace DC_Designer
             dcPanel.Height = 200;
             
 
-            Button addRack = new Button();
-            addRack.Name = "cmdAddRack";
-            addRack.Text = "+";
-            addRack.Font= new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            addRack.Size = new Size(49, 51);
-            addRack.TextAlign = ContentAlignment.MiddleCenter;
-            addRack.AutoSize = true;
-            addRack.Anchor = AnchorStyles.None;
-            addRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            addRack.Click += new EventHandler(cmdAddRack_Click);
+            Button cmdAddRack = new Button();
+            cmdAddRack.Name = "cmdAddRack";
+            cmdAddRack.Text = "+";
+            cmdAddRack.Font= new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmdAddRack.ForeColor = SystemColors.HotTrack;
+            cmdAddRack.Size = new Size(49, 51);
+            cmdAddRack.TextAlign = ContentAlignment.MiddleCenter;
+            cmdAddRack.AutoSize = true;
+            cmdAddRack.Anchor = AnchorStyles.None;
+            cmdAddRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            cmdAddRack.Click += new EventHandler(cmdAddRack_Click);
 
-            dcPanel.Controls.Add(addRack,0,0);
+            dcPanel.Controls.Add(cmdAddRack,0,0);
             newTab.Controls.Add(dcPanel);
             //f.AutoSize = true;
             
@@ -61,6 +62,7 @@ namespace DC_Designer
            
          
         }
+
 
         private void cmdAddRack_Click(object sender, EventArgs e)
         {
