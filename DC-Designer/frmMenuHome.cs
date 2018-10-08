@@ -46,8 +46,6 @@ namespace DC_Designer
             addRack.Text = "+";
             addRack.Size = new Size(49, 51);
             addRack.TextAlign = ContentAlignment.MiddleCenter;
-            //addRack.Anchor =  AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addRack.Anchor = AnchorStyles.Top;
             addRack.AutoSize = true;
             addRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             addRack.Click += new EventHandler(cmdAddRack_Click);
