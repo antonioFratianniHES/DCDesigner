@@ -44,9 +44,11 @@ namespace DC_Designer
             Button addRack = new Button();
             addRack.Name = "cmdAddRack";
             addRack.Text = "+";
+            addRack.Font= new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addRack.Size = new Size(49, 51);
             addRack.TextAlign = ContentAlignment.MiddleCenter;
             addRack.AutoSize = true;
+            addRack.Anchor = AnchorStyles.None;
             addRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             addRack.Click += new EventHandler(cmdAddRack_Click);
 
