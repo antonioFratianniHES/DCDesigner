@@ -35,10 +35,10 @@ namespace DC_Designer
             dcPanel.AutoSize = true;
             dcPanel.ColumnCount = 1;
             dcPanel.CellBorderStyle= TableLayoutPanelCellBorderStyle.InsetDouble; 
-            dcPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-            dcPanel.Dock = DockStyle.Fill;
+            dcPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            
             dcPanel.Width = 100;
-            dcPanel.Height = 100;
+            dcPanel.Height = 200;
             
 
             Button addRack = new Button();
@@ -47,10 +47,10 @@ namespace DC_Designer
             addRack.Size = new Size(49, 51);
             addRack.TextAlign = ContentAlignment.MiddleCenter;
             //addRack.Anchor =  AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addRack.Anchor = AnchorStyles.Bottom;
+            addRack.Anchor = AnchorStyles.Top;
             addRack.AutoSize = true;
             addRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-
+            addRack.Click += new EventHandler(cmdAddRack_Click);
 
             dcPanel.Controls.Add(addRack,0,0);
             newTab.Controls.Add(dcPanel);
@@ -60,6 +60,12 @@ namespace DC_Designer
             tabLayout.TabPages.Add(newTab);
            
          
+        }
+
+        private void cmdAddRack_Click(object sender, EventArgs e)
+        {
+            frmAjoutRack f = new frmAjoutRack();
+            f.ShowDialog(this);
         }
     }
 }
