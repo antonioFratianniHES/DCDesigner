@@ -35,24 +35,26 @@ namespace DC_Designer
             dcPanel.AutoSize = true;
             dcPanel.ColumnCount = 1;
             dcPanel.CellBorderStyle= TableLayoutPanelCellBorderStyle.InsetDouble; 
-            dcPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            dcPanel.Anchor = AnchorStyles.Left;
             
             dcPanel.Width = 100;
             dcPanel.Height = 200;
+
+            Button close = new Button();
             
 
-            Button addRack = new Button();
-            addRack.Name = "cmdAddRack";
-            addRack.Text = "+";
-            addRack.Size = new Size(49, 51);
-            addRack.TextAlign = ContentAlignment.MiddleCenter;
-            //addRack.Anchor =  AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addRack.Anchor = AnchorStyles.Top;
-            addRack.AutoSize = true;
-            addRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            addRack.Click += new EventHandler(cmdAddRack_Click);
+            Button cmdAddRack = new Button();
+            cmdAddRack.Name = "cmdAddRack";
+            cmdAddRack.Text = "+";
+            cmdAddRack.Font = new Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            cmdAddRack.Size = new Size(49, 51);
+            cmdAddRack.TextAlign = ContentAlignment.MiddleCenter;
+            cmdAddRack.Anchor =  AnchorStyles.None;
+            cmdAddRack.AutoSize = false;
+            cmdAddRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            cmdAddRack.Click += new EventHandler(cmdAddRack_Click);
 
-            dcPanel.Controls.Add(addRack,0,0);
+            dcPanel.Controls.Add(cmdAddRack,0,0);
             newTab.Controls.Add(dcPanel);
             //f.AutoSize = true;
             
