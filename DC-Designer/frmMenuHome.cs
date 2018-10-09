@@ -80,7 +80,7 @@ namespace DC_Designer
 
         private void frmMenuHome_Resize(object sender, EventArgs e)
         {
-            //foreach()
+            //foreach();
         }
     }
 }
