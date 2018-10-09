@@ -58,7 +58,6 @@ namespace DC_Designer
             newTab.Controls.Add(dcPanel);*/
             //f.AutoSize = true;
             newTab.AllowDrop = true;
-            
             newTab.Controls.Add(f);
             tabLayout.TabPages.Add(newTab);
            
