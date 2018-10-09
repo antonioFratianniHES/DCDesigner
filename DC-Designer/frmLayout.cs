@@ -15,7 +15,7 @@ namespace DC_Designer
         public frmLayout()
         {
             InitializeComponent();
-                   
+            this.TopLevel = false;       
         }
 
         private void cmdAddRack_Click(object sender, EventArgs e)
@@ -37,5 +37,18 @@ namespace DC_Designer
             else
                 e.Effect = DragDropEffects.None;
         }
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+            
+        }
+
+        private void cmdAddEquip_Clik(Object sender, EventArgs e)
+        {
+            frmEquipement f = new frmEquipement();
+            f.ShowDialog(this);
+        }
+
     }
 }

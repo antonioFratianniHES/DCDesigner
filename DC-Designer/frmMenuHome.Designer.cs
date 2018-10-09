@@ -42,29 +42,26 @@
             // lstExistingDC
             // 
             this.lstExistingDC.FormattingEnabled = true;
-            this.lstExistingDC.ItemHeight = 16;
-            this.lstExistingDC.Location = new System.Drawing.Point(19, 254);
-            this.lstExistingDC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstExistingDC.Location = new System.Drawing.Point(14, 206);
             this.lstExistingDC.Name = "lstExistingDC";
-            this.lstExistingDC.Size = new System.Drawing.Size(224, 244);
+            this.lstExistingDC.Size = new System.Drawing.Size(169, 199);
             this.lstExistingDC.TabIndex = 1;
+            this.lstExistingDC.DoubleClick += new System.EventHandler(this.lstExistingDC_DoubleClick);
             // 
             // lblExistingDC
             // 
             this.lblExistingDC.AutoSize = true;
-            this.lblExistingDC.Location = new System.Drawing.Point(15, 234);
-            this.lblExistingDC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExistingDC.Location = new System.Drawing.Point(11, 190);
             this.lblExistingDC.Name = "lblExistingDC";
-            this.lblExistingDC.Size = new System.Drawing.Size(79, 17);
+            this.lblExistingDC.Size = new System.Drawing.Size(61, 13);
             this.lblExistingDC.TabIndex = 2;
             this.lblExistingDC.Text = "Existing DC";
             // 
             // cmdCreateNewDC
             // 
-            this.cmdCreateNewDC.Location = new System.Drawing.Point(19, 113);
-            this.cmdCreateNewDC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdCreateNewDC.Location = new System.Drawing.Point(14, 92);
             this.cmdCreateNewDC.Name = "cmdCreateNewDC";
-            this.cmdCreateNewDC.Size = new System.Drawing.Size(225, 69);
+            this.cmdCreateNewDC.Size = new System.Drawing.Size(169, 56);
             this.cmdCreateNewDC.TabIndex = 0;
             this.cmdCreateNewDC.Text = "Create Data Center";
             this.cmdCreateNewDC.UseVisualStyleBackColor = true;
@@ -77,7 +74,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(1, 1);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -90,9 +86,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabLayout);
-            this.splitContainer1.Size = new System.Drawing.Size(1185, 630);
-            this.splitContainer1.SplitterDistance = 274;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(889, 512);
+            this.splitContainer1.SplitterDistance = 205;
             this.splitContainer1.TabIndex = 6;
             // 
             // tabLayout
@@ -101,25 +96,24 @@
             this.tabLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabLayout.Location = new System.Drawing.Point(4, 0);
-            this.tabLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabLayout.Location = new System.Drawing.Point(3, 0);
             this.tabLayout.Name = "tabLayout";
             this.tabLayout.SelectedIndex = 0;
-            this.tabLayout.Size = new System.Drawing.Size(898, 626);
+            this.tabLayout.Size = new System.Drawing.Size(673, 509);
             this.tabLayout.TabIndex = 0;
             this.tabLayout.Visible = false;
             // 
             // frmMenuHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1183, 633);
+            this.ClientSize = new System.Drawing.Size(887, 514);
             this.Controls.Add(this.splitContainer1);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(1194, 666);
+            this.MinimumSize = new System.Drawing.Size(900, 548);
             this.Name = "frmMenuHome";
             this.Text = "MenuHome";
+            this.Resize += new System.EventHandler(this.frmMenuHome_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

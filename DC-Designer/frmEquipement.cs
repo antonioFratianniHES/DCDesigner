@@ -16,5 +16,15 @@ namespace DC_Designer
         {
             InitializeComponent();
         }
+
+        private void cmdAnnulerEquip_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void cmdAddEquip_Click(object sender, EventArgs e)
+        {
+            //a coder
+        }
     }
 }

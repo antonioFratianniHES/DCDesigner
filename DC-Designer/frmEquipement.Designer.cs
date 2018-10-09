@@ -32,6 +32,8 @@
             this.lblModele = new System.Windows.Forms.Label();
             this.txtNomEquipement = new System.Windows.Forms.TextBox();
             this.txtModele = new System.Windows.Forms.TextBox();
+            this.cmdAnnulerEquip = new System.Windows.Forms.Button();
+            this.cmdAddEquip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNomEquipement
@@ -67,11 +69,33 @@
             this.txtModele.TabIndex = 3;
             this.txtModele.Text = "(facultatif)";
             // 
+            // cmdAnnulerEquip
+            // 
+            this.cmdAnnulerEquip.Location = new System.Drawing.Point(149, 226);
+            this.cmdAnnulerEquip.Name = "cmdAnnulerEquip";
+            this.cmdAnnulerEquip.Size = new System.Drawing.Size(75, 23);
+            this.cmdAnnulerEquip.TabIndex = 4;
+            this.cmdAnnulerEquip.Text = "Annuler";
+            this.cmdAnnulerEquip.UseVisualStyleBackColor = true;
+            this.cmdAnnulerEquip.Click += new System.EventHandler(this.cmdAnnulerEquip_Click);
+            // 
+            // cmdAddEquip
+            // 
+            this.cmdAddEquip.Location = new System.Drawing.Point(35, 226);
+            this.cmdAddEquip.Name = "cmdAddEquip";
+            this.cmdAddEquip.Size = new System.Drawing.Size(75, 23);
+            this.cmdAddEquip.TabIndex = 5;
+            this.cmdAddEquip.Text = "Ajouter";
+            this.cmdAddEquip.UseVisualStyleBackColor = true;
+            this.cmdAddEquip.Click += new System.EventHandler(this.cmdAddEquip_Click);
+            // 
             // frmEquipement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.cmdAddEquip);
+            this.Controls.Add(this.cmdAnnulerEquip);
             this.Controls.Add(this.txtModele);
             this.Controls.Add(this.txtNomEquipement);
             this.Controls.Add(this.lblModele);
@@ -91,5 +115,7 @@
         private System.Windows.Forms.Label lblModele;
         private System.Windows.Forms.TextBox txtNomEquipement;
         private System.Windows.Forms.TextBox txtModele;
+        private System.Windows.Forms.Button cmdAnnulerEquip;
+        private System.Windows.Forms.Button cmdAddEquip;
     }
 }

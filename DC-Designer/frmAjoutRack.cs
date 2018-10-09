@@ -21,5 +21,10 @@ namespace DC_Designer
         {
             Close();
         }
+
+        private void cmdAdd_Click(object sender, EventArgs e)
+        {
+            //a coder
+        }
     }
 }

@@ -22,15 +22,16 @@ namespace DC_Designer
         private void cmdCreateNewDC_Click(object sender, EventArgs e)
         {
 
-           /* frmLayout f = new frmLayout();
+            frmLayout f = new frmLayout();
             f.TopLevel = false;
-            f.Show();*/
+            f.Show();
 
             tabLayout.Visible = true;
             TabPage newTab = new TabPage();
             newTab.Name = "tabPage"+tabLayout.TabPages.Count;
             newTab.Text = "New Layout"+ tabLayout.TabPages.Count;
 
+            /*
             TableLayoutPanel dcPanel = new TableLayoutPanel();
             dcPanel.AutoSize = true;
             dcPanel.ColumnCount = 1;
@@ -54,10 +55,11 @@ namespace DC_Designer
             cmdAddRack.Click += new EventHandler(cmdAddRack_Click);
 
             dcPanel.Controls.Add(cmdAddRack,0,0);
-            newTab.Controls.Add(dcPanel);
+            newTab.Controls.Add(dcPanel);*/
             //f.AutoSize = true;
+            newTab.AllowDrop = true;
             
-           // newTab.Controls.Add(f);
+            newTab.Controls.Add(f);
             tabLayout.TabPages.Add(newTab);
            
          
@@ -68,6 +70,17 @@ namespace DC_Designer
         {
             frmAjoutRack f = new frmAjoutRack();
             f.ShowDialog(this);
+        }
+
+        private void lstExistingDC_DoubleClick(object sender, EventArgs e)
+        {
+            int DcToOpen = lstExistingDC.SelectedIndex;
+
+        }
+
+        private void frmMenuHome_Resize(object sender, EventArgs e)
+        {
+            //foreach()
         }
     }
 }
