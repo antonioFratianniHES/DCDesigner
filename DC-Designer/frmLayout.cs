@@ -15,7 +15,6 @@ namespace DC_Designer
         public frmLayout()
         {
             InitializeComponent();
-            this.TopLevel = false;       
         }
 
         private void cmdAddRack_Click(object sender, EventArgs e)
@@ -26,8 +25,7 @@ namespace DC_Designer
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
-            button1.DoDragDrop(button1.Text, DragDropEffects.Copy |
-      DragDropEffects.Move);
+            button1.DoDragDrop(button1.Text, DragDropEffects.Copy | DragDropEffects.Move);
         }
 
         private void tableLayoutPanel1_DragEnter(object sender, DragEventArgs e)

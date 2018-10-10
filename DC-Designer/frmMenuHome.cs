@@ -24,6 +24,8 @@ namespace DC_Designer
 
             frmLayout f = new frmLayout();
             f.TopLevel = false;
+            f.AutoSize = true;
+            f.Dock = DockStyle.Fill;
             f.Show();
 
             tabLayout.Visible = true;
