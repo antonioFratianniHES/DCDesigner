@@ -44,7 +44,7 @@
             this.lstExistingDC.FormattingEnabled = true;
             this.lstExistingDC.ItemHeight = 16;
             this.lstExistingDC.Location = new System.Drawing.Point(19, 254);
-            this.lstExistingDC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstExistingDC.Margin = new System.Windows.Forms.Padding(4);
             this.lstExistingDC.Name = "lstExistingDC";
             this.lstExistingDC.Size = new System.Drawing.Size(224, 244);
             this.lstExistingDC.TabIndex = 1;
@@ -63,11 +63,11 @@
             // cmdCreateNewDC
             // 
             this.cmdCreateNewDC.Location = new System.Drawing.Point(19, 113);
-            this.cmdCreateNewDC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdCreateNewDC.Margin = new System.Windows.Forms.Padding(4);
             this.cmdCreateNewDC.Name = "cmdCreateNewDC";
             this.cmdCreateNewDC.Size = new System.Drawing.Size(225, 69);
             this.cmdCreateNewDC.TabIndex = 0;
-            this.cmdCreateNewDC.Text = "Create Data Center";
+            this.cmdCreateNewDC.Text = "New Data Center";
             this.cmdCreateNewDC.UseVisualStyleBackColor = true;
             this.cmdCreateNewDC.Click += new System.EventHandler(this.cmdCreateNewDC_Click);
             // 
@@ -78,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(1, 1);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -101,7 +101,7 @@
             this.tabLayout.AllowDrop = true;
             this.tabLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabLayout.Location = new System.Drawing.Point(0, 0);
-            this.tabLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabLayout.Margin = new System.Windows.Forms.Padding(4);
             this.tabLayout.Name = "tabLayout";
             this.tabLayout.SelectedIndex = 0;
             this.tabLayout.Size = new System.Drawing.Size(907, 630);
@@ -117,7 +117,7 @@
             this.ClientSize = new System.Drawing.Size(1183, 633);
             this.Controls.Add(this.splitContainer1);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1194, 664);
             this.Name = "frmMenuHome";
             this.Text = "MenuHome";
