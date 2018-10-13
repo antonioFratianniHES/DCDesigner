@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rack.cs" />
     <Compile Include="frmAjoutRack.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -27,11 +27,17 @@ namespace DC_Designer
             f.AutoSize = true;
             f.Dock = DockStyle.Fill;
             f.Show();
-
+            
             tabLayout.Visible = true;
             TabPage newTab = new TabPage();
+            tabLayout.TabPages.Add(newTab);
             newTab.Name = "tabPage"+tabLayout.TabPages.Count;
             newTab.Text = "New Layout"+ tabLayout.TabPages.Count;
+            newTab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            
+
+            //wTab.Controls.Add(this.button1);
+
 
             /*
             TableLayoutPanel dcPanel = new TableLayoutPanel();
@@ -61,7 +67,7 @@ namespace DC_Designer
             //f.AutoSize = true;
             newTab.AllowDrop = true;
             newTab.Controls.Add(f);
-            tabLayout.TabPages.Add(newTab);
+            
            
          
         }
@@ -82,6 +88,12 @@ namespace DC_Designer
         private void frmMenuHome_Resize(object sender, EventArgs e)
         {
             //foreach();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Rack r=new Rack();
+            this.Controls.Add(r.emptyRack(10));
         }
     }
 }

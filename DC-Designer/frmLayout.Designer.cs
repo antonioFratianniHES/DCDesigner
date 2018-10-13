@@ -65,7 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Location = new System.Drawing.Point(7, 187);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(199, 49);
             this.button3.TabIndex = 6;
@@ -79,7 +79,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(7, 127);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(199, 49);
             this.button2.TabIndex = 5;
@@ -92,7 +92,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(7, 67);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(199, 49);
             this.button1.TabIndex = 1;
@@ -116,7 +116,7 @@
             this.tableLayoutPanel1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -153,7 +153,7 @@
             this.cmdAddRack.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAddRack.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.cmdAddRack.Location = new System.Drawing.Point(309, 282);
-            this.cmdAddRack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdAddRack.Margin = new System.Windows.Forms.Padding(4);
             this.cmdAddRack.Name = "cmdAddRack";
             this.cmdAddRack.Size = new System.Drawing.Size(49, 50);
             this.cmdAddRack.TabIndex = 3;
@@ -181,7 +181,7 @@
             // cmdSave
             // 
             this.cmdSave.Location = new System.Drawing.Point(267, 2);
-            this.cmdSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdSave.Margin = new System.Windows.Forms.Padding(4);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(100, 28);
             this.cmdSave.TabIndex = 5;
@@ -191,7 +191,7 @@
             // cmdCancel
             // 
             this.cmdCancel.Location = new System.Drawing.Point(387, 2);
-            this.cmdCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdCancel.Margin = new System.Windows.Forms.Padding(4);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(100, 28);
             this.cmdCancel.TabIndex = 6;
@@ -213,7 +213,7 @@
             // 
             this.txtNomDC.AllowDrop = true;
             this.txtNomDC.Location = new System.Drawing.Point(116, 5);
-            this.txtNomDC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNomDC.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomDC.Name = "txtNomDC";
             this.txtNomDC.Size = new System.Drawing.Size(132, 22);
             this.txtNomDC.TabIndex = 8;
@@ -233,7 +233,7 @@
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.tableLayoutPanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLayout";

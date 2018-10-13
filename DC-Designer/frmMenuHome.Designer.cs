@@ -33,10 +33,14 @@
             this.cmdCreateNewDC = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabLayout = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabLayout.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstExistingDC
@@ -99,14 +103,36 @@
             // tabLayout
             // 
             this.tabLayout.AllowDrop = true;
+            this.tabLayout.Controls.Add(this.tabPage1);
             this.tabLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabLayout.Location = new System.Drawing.Point(0, 0);
             this.tabLayout.Margin = new System.Windows.Forms.Padding(4);
             this.tabLayout.Name = "tabLayout";
             this.tabLayout.SelectedIndex = 0;
             this.tabLayout.Size = new System.Drawing.Size(907, 630);
+            this.tabLayout.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabLayout.TabIndex = 0;
-            this.tabLayout.Visible = false;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(899, 601);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(82, 88);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frmMenuHome
             // 
@@ -127,6 +153,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabLayout.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -138,5 +166,7 @@
         private System.Windows.Forms.Button cmdCreateNewDC;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabLayout;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button button2;
     }
 }
