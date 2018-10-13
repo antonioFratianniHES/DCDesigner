@@ -22,25 +22,21 @@ namespace DC_Designer
         private void cmdCreateNewDC_Click(object sender, EventArgs e)
         {
 
-            frmLayout f = new frmLayout();
-            f.TopLevel = false;
-            f.AutoSize = true;
-            f.Dock = DockStyle.Fill;
-            f.Show();
-            
+          
             tabLayout.Visible = true;
             TabPage newTab = new TabPage();
             tabLayout.TabPages.Add(newTab);
             newTab.Name = "tabPage"+tabLayout.TabPages.Count;
             newTab.Text = "New Layout"+ tabLayout.TabPages.Count;
             newTab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            
+
 
             //wTab.Controls.Add(this.button1);
 
 
-            /*
-            TableLayoutPanel dcPanel = new TableLayoutPanel();
+            Rack r = new Rack();
+            TableLayoutPanel dcPanel = r.emptyRack(10);
+
             dcPanel.AutoSize = true;
             dcPanel.ColumnCount = 1;
             dcPanel.CellBorderStyle= TableLayoutPanelCellBorderStyle.InsetDouble; 
@@ -63,12 +59,10 @@ namespace DC_Designer
             cmdAddRack.Click += new EventHandler(cmdAddRack_Click);
 
             dcPanel.Controls.Add(cmdAddRack,0,0);
-            newTab.Controls.Add(dcPanel);*/
-            //f.AutoSize = true;
-            newTab.AllowDrop = true;
-            newTab.Controls.Add(f);
-            
+            newTab.Controls.Add(dcPanel);
            
+            newTab.AllowDrop = true;
+                   
          
         }
 
@@ -90,10 +84,5 @@ namespace DC_Designer
             //foreach();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Rack r=new Rack();
-            this.Controls.Add(r.emptyRack(10));
-        }
     }
 }
