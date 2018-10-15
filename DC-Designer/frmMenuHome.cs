@@ -31,19 +31,20 @@ namespace DC_Designer
             newTab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
 
-            //wTab.Controls.Add(this.button1);
-
+            TableLayoutPanel dcLayout = new TableLayoutPanel();
+            dcLayout.ColumnCount = 2;
+            dcLayout.AutoSize = true;
 
             Rack r = new Rack();
-            TableLayoutPanel dcPanel = r.emptyRack(10);
+            TableLayoutPanel rackPanel = r.emptyRack(10);
 
-            dcPanel.AutoSize = true;
-            dcPanel.ColumnCount = 1;
-            dcPanel.CellBorderStyle= TableLayoutPanelCellBorderStyle.InsetDouble; 
-            dcPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            rackPanel.AutoSize = true;
+            rackPanel.ColumnCount = 1;
+            rackPanel.CellBorderStyle= TableLayoutPanelCellBorderStyle.InsetDouble; 
+            rackPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
             
-            dcPanel.Width = 100;
-            dcPanel.Height = 200;
+            rackPanel.Width = 100;
+            rackPanel.Height = 200;
             
 
             Button cmdAddRack = new Button();
@@ -58,8 +59,9 @@ namespace DC_Designer
             cmdAddRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             cmdAddRack.Click += new EventHandler(cmdAddRack_Click);
 
-            dcPanel.Controls.Add(cmdAddRack,0,0);
-            newTab.Controls.Add(dcPanel);
+            dcLayout.Controls.Add(cmdAddRack,1,0);
+            dcLayout.Controls.Add(rackPanel);
+            newTab.Controls.Add(dcLayout);
            
             newTab.AllowDrop = true;
                    
