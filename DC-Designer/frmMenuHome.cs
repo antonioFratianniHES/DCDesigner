@@ -23,7 +23,6 @@ namespace DC_Designer
         {
 
           
-            tabLayout.Visible = true;
             TabPage newTab = new TabPage();
             tabLayout.TabPages.Add(newTab);
             newTab.Name = "tabPage"+tabLayout.TabPages.Count;
@@ -32,20 +31,15 @@ namespace DC_Designer
 
 
             TableLayoutPanel dcLayout = new TableLayoutPanel();
-            dcLayout.ColumnCount = 2;
+            dcLayout.ColumnCount = 1;
             dcLayout.AutoSize = true;
+            dcLayout.Size = new Size(150, 250);
 
             Rack r = new Rack();
             TableLayoutPanel rackPanel = r.emptyRack(10);
+            Button t=r.getCmdRackName();
+            t.Click += new EventHandler(rackClickEvent);
 
-            rackPanel.AutoSize = true;
-            rackPanel.ColumnCount = 1;
-            rackPanel.CellBorderStyle= TableLayoutPanelCellBorderStyle.InsetDouble; 
-            rackPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
-            
-            rackPanel.Width = 100;
-            rackPanel.Height = 200;
-            
 
             Button cmdAddRack = new Button();
             cmdAddRack.Name = "cmdAddRack";
@@ -59,7 +53,7 @@ namespace DC_Designer
             cmdAddRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             cmdAddRack.Click += new EventHandler(cmdAddRack_Click);
 
-            dcLayout.Controls.Add(cmdAddRack,1,0);
+            dcLayout.Controls.Add(cmdAddRack,0,0);
             dcLayout.Controls.Add(rackPanel);
             newTab.Controls.Add(dcLayout);
            
@@ -69,7 +63,7 @@ namespace DC_Designer
         }
 
 
-        private void cmdAddRack_Click(object sender, EventArgs e)
+        public void cmdAddRack_Click(object sender, EventArgs e)
         {
             frmAjoutRack f = new frmAjoutRack();
             f.ShowDialog(this);
@@ -81,10 +75,14 @@ namespace DC_Designer
 
         }
 
-        private void frmMenuHome_Resize(object sender, EventArgs e)
+        private void rackClickEvent(object sender, EventArgs e)
         {
-            //foreach();
+            Control c = (Control)sender;
+            if (c.Name == "cmdRackName")
+            {
+                c.Text = "test";
+            }
+           
         }
-
     }
 }

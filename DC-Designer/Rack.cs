@@ -12,7 +12,7 @@ namespace DC_Designer
 {
     class Rack
     {
-        private TextBox txtRackName;
+        private Button cmdRackName;
         private TableLayoutPanel r;
 
         public TableLayoutPanel emptyRack(int taille) {
@@ -32,28 +32,22 @@ namespace DC_Designer
             {
                 r.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille+1))); 
             }
-            txtRackName = new TextBox();
-            txtRackName.Name = "txtRackName";
-            txtRackName.Size = new Size(20, 50);
-            txtRackName.Text = "new Rack";
-            txtRackName.Enabled = false;
-            txtRackName.ForeColor= SystemColors.ButtonFace;
-            txtRackName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            txtRackName.TextAlign = HorizontalAlignment.Center;
-            r.Click += new EventHandler(rackClickEvent);
-            r.Controls.Add(txtRackName,1,0);
+            cmdRackName = new Button();
+            cmdRackName.Name = "cmdRackName";
+            cmdRackName.Size = new Size(20, 50);
+            cmdRackName.Text = "new Rack";
+            cmdRackName.Enabled = true;
+            cmdRackName.ForeColor= SystemColors.ButtonFace;
+            cmdRackName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+            //txtRackName.TextAlign = HorizontalAlignment.Center;
+            
+            r.Controls.Add(cmdRackName, 1,0);
             
             return r;
         }
 
-        private void rackClickEvent(object sender, EventArgs e)
-        {
-            Control c = (Control)sender;
-            if(c.Name== "txtRackName")
-            { c.Enabled = true;
-                c.Text = "test";
-                Console.WriteLine("test");
-            }
+        public Button getCmdRackName() {
+            return cmdRackName;
         }
     }
 }
