@@ -78,8 +78,7 @@ namespace DC_Designer
 
         private void LstExistingDC_DoubleClick(object sender, EventArgs e)
         {
-            if (tabLayout.Visible == true)
-            {
+            if (lstExistingDC.SelectedValue!=null && tabLayout.Visible == true) {
                 FrmSaveLayout save = new FrmSaveLayout();
                 save.ShowDialog(this);
             }
@@ -91,12 +90,26 @@ namespace DC_Designer
 
         private void RackClickEvent(object sender, EventArgs e)
         {
-            Control c = (Control)sender;
+            Button c = (Button)sender;
             if (c.Name == "cmdRackName")
             {
-                c.Text = "test";
+                String oldText = c.Text;
+                Control oldParent = c.Parent;
+                oldParent.Controls.Remove(c);
+                TextBox newName = new TextBox();
+                newName.LostFocus += new EventHandler(newName_LostFocus);
+                oldParent.Controls.Add(newName);
             }
            
+        }
+
+        private void newName_LostFocus(object sender, EventArgs e)
+        {
+            
+            TextBox t = (TextBox)sender;
+
+            String oldText = t.Text;
+          //  Button cmdRackName = Rack.createRackName(nom: oldText);
         }
     }
 }

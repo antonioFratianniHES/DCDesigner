@@ -29,6 +29,7 @@ namespace DC_Designer
                 Width = 100,
                 Height = 20 * (taille + 1),
                 AllowDrop = true,
+                AutoSize = true,
                 ForeColor = SystemColors.ActiveCaption,
                 BackColor = SystemColors.ActiveCaption
             };
@@ -37,18 +38,25 @@ namespace DC_Designer
             {
                 rackDesign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille+1))); 
             }
-            cmdRackName = new Button
+
+            cmdRackName = createRackName(nom);
+            rackDesign.Controls.Add(cmdRackName, 1,0);
+            
+        }
+
+        public Button createRackName(String nom)
+        {
+            Button cmdRackName = new Button
             {
                 Name = "cmdRackName",
                 Size = new Size(20, 20),
                 Text = nom,
+                AutoSize = true,
                 Enabled = true,
                 ForeColor = SystemColors.ButtonFace,
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
             };
-
-            rackDesign.Controls.Add(cmdRackName, 1,0);
-            
+            return cmdRackName;
         }
 
         public TableLayoutPanel GetRackDesign() {
