@@ -33,10 +33,14 @@
             this.cmdCreateNewDC = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabLayout = new System.Windows.Forms.TabControl();
+            this.newTab = new System.Windows.Forms.TabPage();
+            this.dcLayout = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabLayout.SuspendLayout();
+            this.newTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstExistingDC
@@ -48,7 +52,7 @@
             this.lstExistingDC.Name = "lstExistingDC";
             this.lstExistingDC.Size = new System.Drawing.Size(224, 244);
             this.lstExistingDC.TabIndex = 1;
-            this.lstExistingDC.DoubleClick += new System.EventHandler(this.lstExistingDC_DoubleClick);
+            this.lstExistingDC.DoubleClick += new System.EventHandler(this.LstExistingDC_DoubleClick);
             // 
             // lblExistingDC
             // 
@@ -69,7 +73,7 @@
             this.cmdCreateNewDC.TabIndex = 0;
             this.cmdCreateNewDC.Text = "New Data Center";
             this.cmdCreateNewDC.UseVisualStyleBackColor = true;
-            this.cmdCreateNewDC.Click += new System.EventHandler(this.cmdCreateNewDC_Click);
+            this.cmdCreateNewDC.Click += new System.EventHandler(this.CmdCreateNewDC_Click);
             // 
             // splitContainer1
             // 
@@ -99,6 +103,7 @@
             // tabLayout
             // 
             this.tabLayout.AllowDrop = true;
+            this.tabLayout.Controls.Add(this.newTab);
             this.tabLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabLayout.Location = new System.Drawing.Point(0, 0);
             this.tabLayout.Margin = new System.Windows.Forms.Padding(4);
@@ -107,6 +112,30 @@
             this.tabLayout.Size = new System.Drawing.Size(907, 630);
             this.tabLayout.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabLayout.TabIndex = 0;
+            this.tabLayout.Visible = false;
+            // 
+            // newTab
+            // 
+            this.newTab.Controls.Add(this.dcLayout);
+            this.newTab.Location = new System.Drawing.Point(4, 25);
+            this.newTab.Name = "newTab";
+            this.newTab.Padding = new System.Windows.Forms.Padding(3);
+            this.newTab.Size = new System.Drawing.Size(899, 601);
+            this.newTab.TabIndex = 0;
+            this.newTab.Text = "new Layout";
+            this.newTab.UseVisualStyleBackColor = true;
+            // 
+            // dcLayout
+            // 
+            this.dcLayout.ColumnCount = 2;
+            this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.dcLayout.Location = new System.Drawing.Point(45, 30);
+            this.dcLayout.Name = "dcLayout";
+            this.dcLayout.RowCount = 1;
+            this.dcLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.dcLayout.Size = new System.Drawing.Size(494, 406);
+            this.dcLayout.TabIndex = 0;
             // 
             // frmMenuHome
             // 
@@ -126,6 +155,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabLayout.ResumeLayout(false);
+            this.newTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -137,5 +168,7 @@
         private System.Windows.Forms.Button cmdCreateNewDC;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabLayout;
+        private System.Windows.Forms.TabPage newTab;
+        private System.Windows.Forms.TableLayoutPanel dcLayout;
     }
 }

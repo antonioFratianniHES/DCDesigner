@@ -19,63 +19,77 @@ namespace DC_Designer
             f.ShowDialog(this);
         }
 
-        private void cmdCreateNewDC_Click(object sender, EventArgs e)
+        private void CmdCreateNewDC_Click(object sender, EventArgs e)
         {
+            if (tabLayout.Visible == true) {
+                FrmSaveLayout save = new FrmSaveLayout();
+                save.ShowDialog(this);
+            }
+            else  tabLayout.Visible = true;
 
-          
-            TabPage newTab = new TabPage();
-            tabLayout.TabPages.Add(newTab);
-            newTab.Name = "tabPage"+tabLayout.TabPages.Count;
-            newTab.Text = "New Layout"+ tabLayout.TabPages.Count;
-            newTab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-
-
-            TableLayoutPanel dcLayout = new TableLayoutPanel();
-            dcLayout.ColumnCount = 1;
-            dcLayout.AutoSize = true;
-            dcLayout.Size = new Size(150, 250);
-
-            Rack r = new Rack();
-            TableLayoutPanel rackPanel = r.emptyRack(10);
-            Button t=r.getCmdRackName();
-            t.Click += new EventHandler(rackClickEvent);
-
-
-            Button cmdAddRack = new Button();
-            cmdAddRack.Name = "cmdAddRack";
-            cmdAddRack.Text = "+";
-            cmdAddRack.Font= new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cmdAddRack.ForeColor = SystemColors.HotTrack;
-            cmdAddRack.Size = new Size(49, 51);
-            cmdAddRack.TextAlign = ContentAlignment.MiddleCenter;
-            cmdAddRack.AutoSize = true;
-            cmdAddRack.Anchor = AnchorStyles.None;
-            cmdAddRack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            cmdAddRack.Click += new EventHandler(cmdAddRack_Click);
-
-            dcLayout.Controls.Add(cmdAddRack,0,0);
+            Rack r = new Rack("New Rack", 10);
+            TableLayoutPanel rackPanel = r.GetRackDesign();
             dcLayout.Controls.Add(rackPanel);
-            newTab.Controls.Add(dcLayout);
-           
-            newTab.AllowDrop = true;
-                   
+            Button t = r.GetCmdRackName();
+            t.Click += new EventHandler(RackClickEvent);
+
+
+            Button cmdAddRack = new Button
+            {
+                Name = "cmdAddRack",
+                Text = "+",
+                Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0),
+                ForeColor = SystemColors.HotTrack,
+                Size = new Size(49, 51),
+                TextAlign = ContentAlignment.MiddleCenter,
+                AutoSize = true,
+                Anchor = AnchorStyles.None,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+            cmdAddRack.Click += new EventHandler(CmdAddRack_Click);
+
+            dcLayout.Controls.Add(cmdAddRack, 1, 0);
+
+
+            tabLayout.AllowDrop = true;
+                  
          
         }
 
+        public void AddRack(String nom, int nbU) {
+            Rack r = new Rack(nom,nbU);
+            
+        }
 
-        public void cmdAddRack_Click(object sender, EventArgs e)
+        private void CmdAddRack_Click(object sender, EventArgs e)
         {
-            frmAjoutRack f = new frmAjoutRack();
+            FrmAjoutRack f = new FrmAjoutRack();
             f.ShowDialog(this);
+            
         }
 
-        private void lstExistingDC_DoubleClick(object sender, EventArgs e)
+        public void InitTab() {
+            //remet la tab à zero
+        }
+
+        public void SaveLayout() {
+            //sauve les données des rack
+        }
+
+        private void LstExistingDC_DoubleClick(object sender, EventArgs e)
         {
+            if (tabLayout.Visible == true)
+            {
+                FrmSaveLayout save = new FrmSaveLayout();
+                save.ShowDialog(this);
+            }
+            else { 
             int DcToOpen = lstExistingDC.SelectedIndex;
-
+                //afficher les données du layout selectionné
+            }
         }
 
-        private void rackClickEvent(object sender, EventArgs e)
+        private void RackClickEvent(object sender, EventArgs e)
         {
             Control c = (Control)sender;
             if (c.Name == "cmdRackName")

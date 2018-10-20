@@ -1,6 +1,6 @@
 ﻿namespace DC_Designer
 {
-    partial class frmAjoutRack
+    partial class FrmAjoutRack
     {
         /// <summary>
         /// Required designer variable.
@@ -33,79 +33,86 @@
             this.lblNomRack = new System.Windows.Forms.Label();
             this.lblNbU = new System.Windows.Forms.Label();
             this.txtNomRack = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.numNbU = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numNbU)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdAdd
             // 
-            this.cmdAdd.Location = new System.Drawing.Point(152, 132);
+            this.cmdAdd.Location = new System.Drawing.Point(203, 162);
+            this.cmdAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(79, 26);
+            this.cmdAdd.Size = new System.Drawing.Size(105, 32);
             this.cmdAdd.TabIndex = 2;
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = true;
-            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
+            this.cmdAdd.Click += new System.EventHandler(this.CmdAdd_Click);
             // 
             // cmdAnnuler
             // 
-            this.cmdAnnuler.Location = new System.Drawing.Point(34, 133);
+            this.cmdAnnuler.Location = new System.Drawing.Point(45, 164);
+            this.cmdAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdAnnuler.Name = "cmdAnnuler";
-            this.cmdAnnuler.Size = new System.Drawing.Size(77, 25);
+            this.cmdAnnuler.Size = new System.Drawing.Size(103, 31);
             this.cmdAnnuler.TabIndex = 3;
             this.cmdAnnuler.Text = "Cancel";
             this.cmdAnnuler.UseVisualStyleBackColor = true;
-            this.cmdAnnuler.Click += new System.EventHandler(this.cmdAnnuler_Click);
+            this.cmdAnnuler.Click += new System.EventHandler(this.CmdAnnuler_Click);
             // 
             // lblNomRack
             // 
             this.lblNomRack.AutoSize = true;
-            this.lblNomRack.Location = new System.Drawing.Point(31, 40);
+            this.lblNomRack.Location = new System.Drawing.Point(41, 49);
+            this.lblNomRack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomRack.Name = "lblNomRack";
-            this.lblNomRack.Size = new System.Drawing.Size(29, 13);
+            this.lblNomRack.Size = new System.Drawing.Size(37, 17);
             this.lblNomRack.TabIndex = 2;
             this.lblNomRack.Text = "Nom";
             // 
             // lblNbU
             // 
             this.lblNbU.AutoSize = true;
-            this.lblNbU.Location = new System.Drawing.Point(31, 81);
+            this.lblNbU.Location = new System.Drawing.Point(42, 93);
+            this.lblNbU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNbU.Name = "lblNbU";
-            this.lblNbU.Size = new System.Drawing.Size(70, 13);
+            this.lblNbU.Size = new System.Drawing.Size(92, 17);
             this.lblNbU.TabIndex = 3;
             this.lblNbU.Text = "Nombre de U";
             // 
             // txtNomRack
             // 
-            this.txtNomRack.Location = new System.Drawing.Point(128, 37);
+            this.txtNomRack.Location = new System.Drawing.Point(171, 46);
+            this.txtNomRack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNomRack.Name = "txtNomRack";
-            this.txtNomRack.Size = new System.Drawing.Size(103, 20);
+            this.txtNomRack.Size = new System.Drawing.Size(136, 22);
             this.txtNomRack.TabIndex = 0;
             // 
-            // numericUpDown1
+            // numNbU
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(128, 74);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown1.TabIndex = 1;
+            this.numNbU.Location = new System.Drawing.Point(171, 91);
+            this.numNbU.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numNbU.Name = "numNbU";
+            this.numNbU.Size = new System.Drawing.Size(51, 22);
+            this.numNbU.TabIndex = 1;
             // 
             // frmAjoutRack
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 177);
-            this.Controls.Add(this.numericUpDown1);
+            this.ClientSize = new System.Drawing.Size(349, 218);
+            this.Controls.Add(this.numNbU);
             this.Controls.Add(this.txtNomRack);
             this.Controls.Add(this.lblNbU);
             this.Controls.Add(this.lblNomRack);
             this.Controls.Add(this.cmdAnnuler);
             this.Controls.Add(this.cmdAdd);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAjoutRack";
             this.Text = "Ajout Rack";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNbU)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,6 +125,6 @@
         private System.Windows.Forms.Label lblNomRack;
         private System.Windows.Forms.Label lblNbU;
         private System.Windows.Forms.TextBox txtNomRack;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numNbU;
     }
 }

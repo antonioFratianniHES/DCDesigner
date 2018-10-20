@@ -10,21 +10,27 @@ using System.Windows.Forms;
 
 namespace DC_Designer
 {
-    public partial class frmAjoutRack : Form
+    public partial class FrmAjoutRack : Form
     {
-        public frmAjoutRack()
+        public FrmAjoutRack()
         {
             InitializeComponent();
+          
         }
 
-        private void cmdAnnuler_Click(object sender, EventArgs e)
+        private void CmdAnnuler_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void cmdAdd_Click(object sender, EventArgs e)
+        private void CmdAdd_Click(object sender, EventArgs e)
         {
-            //a coder
+            if(txtNomRack.TextLength!=0 && numNbU.Value > 0){
+                //ajouter rack
+                
+            }
+            this.Close();
+            this.Dispose();
         }
     }
 }

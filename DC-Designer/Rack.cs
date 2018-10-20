@@ -13,40 +13,49 @@ namespace DC_Designer
     class Rack
     {
         private Button cmdRackName;
-        private TableLayoutPanel r;
+        private TableLayoutPanel rackDesign;
 
-        public TableLayoutPanel emptyRack(int taille) {
-            r = new TableLayoutPanel();
-            r.RowCount = taille+1;
-            r.ColumnCount = 1;
-            r.AutoSize = true;
-            r.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
-            r.Anchor = AnchorStyles.Left | AnchorStyles.Top;
-            r.Width = 200;
-            r.Height = 20*(taille+1);
-            r.AllowDrop = true;
-            r.ForeColor= SystemColors.ActiveCaption; 
-            r.BackColor= SystemColors.ActiveCaption; 
+        public Rack(String nom, int nbU) {
+            EmptyRack(nbU,nom);
+        }
+
+        public void EmptyRack(int taille,String nom) {
+            rackDesign = new TableLayoutPanel
+            {
+                RowCount = taille + 1,
+                ColumnCount = 1,
+                CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble,
+                Anchor = AnchorStyles.Left | AnchorStyles.Top,
+                Width = 100,
+                Height = 20 * (taille + 1),
+                AllowDrop = true,
+                ForeColor = SystemColors.ActiveCaption,
+                BackColor = SystemColors.ActiveCaption
+            };
 
             for (int i = 0; i < taille+1;i++)
             {
-                r.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille+1))); 
+                rackDesign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille+1))); 
             }
-            cmdRackName = new Button();
-            cmdRackName.Name = "cmdRackName";
-            cmdRackName.Size = new Size(20, 50);
-            cmdRackName.Text = "new Rack";
-            cmdRackName.Enabled = true;
-            cmdRackName.ForeColor= SystemColors.ButtonFace;
-            cmdRackName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            //txtRackName.TextAlign = HorizontalAlignment.Center;
+            cmdRackName = new Button
+            {
+                Name = "cmdRackName",
+                Size = new Size(20, 20),
+                Text = nom,
+                Enabled = true,
+                ForeColor = SystemColors.ButtonFace,
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
+            };
+
+            rackDesign.Controls.Add(cmdRackName, 1,0);
             
-            r.Controls.Add(cmdRackName, 1,0);
-            
-            return r;
         }
 
-        public Button getCmdRackName() {
+        public TableLayoutPanel GetRackDesign() {
+            return rackDesign;
+        }
+
+        public Button GetCmdRackName() {
             return cmdRackName;
         }
     }

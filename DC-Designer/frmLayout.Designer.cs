@@ -98,7 +98,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button1_MouseDown);
             // 
             // tableLayoutPanel1
             // 
@@ -131,7 +131,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(213, 603);
             this.tableLayoutPanel1.TabIndex = 2;
-            this.tableLayoutPanel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragEnter);
+            this.tableLayoutPanel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.TableLayoutPanel1_DragEnter);
             // 
             // label1
             // 
@@ -159,7 +159,7 @@
             this.cmdAddRack.TabIndex = 3;
             this.cmdAddRack.Text = "+";
             this.cmdAddRack.UseVisualStyleBackColor = true;
-            this.cmdAddRack.Click += new System.EventHandler(this.cmdAddRack_Click);
+            this.cmdAddRack.Click += new System.EventHandler(this.CmdAddRack_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -197,7 +197,7 @@
             this.cmdCancel.TabIndex = 6;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // lblNomDC
             // 

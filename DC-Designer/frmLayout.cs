@@ -17,18 +17,18 @@ namespace DC_Designer
             InitializeComponent();
         }
 
-        private void cmdAddRack_Click(object sender, EventArgs e)
+        private void CmdAddRack_Click(object sender, EventArgs e)
         {
-            frmAjoutRack f = new frmAjoutRack();
+            FrmAjoutRack f = new FrmAjoutRack();
             f.ShowDialog(this);
         }
 
-        private void button1_MouseDown(object sender, MouseEventArgs e)
+        private void Button1_MouseDown(object sender, MouseEventArgs e)
         {
             button1.DoDragDrop(button1.Text, DragDropEffects.Copy | DragDropEffects.Move);
         }
 
-        private void tableLayoutPanel1_DragEnter(object sender, DragEventArgs e)
+        private void TableLayoutPanel1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text))
                 e.Effect = DragDropEffects.Copy;
@@ -36,13 +36,13 @@ namespace DC_Designer
                 e.Effect = DragDropEffects.None;
         }
 
-        private void cmdCancel_Click(object sender, EventArgs e)
+        private void CmdCancel_Click(object sender, EventArgs e)
         {
             Close();
             
         }
 
-        private void cmdAddEquip_Clik(Object sender, EventArgs e)
+        private void CmdAddEquip_Clik(Object sender, EventArgs e)
         {
             frmEquipement f = new frmEquipement();
             f.ShowDialog(this);
