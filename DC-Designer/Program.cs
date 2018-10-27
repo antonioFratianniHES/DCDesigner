@@ -16,7 +16,7 @@ namespace DC_Designer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMenuHome());
+            Application.Run(new FrmMenuHome());
         }
     }
 }

@@ -25,7 +25,14 @@ namespace DC_Designer
 
         private void cmdLogin_Click(object sender, EventArgs e)
         {
-            Close();
+            if (Login.UserOk(txtUsername.Text))
+            {
+                Login.setUser(u: txtUsername.Text);
+                Close();
+            }
+            else { MessageBox.Show("user ou mot de passe incorrect","Error",MessageBoxButtons.OK); }
+            
         }
+
     }
 }

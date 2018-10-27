@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace DC_Designer
 {
-    public partial class frmMenuHome : Form
+    public partial class FrmMenuHome : Form
     {
-        public frmMenuHome()
+        
+        public FrmMenuHome()
         {
             InitializeComponent();
             frmConnexion f = new frmConnexion();
             f.ShowDialog(this);
+    
         }
 
         private void CmdCreateNewDC_Click(object sender, EventArgs e)
@@ -97,13 +99,13 @@ namespace DC_Designer
                 Control oldParent = c.Parent;
                 oldParent.Controls.Remove(c);
                 TextBox newName = new TextBox();
-                newName.LostFocus += new EventHandler(newName_LostFocus);
+                newName.LostFocus += new EventHandler(NewName_LostFocus);
                 oldParent.Controls.Add(newName);
             }
            
         }
 
-        private void newName_LostFocus(object sender, EventArgs e)
+        private void NewName_LostFocus(object sender, EventArgs e)
         {
             
             TextBox t = (TextBox)sender;
