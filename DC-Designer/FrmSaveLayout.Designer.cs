@@ -30,14 +30,14 @@
         {
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.cmdDontSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdSave
             // 
-            this.cmdSave.Location = new System.Drawing.Point(27, 46);
+            this.cmdSave.Location = new System.Drawing.Point(41, 37);
+            this.cmdSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(70, 32);
+            this.cmdSave.Size = new System.Drawing.Size(52, 26);
             this.cmdSave.TabIndex = 0;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
@@ -45,33 +45,24 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(217, 46);
+            this.cmdCancel.Location = new System.Drawing.Point(125, 37);
+            this.cmdCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 32);
+            this.cmdCancel.Size = new System.Drawing.Size(56, 26);
             this.cmdCancel.TabIndex = 1;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdDontSave
-            // 
-            this.cmdDontSave.Location = new System.Drawing.Point(114, 46);
-            this.cmdDontSave.Name = "cmdDontSave";
-            this.cmdDontSave.Size = new System.Drawing.Size(86, 32);
-            this.cmdDontSave.TabIndex = 2;
-            this.cmdDontSave.Text = "Don\'t Save";
-            this.cmdDontSave.UseVisualStyleBackColor = true;
-            this.cmdDontSave.Click += new System.EventHandler(this.CmdDontSave_Click);
-            // 
             // FrmSaveLayout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 140);
-            this.Controls.Add(this.cmdDontSave);
+            this.ClientSize = new System.Drawing.Size(228, 114);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmSaveLayout";
@@ -84,6 +75,5 @@
 
         private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.Button cmdDontSave;
     }
 }

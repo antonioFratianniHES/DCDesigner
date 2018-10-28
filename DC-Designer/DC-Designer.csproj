@@ -51,6 +51,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -91,12 +92,6 @@
     <Compile Include="FrmConnexion.Designer.cs">
       <DependentUpon>FrmConnexion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLayout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLayout.Designer.cs">
-      <DependentUpon>frmLayout.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMenuHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,9 +109,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEquipement.resx">
       <DependentUpon>frmEquipement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLayout.resx">
-      <DependentUpon>frmLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuHome.resx">
       <DependentUpon>frmMenuHome.cs</DependentUpon>

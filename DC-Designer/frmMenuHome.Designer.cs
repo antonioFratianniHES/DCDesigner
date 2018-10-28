@@ -39,6 +39,7 @@
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.dcLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.cmdAddRow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -114,6 +115,7 @@
             // newTab
             // 
             this.newTab.AutoScroll = true;
+            this.newTab.Controls.Add(this.cmdAddRow);
             this.newTab.Controls.Add(this.txtNomDC);
             this.newTab.Controls.Add(this.lblNomDC);
             this.newTab.Controls.Add(this.cmdClose);
@@ -153,6 +155,7 @@
             this.cmdClose.TabIndex = 10;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.CmdClose_Click);
             // 
             // cmdSave
             // 
@@ -162,6 +165,7 @@
             this.cmdSave.TabIndex = 9;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.CmdSave_Click);
             // 
             // dcLayout
             // 
@@ -177,6 +181,16 @@
             this.dcLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dcLayout.Size = new System.Drawing.Size(0, 0);
             this.dcLayout.TabIndex = 0;
+            // 
+            // cmdAddRow
+            // 
+            this.cmdAddRow.Location = new System.Drawing.Point(18, 40);
+            this.cmdAddRow.Name = "cmdAddRow";
+            this.cmdAddRow.Size = new System.Drawing.Size(75, 23);
+            this.cmdAddRow.TabIndex = 14;
+            this.cmdAddRow.Text = "Add Row";
+            this.cmdAddRow.UseVisualStyleBackColor = true;
+            this.cmdAddRow.Click += new System.EventHandler(this.CmdAddRow_Click);
             // 
             // FrmMenuHome
             // 
@@ -215,5 +229,6 @@
         private System.Windows.Forms.Label lblNomDC;
         private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdAddRow;
     }
 }
