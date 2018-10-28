@@ -29,11 +29,11 @@ namespace DC_Designer
             }
             else  tabLayout.Visible = true;
 
-            Rack r = new Rack("New Rack", 10);
+           /* Rack r = new Rack("New Rack", 10);
             TableLayoutPanel rackPanel = r.GetRackDesign();
             dcLayout.Controls.Add(rackPanel);
             Button t = r.GetCmdRackName();
-            t.Click += new EventHandler(RackClickEvent);
+            t.Click += new EventHandler(RackClickEvent);*/
 
 
             Button cmdAddRack = new Button
@@ -67,7 +67,17 @@ namespace DC_Designer
         {
             FrmAjoutRack f = new FrmAjoutRack();
             f.ShowDialog(this);
+            Rack r = GestionRack.GetRack();
+            if (r!=null){ 
+                Button cmdAddRack = (Button)sender;
+                TableLayoutPanelCellPosition cellNewRack = dcLayout.GetCellPosition(cmdAddRack);
             
+                r.GetCmdRackName().Click+= new EventHandler(RackClickEvent);
+                dcLayout.ColumnCount++;
+                dcLayout.Controls.Remove(cmdAddRack);
+                dcLayout.Controls.Add(r.GetRackDesign(),cellNewRack.Column,cellNewRack.Row);
+                dcLayout.Controls.Add(cmdAddRack, cellNewRack.Column+1, cellNewRack.Row);
+            }
         }
 
         public void InitTab() {

@@ -44,7 +44,7 @@
             this.cmdLogin.TabIndex = 2;
             this.cmdLogin.Text = "login";
             this.cmdLogin.UseVisualStyleBackColor = true;
-            this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
+            this.cmdLogin.Click += new System.EventHandler(this.CmdLogin_Click);
             // 
             // cmdCancel
             // 
@@ -54,7 +54,7 @@
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // txtUsername
             // 

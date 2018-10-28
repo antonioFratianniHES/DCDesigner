@@ -34,11 +34,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabLayout = new System.Windows.Forms.TabControl();
             this.newTab = new System.Windows.Forms.TabPage();
-            this.dcLayout = new System.Windows.Forms.TableLayoutPanel();
             this.txtNomDC = new System.Windows.Forms.TextBox();
             this.lblNomDC = new System.Windows.Forms.Label();
-            this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdClose = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
+            this.dcLayout = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -113,32 +113,20 @@
             // 
             // newTab
             // 
+            this.newTab.AutoScroll = true;
             this.newTab.Controls.Add(this.txtNomDC);
             this.newTab.Controls.Add(this.lblNomDC);
-            this.newTab.Controls.Add(this.cmdCancel);
+            this.newTab.Controls.Add(this.cmdClose);
             this.newTab.Controls.Add(this.cmdSave);
             this.newTab.Controls.Add(this.dcLayout);
             this.newTab.Location = new System.Drawing.Point(4, 22);
-            this.newTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newTab.Margin = new System.Windows.Forms.Padding(2);
             this.newTab.Name = "newTab";
-            this.newTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newTab.Padding = new System.Windows.Forms.Padding(2);
             this.newTab.Size = new System.Drawing.Size(673, 486);
             this.newTab.TabIndex = 0;
             this.newTab.Text = "new Layout";
             this.newTab.UseVisualStyleBackColor = true;
-            // 
-            // dcLayout
-            // 
-            this.dcLayout.ColumnCount = 2;
-            this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.dcLayout.Location = new System.Drawing.Point(18, 61);
-            this.dcLayout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dcLayout.Name = "dcLayout";
-            this.dcLayout.RowCount = 1;
-            this.dcLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dcLayout.Size = new System.Drawing.Size(384, 379);
-            this.dcLayout.TabIndex = 0;
             // 
             // txtNomDC
             // 
@@ -157,14 +145,14 @@
             this.lblNomDC.TabIndex = 11;
             this.lblNomDC.Text = "NomDC";
             // 
-            // cmdCancel
+            // cmdClose
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(268, 12);
-            this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
-            this.cmdCancel.TabIndex = 10;
-            this.cmdCancel.Text = "Cancel";
-            this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdClose.Location = new System.Drawing.Point(268, 12);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(75, 23);
+            this.cmdClose.TabIndex = 10;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
             // 
             // cmdSave
             // 
@@ -174,6 +162,21 @@
             this.cmdSave.TabIndex = 9;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
+            // 
+            // dcLayout
+            // 
+            this.dcLayout.AutoSize = true;
+            this.dcLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.dcLayout.ColumnCount = 2;
+            this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.dcLayout.Location = new System.Drawing.Point(18, 61);
+            this.dcLayout.Margin = new System.Windows.Forms.Padding(2);
+            this.dcLayout.Name = "dcLayout";
+            this.dcLayout.RowCount = 1;
+            this.dcLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.dcLayout.Size = new System.Drawing.Size(0, 0);
+            this.dcLayout.TabIndex = 0;
             // 
             // FrmMenuHome
             // 
@@ -210,7 +213,7 @@
         private System.Windows.Forms.TableLayoutPanel dcLayout;
         private System.Windows.Forms.TextBox txtNomDC;
         private System.Windows.Forms.Label lblNomDC;
-        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdSave;
     }
 }

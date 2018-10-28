@@ -18,16 +18,16 @@ namespace DC_Designer
         }
 
 
-        private void cmdCancel_Click(object sender, EventArgs e)
+        private void CmdCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void cmdLogin_Click(object sender, EventArgs e)
+        private void CmdLogin_Click(object sender, EventArgs e)
         {
             if (Login.UserOk(txtUsername.Text))
             {
-                Login.setUser(u: txtUsername.Text);
+                Login.SetUser(u: txtUsername.Text);
                 Close();
             }
             else { MessageBox.Show("user ou mot de passe incorrect","Error",MessageBoxButtons.OK); }

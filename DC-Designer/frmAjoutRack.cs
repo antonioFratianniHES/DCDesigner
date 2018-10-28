@@ -20,14 +20,14 @@ namespace DC_Designer
 
         private void CmdAnnuler_Click(object sender, EventArgs e)
         {
+            GestionRack.SetRack("", 0);
             Close();
         }
 
         private void CmdAdd_Click(object sender, EventArgs e)
         {
             if(txtNomRack.TextLength!=0 && numNbU.Value > 0){
-                //ajouter rack
-                
+                GestionRack.SetRack(txtNomRack.Text, (int)numNbU.Value);
             }
             this.Close();
             this.Dispose();
