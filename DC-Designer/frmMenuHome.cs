@@ -29,7 +29,15 @@ namespace DC_Designer
             }
             else  tabLayout.Visible = true;
 
-         
+            Button cmdAddRack = CreateAddRackButton();
+            dcLayout.Controls.Add(cmdAddRack, 1, 0);
+            dcLayout.AllowDrop = true;
+            tabLayout.AllowDrop = true;
+                   
+        }
+
+        private Button CreateAddRackButton()
+        {
             Button cmdAddRack = new Button
             {
                 Name = "cmdAddRack",
@@ -43,12 +51,7 @@ namespace DC_Designer
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
             cmdAddRack.Click += new EventHandler(CmdAddRack_Click);
-
-            dcLayout.Controls.Add(cmdAddRack, 1, 0);
-
-
-            tabLayout.AllowDrop = true;
-                   
+            return cmdAddRack;
         }
 
 
@@ -71,12 +74,14 @@ namespace DC_Designer
 
         public void InitTab() {
             //remet la tab à zero
-            for (int i = 0; i < dcLayout.Controls.Count; i++)
-            {
-                dcLayout.Controls.RemoveAt(i);
-            }
+            
+            dcLayout.Controls.Clear();
+            dcLayout.ColumnCount = 2;
+            dcLayout.RowCount = 1;
             txtNomDC.Text = "";
             newTab.Name="New Layout";
+            Button cmdAddRack = CreateAddRackButton();
+            dcLayout.Controls.Add(cmdAddRack, 1, 0);
             tabLayout.Visible = false;
         }
 
@@ -137,6 +142,9 @@ namespace DC_Designer
         private void CmdAddRow_Click(object sender, EventArgs e)
         {
             //add row
+            dcLayout.RowCount += 1;
+            dcLayout.Controls.Add(CreateAddRackButton(), 1, dcLayout.RowCount - 1);
+
         }
 
         private void TxtNomDC_KeyPress(object sender, KeyPressEventArgs e)
