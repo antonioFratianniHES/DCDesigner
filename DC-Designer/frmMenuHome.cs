@@ -97,13 +97,13 @@ namespace DC_Designer
                 Control oldParent = c.Parent;
                 oldParent.Controls.Remove(c);
                 TextBox newName = new TextBox();
-                newName.LostFocus += new EventHandler(newName_LostFocus);
+                newName.LostFocus += new EventHandler(NewName_LostFocus);
                 oldParent.Controls.Add(newName);
             }
            
         }
 
-        private void newName_LostFocus(object sender, EventArgs e)
+        private void NewName_LostFocus(object sender, EventArgs e)
         {
             
             TextBox t = (TextBox)sender;
