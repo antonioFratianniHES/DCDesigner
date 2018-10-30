@@ -74,14 +74,13 @@ namespace DC_Designer
 
         public void InitTab() {
             //remet la tab à zero
-            
             dcLayout.Controls.Clear();
-            dcLayout.ColumnCount = 2;
+            dcLayout.ColumnCount = 1;
             dcLayout.RowCount = 1;
             txtNomDC.Text = "";
             newTab.Name="New Layout";
             Button cmdAddRack = CreateAddRackButton();
-            dcLayout.Controls.Add(cmdAddRack, 1, 0);
+            dcLayout.Controls.Add(cmdAddRack, 0, 0);
             tabLayout.Visible = false;
         }
 

@@ -35,10 +35,10 @@ namespace DC_Designer
             };
             cmdRackName = CreateRackName(nom);
             rackDesign.Controls.Add(cmdRackName, 1, 0);
-            rackDesign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille + 1)));
+            rackDesign.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / (taille + 1)));
             for (int i = 1; i < taille+1;i++)
             {
-                rackDesign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille + 1)));
+                rackDesign.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / (taille + 1)));
                 Button b = new Button
                 {
                     Name = String.Concat("cmdEquipe",i),
@@ -49,7 +49,7 @@ namespace DC_Designer
                     ForeColor = SystemColors.ButtonFace,
                     Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
                 };
-                rackDesign.Controls.Add(b, 1, i);
+                rackDesign.Controls.Add(b, 0, i);
             }
 
 
