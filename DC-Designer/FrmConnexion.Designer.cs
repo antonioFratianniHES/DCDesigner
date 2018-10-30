@@ -44,7 +44,7 @@
             this.cmdLogin.TabIndex = 2;
             this.cmdLogin.Text = "login";
             this.cmdLogin.UseVisualStyleBackColor = true;
-            this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
+            this.cmdLogin.Click += new System.EventHandler(this.CmdLogin_Click);
             // 
             // cmdCancel
             // 
@@ -54,7 +54,7 @@
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // txtUsername
             // 
@@ -93,7 +93,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cmdCancel;
             this.ClientSize = new System.Drawing.Size(243, 110);
+            this.ControlBox = false;
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.txtPassword);
@@ -104,6 +106,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConnexion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DC-Designer";
             this.ResumeLayout(false);
             this.PerformLayout();

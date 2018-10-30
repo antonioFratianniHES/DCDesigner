@@ -12,7 +12,7 @@ namespace DC_Designer
     {
         private String rowName;
         private TableLayoutPanel row;
-        public TableLayoutPanel emptyRow(String rowName)
+        public TableLayoutPanel EmptyRow(String rowName)
         {
             row.Name = rowName;
             row.ColumnCount = 1;

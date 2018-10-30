@@ -33,18 +33,30 @@ namespace DC_Designer
                 ForeColor = SystemColors.ActiveCaption,
                 BackColor = SystemColors.ActiveCaption
             };
-
-            for (int i = 0; i < taille+1;i++)
+            cmdRackName = CreateRackName(nom);
+            rackDesign.Controls.Add(cmdRackName, 1, 0);
+            rackDesign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille + 1)));
+            for (int i = 1; i < taille+1;i++)
             {
-                rackDesign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille+1))); 
+                rackDesign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / (taille + 1)));
+                Button b = new Button
+                {
+                    Name = String.Concat("cmdEquipe",i),
+                    Size = new Size(20, 20),
+                    Text = "Empty",
+                    AutoSize = true,
+                    Enabled = true,
+                    ForeColor = SystemColors.ButtonFace,
+                    Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
+                };
+                rackDesign.Controls.Add(b, 1, i);
             }
 
-            cmdRackName = createRackName(nom);
-            rackDesign.Controls.Add(cmdRackName, 1,0);
+
             
         }
 
-        public Button createRackName(String nom)
+        public Button CreateRackName(String nom)
         {
             Button cmdRackName = new Button
             {

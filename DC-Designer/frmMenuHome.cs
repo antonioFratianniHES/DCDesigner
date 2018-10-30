@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace DC_Designer
 {
-    public partial class frmMenuHome : Form
+    public partial class FrmMenuHome : Form
     {
-        public frmMenuHome()
+        private Button cmdRackName;
+        public FrmMenuHome()
         {
             InitializeComponent();
             frmConnexion f = new frmConnexion();
             f.ShowDialog(this);
+    
         }
 
         private void CmdCreateNewDC_Click(object sender, EventArgs e)
@@ -27,13 +29,15 @@ namespace DC_Designer
             }
             else  tabLayout.Visible = true;
 
-            Rack r = new Rack("New Rack", 10);
-            TableLayoutPanel rackPanel = r.GetRackDesign();
-            dcLayout.Controls.Add(rackPanel);
-            Button t = r.GetCmdRackName();
-            t.Click += new EventHandler(RackClickEvent);
+            Button cmdAddRack = CreateAddRackButton();
+            dcLayout.Controls.Add(cmdAddRack, 1, 0);
+            dcLayout.AllowDrop = true;
+            tabLayout.AllowDrop = true;
+                   
+        }
 
-
+        private Button CreateAddRackButton()
+        {
             Button cmdAddRack = new Button
             {
                 Name = "cmdAddRack",
@@ -47,29 +51,38 @@ namespace DC_Designer
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
             cmdAddRack.Click += new EventHandler(CmdAddRack_Click);
-
-            dcLayout.Controls.Add(cmdAddRack, 1, 0);
-
-
-            tabLayout.AllowDrop = true;
-                  
-         
+            return cmdAddRack;
         }
 
-        public void AddRack(String nom, int nbU) {
-            Rack r = new Rack(nom,nbU);
-            
-        }
 
         private void CmdAddRack_Click(object sender, EventArgs e)
         {
             FrmAjoutRack f = new FrmAjoutRack();
             f.ShowDialog(this);
+            Rack r = GestionRack.GetRack();
+            if (r!=null){ 
+                Button cmdAddRack = (Button)sender;
+                TableLayoutPanelCellPosition cellNewRack = dcLayout.GetCellPosition(cmdAddRack);
             
+                r.GetCmdRackName().Click+= new EventHandler(RackClickEvent);
+                dcLayout.ColumnCount++;
+                dcLayout.Controls.Remove(cmdAddRack);
+                dcLayout.Controls.Add(r.GetRackDesign(),cellNewRack.Column,cellNewRack.Row);
+                dcLayout.Controls.Add(cmdAddRack, cellNewRack.Column+1, cellNewRack.Row);
+            }
         }
 
         public void InitTab() {
             //remet la tab à zero
+            
+            dcLayout.Controls.Clear();
+            dcLayout.ColumnCount = 2;
+            dcLayout.RowCount = 1;
+            txtNomDC.Text = "";
+            newTab.Name="New Layout";
+            Button cmdAddRack = CreateAddRackButton();
+            dcLayout.Controls.Add(cmdAddRack, 1, 0);
+            tabLayout.Visible = false;
         }
 
         public void SaveLayout() {
@@ -91,25 +104,65 @@ namespace DC_Designer
         private void RackClickEvent(object sender, EventArgs e)
         {
             Button c = (Button)sender;
+            Console.WriteLine(c.Name);
             if (c.Name == "cmdRackName")
             {
                 String oldText = c.Text;
-                Control oldParent = c.Parent;
-                oldParent.Controls.Remove(c);
-                TextBox newName = new TextBox();
-                newName.LostFocus += new EventHandler(NewName_LostFocus);
-                oldParent.Controls.Add(newName);
+                Control p = c.Parent;
+                cmdRackName = c;
+                p.Controls.Remove(c);
+                TextBox txtNewName = new TextBox
+                {
+                    Name = c.Name
+                };
+                txtNewName.LostFocus += new EventHandler(NewName_LostFocus);
+                txtNewName.KeyPress += new KeyPressEventHandler(TxtNomDC_KeyPress);
+                p.Controls.Add(txtNewName);
+                txtNewName.Focus();
             }
            
         }
 
         private void NewName_LostFocus(object sender, EventArgs e)
         {
-            
-            TextBox t = (TextBox)sender;
+            CreateNameButton(sender);
+        }
 
-            String oldText = t.Text;
-          //  Button cmdRackName = Rack.createRackName(nom: oldText);
+        private void CreateNameButton(object sender)
+        {
+            TextBox t = (TextBox)sender;
+            cmdRackName.Text = t.Text;
+            Control p = t.Parent;
+            p.Controls.Remove(t);
+            p.Controls.Add(cmdRackName);
+            cmdRackName.Click += new EventHandler(RackClickEvent);
+            
+        }
+
+        private void CmdAddRow_Click(object sender, EventArgs e)
+        {
+            //add row
+            dcLayout.RowCount += 1;
+            dcLayout.Controls.Add(CreateAddRackButton(), 1, dcLayout.RowCount - 1);
+
+        }
+
+        private void TxtNomDC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)Keys.Enter)
+            {
+                CreateNameButton(sender);
+            }
+        }
+
+        private void CmdSave_Click(object sender, EventArgs e)
+        {
+            SaveLayout();
+        }
+
+        private void CmdClose_Click(object sender, EventArgs e)
+        {
+            InitTab();
         }
     }
 }

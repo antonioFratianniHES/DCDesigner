@@ -1,6 +1,6 @@
 ﻿namespace DC_Designer
 {
-    partial class frmMenuHome
+    partial class FrmMenuHome
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabLayout = new System.Windows.Forms.TabControl();
             this.newTab = new System.Windows.Forms.TabPage();
+            this.txtNomDC = new System.Windows.Forms.TextBox();
+            this.lblNomDC = new System.Windows.Forms.Label();
+            this.cmdClose = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
             this.dcLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.cmdAddRow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -46,30 +51,26 @@
             // lstExistingDC
             // 
             this.lstExistingDC.FormattingEnabled = true;
-            this.lstExistingDC.ItemHeight = 16;
-            this.lstExistingDC.Location = new System.Drawing.Point(19, 254);
-            this.lstExistingDC.Margin = new System.Windows.Forms.Padding(4);
+            this.lstExistingDC.Location = new System.Drawing.Point(14, 206);
             this.lstExistingDC.Name = "lstExistingDC";
-            this.lstExistingDC.Size = new System.Drawing.Size(224, 244);
+            this.lstExistingDC.Size = new System.Drawing.Size(169, 199);
             this.lstExistingDC.TabIndex = 1;
             this.lstExistingDC.DoubleClick += new System.EventHandler(this.LstExistingDC_DoubleClick);
             // 
             // lblExistingDC
             // 
             this.lblExistingDC.AutoSize = true;
-            this.lblExistingDC.Location = new System.Drawing.Point(15, 234);
-            this.lblExistingDC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExistingDC.Location = new System.Drawing.Point(11, 190);
             this.lblExistingDC.Name = "lblExistingDC";
-            this.lblExistingDC.Size = new System.Drawing.Size(79, 17);
+            this.lblExistingDC.Size = new System.Drawing.Size(61, 13);
             this.lblExistingDC.TabIndex = 2;
             this.lblExistingDC.Text = "Existing DC";
             // 
             // cmdCreateNewDC
             // 
-            this.cmdCreateNewDC.Location = new System.Drawing.Point(19, 113);
-            this.cmdCreateNewDC.Margin = new System.Windows.Forms.Padding(4);
+            this.cmdCreateNewDC.Location = new System.Drawing.Point(14, 92);
             this.cmdCreateNewDC.Name = "cmdCreateNewDC";
-            this.cmdCreateNewDC.Size = new System.Drawing.Size(225, 69);
+            this.cmdCreateNewDC.Size = new System.Drawing.Size(169, 56);
             this.cmdCreateNewDC.TabIndex = 0;
             this.cmdCreateNewDC.Text = "New Data Center";
             this.cmdCreateNewDC.UseVisualStyleBackColor = true;
@@ -82,7 +83,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(1, 1);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -95,9 +95,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabLayout);
-            this.splitContainer1.Size = new System.Drawing.Size(1185, 630);
-            this.splitContainer1.SplitterDistance = 273;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(889, 512);
+            this.splitContainer1.SplitterDistance = 204;
             this.splitContainer1.TabIndex = 6;
             // 
             // tabLayout
@@ -106,49 +105,104 @@
             this.tabLayout.Controls.Add(this.newTab);
             this.tabLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabLayout.Location = new System.Drawing.Point(0, 0);
-            this.tabLayout.Margin = new System.Windows.Forms.Padding(4);
             this.tabLayout.Name = "tabLayout";
             this.tabLayout.SelectedIndex = 0;
-            this.tabLayout.Size = new System.Drawing.Size(907, 630);
+            this.tabLayout.Size = new System.Drawing.Size(681, 512);
             this.tabLayout.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabLayout.TabIndex = 0;
             this.tabLayout.Visible = false;
             // 
             // newTab
             // 
+            this.newTab.AutoScroll = true;
+            this.newTab.Controls.Add(this.cmdAddRow);
+            this.newTab.Controls.Add(this.txtNomDC);
+            this.newTab.Controls.Add(this.lblNomDC);
+            this.newTab.Controls.Add(this.cmdClose);
+            this.newTab.Controls.Add(this.cmdSave);
             this.newTab.Controls.Add(this.dcLayout);
-            this.newTab.Location = new System.Drawing.Point(4, 25);
+            this.newTab.Location = new System.Drawing.Point(4, 22);
+            this.newTab.Margin = new System.Windows.Forms.Padding(2);
             this.newTab.Name = "newTab";
-            this.newTab.Padding = new System.Windows.Forms.Padding(3);
-            this.newTab.Size = new System.Drawing.Size(899, 601);
+            this.newTab.Padding = new System.Windows.Forms.Padding(2);
+            this.newTab.Size = new System.Drawing.Size(673, 486);
             this.newTab.TabIndex = 0;
             this.newTab.Text = "new Layout";
             this.newTab.UseVisualStyleBackColor = true;
             // 
+            // txtNomDC
+            // 
+            this.txtNomDC.AllowDrop = true;
+            this.txtNomDC.Location = new System.Drawing.Point(65, 14);
+            this.txtNomDC.Name = "txtNomDC";
+            this.txtNomDC.Size = new System.Drawing.Size(100, 20);
+            this.txtNomDC.TabIndex = 12;
+            // 
+            // lblNomDC
+            // 
+            this.lblNomDC.AutoSize = true;
+            this.lblNomDC.Location = new System.Drawing.Point(15, 17);
+            this.lblNomDC.Name = "lblNomDC";
+            this.lblNomDC.Size = new System.Drawing.Size(44, 13);
+            this.lblNomDC.TabIndex = 11;
+            this.lblNomDC.Text = "NomDC";
+            // 
+            // cmdClose
+            // 
+            this.cmdClose.Location = new System.Drawing.Point(268, 12);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(75, 23);
+            this.cmdClose.TabIndex = 10;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.CmdClose_Click);
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Location = new System.Drawing.Point(178, 12);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(75, 23);
+            this.cmdSave.TabIndex = 9;
+            this.cmdSave.Text = "Save";
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.CmdSave_Click);
+            // 
             // dcLayout
             // 
+            this.dcLayout.AutoSize = true;
+            this.dcLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.dcLayout.ColumnCount = 2;
             this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.dcLayout.Location = new System.Drawing.Point(45, 30);
+            this.dcLayout.Location = new System.Drawing.Point(18, 61);
+            this.dcLayout.Margin = new System.Windows.Forms.Padding(2);
             this.dcLayout.Name = "dcLayout";
             this.dcLayout.RowCount = 1;
             this.dcLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dcLayout.Size = new System.Drawing.Size(494, 406);
+            this.dcLayout.Size = new System.Drawing.Size(0, 0);
             this.dcLayout.TabIndex = 0;
             // 
-            // frmMenuHome
+            // cmdAddRow
+            // 
+            this.cmdAddRow.Location = new System.Drawing.Point(18, 40);
+            this.cmdAddRow.Name = "cmdAddRow";
+            this.cmdAddRow.Size = new System.Drawing.Size(75, 23);
+            this.cmdAddRow.TabIndex = 14;
+            this.cmdAddRow.Text = "Add Row";
+            this.cmdAddRow.UseVisualStyleBackColor = true;
+            this.cmdAddRow.Click += new System.EventHandler(this.CmdAddRow_Click);
+            // 
+            // FrmMenuHome
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1183, 633);
+            this.ClientSize = new System.Drawing.Size(887, 514);
             this.Controls.Add(this.splitContainer1);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1194, 664);
-            this.Name = "frmMenuHome";
+            this.MinimumSize = new System.Drawing.Size(900, 547);
+            this.Name = "FrmMenuHome";
             this.Text = "MenuHome";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -157,6 +211,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.tabLayout.ResumeLayout(false);
             this.newTab.ResumeLayout(false);
+            this.newTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -170,5 +225,10 @@
         private System.Windows.Forms.TabControl tabLayout;
         private System.Windows.Forms.TabPage newTab;
         private System.Windows.Forms.TableLayoutPanel dcLayout;
+        private System.Windows.Forms.TextBox txtNomDC;
+        private System.Windows.Forms.Label lblNomDC;
+        private System.Windows.Forms.Button cmdClose;
+        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdAddRow;
     }
 }
