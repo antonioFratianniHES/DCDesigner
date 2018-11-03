@@ -12,7 +12,6 @@ namespace DC_Designer
 {
     public partial class FrmMenuHome : Form
     {
-        private Button cmdRackName;
         private String userName;
         public FrmMenuHome()
         {
@@ -20,23 +19,12 @@ namespace DC_Designer
             frmConnexion f = new frmConnexion();
             f.ShowDialog(this);
             userName = Login.GetUser();
-    
-        }
-
-        private void CmdCreateNewDC_Click(object sender, EventArgs e)
-        {
-            if (tabLayout.Visible == true) {
-                FrmSaveLayout save = new FrmSaveLayout();
-                save.ShowDialog(this);
+            if (userName=="admin")
+            {
+                cmbClient.Show();
             }
-            else  tabLayout.Visible = true;
-
-            Button cmdAddRack = CreateAddRackButton();
-            dcLayout.Controls.Add(cmdAddRack,0, 0);
-            dcLayout.AllowDrop = true;
-            tabLayout.AllowDrop = true;
-                   
         }
+
 
         private Button CreateAddRackButton()
         {
@@ -57,22 +45,6 @@ namespace DC_Designer
         }
 
 
-        private void CmdAddRack_Click(object sender, EventArgs e)
-        {
-            FrmAjoutRack f = new FrmAjoutRack();
-            f.ShowDialog(this);
-            Rack r = GestionRack.GetRack();
-            if (r!=null){ 
-                Button cmdAddRack = (Button)sender;
-                TableLayoutPanelCellPosition cellNewRack = dcLayout.GetCellPosition(cmdAddRack);
-            
-                //r.GetCmdRackName()
-                dcLayout.ColumnCount++;
-                dcLayout.Controls.Remove(cmdAddRack);
-                dcLayout.Controls.Add(r.GetRackDesign(),cellNewRack.Column,cellNewRack.Row);
-                dcLayout.Controls.Add(cmdAddRack, cellNewRack.Column+1, cellNewRack.Row);
-            }
-        }
 
         public void InitTab() {
             //remet la tab à zero
@@ -88,6 +60,23 @@ namespace DC_Designer
             //sauve les données des rack
         }
 
+        private void CmdAddRack_Click(object sender, EventArgs e)
+        {
+            FrmAjoutRack f = new FrmAjoutRack();
+            f.ShowDialog(this);
+            Rack r = GestionRack.GetRack();
+            if (r != null)
+            {
+                Button cmdAddRack = (Button)sender;
+                TableLayoutPanelCellPosition cellNewRack = dcLayout.GetCellPosition(cmdAddRack);
+
+                dcLayout.ColumnCount++;
+                dcLayout.Controls.Remove(cmdAddRack);
+                dcLayout.Controls.Add(r.GetRackDesign(), cellNewRack.Column, cellNewRack.Row);
+                dcLayout.Controls.Add(cmdAddRack, cellNewRack.Column + 1, cellNewRack.Row);
+            }
+        }
+
         private void LstExistingDC_DoubleClick(object sender, EventArgs e)
         {
             if (lstExistingDC.SelectedValue!=null && tabLayout.Visible == true) {
@@ -100,7 +89,21 @@ namespace DC_Designer
             }
         }
 
+        private void CmdCreateNewDC_Click(object sender, EventArgs e)
+        {
+            if (tabLayout.Visible == true)
+            {
+                FrmSaveLayout save = new FrmSaveLayout();
+                save.ShowDialog(this);
+            }
+            else tabLayout.Visible = true;
 
+            Button cmdAddRack = CreateAddRackButton();
+            dcLayout.Controls.Add(cmdAddRack, 0, 0);
+            dcLayout.AllowDrop = true;
+            tabLayout.AllowDrop = true;
+
+        }
 
         private void CmdAddRow_Click(object sender, EventArgs e)
         {
@@ -119,6 +122,8 @@ namespace DC_Designer
 
         private void CmdClose_Click(object sender, EventArgs e)
         {
+            FrmSaveLayout save = new FrmSaveLayout();
+            save.ShowDialog(this);
             InitTab();
         }
     }

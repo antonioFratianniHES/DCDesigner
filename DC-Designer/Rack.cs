@@ -44,7 +44,7 @@ namespace DC_Designer
                 Enabled = true,
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
             };
-            rackDesign.Controls.Add(cmdRackName, 1, 0);
+            rackDesign.Controls.Add(cmdRackName, 0, 0);
             rackDesign.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / (taille + 1)));
             for (int i = 1; i < taille+1;i++)
             {
@@ -76,12 +76,21 @@ namespace DC_Designer
         private void cmdEquip_Click(object sender, EventArgs e)
         {
             Button s = (Button)sender;
-            int i = s.Parent.Controls.IndexOf(s);
+            int i = s.Parent.Controls.IndexOf(s)-1;
+            Console.Write(i+" ; "+listEquipement.Count);
             frmEquipement f = new frmEquipement();
-            f.ShowDialog(this.rackDesign.Parent);
             Equipement equip = (Equipement)listEquipement[i];
+            GestionAjoutEquip.setEquipement(equip);
+            f.ShowDialog(this.rackDesign.Parent);
+            f.Dispose();
             equip = GestionAjoutEquip.getEquipement();
-            s.Text = equip.getNom();
+            if (equip !=null)
+            {
+                listEquipement[i] = equip;
+                s.Text = equip.getNom();
+                GestionAjoutEquip.setEquipement(null);
+            }
+            
         }
 
     }

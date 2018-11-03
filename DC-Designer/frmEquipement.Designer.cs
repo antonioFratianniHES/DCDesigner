@@ -33,80 +33,73 @@
             this.txtNomEquipement = new System.Windows.Forms.TextBox();
             this.txtModele = new System.Windows.Forms.TextBox();
             this.cmdAnnulerEquip = new System.Windows.Forms.Button();
-            this.cmdAddEquip = new System.Windows.Forms.Button();
+            this.cmdModifierEquip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNomEquipement
             // 
             this.lblNomEquipement.AutoSize = true;
-            this.lblNomEquipement.Location = new System.Drawing.Point(43, 36);
-            this.lblNomEquipement.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomEquipement.Location = new System.Drawing.Point(32, 29);
             this.lblNomEquipement.Name = "lblNomEquipement";
-            this.lblNomEquipement.Size = new System.Drawing.Size(37, 17);
+            this.lblNomEquipement.Size = new System.Drawing.Size(29, 13);
             this.lblNomEquipement.TabIndex = 0;
             this.lblNomEquipement.Text = "Nom";
             // 
             // lblModele
             // 
             this.lblModele.AutoSize = true;
-            this.lblModele.Location = new System.Drawing.Point(43, 84);
-            this.lblModele.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblModele.Location = new System.Drawing.Point(32, 68);
             this.lblModele.Name = "lblModele";
-            this.lblModele.Size = new System.Drawing.Size(54, 17);
+            this.lblModele.Size = new System.Drawing.Size(42, 13);
             this.lblModele.TabIndex = 1;
             this.lblModele.Text = "Modele";
             // 
             // txtNomEquipement
             // 
-            this.txtNomEquipement.Location = new System.Drawing.Point(128, 32);
-            this.txtNomEquipement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNomEquipement.Location = new System.Drawing.Point(96, 26);
             this.txtNomEquipement.Name = "txtNomEquipement";
-            this.txtNomEquipement.Size = new System.Drawing.Size(169, 22);
+            this.txtNomEquipement.Size = new System.Drawing.Size(128, 20);
             this.txtNomEquipement.TabIndex = 2;
             // 
             // txtModele
             // 
-            this.txtModele.Location = new System.Drawing.Point(128, 80);
-            this.txtModele.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModele.Location = new System.Drawing.Point(96, 65);
             this.txtModele.Name = "txtModele";
-            this.txtModele.Size = new System.Drawing.Size(169, 22);
+            this.txtModele.Size = new System.Drawing.Size(128, 20);
             this.txtModele.TabIndex = 3;
             this.txtModele.Text = "(facultatif)";
             // 
             // cmdAnnulerEquip
             // 
-            this.cmdAnnulerEquip.Location = new System.Drawing.Point(197, 148);
-            this.cmdAnnulerEquip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdAnnulerEquip.Location = new System.Drawing.Point(148, 120);
             this.cmdAnnulerEquip.Name = "cmdAnnulerEquip";
-            this.cmdAnnulerEquip.Size = new System.Drawing.Size(100, 28);
+            this.cmdAnnulerEquip.Size = new System.Drawing.Size(75, 23);
             this.cmdAnnulerEquip.TabIndex = 4;
             this.cmdAnnulerEquip.Text = "Annuler";
             this.cmdAnnulerEquip.UseVisualStyleBackColor = true;
             this.cmdAnnulerEquip.Click += new System.EventHandler(this.cmdAnnulerEquip_Click);
             // 
-            // cmdAddEquip
+            // cmdModifierEquip
             // 
-            this.cmdAddEquip.Location = new System.Drawing.Point(46, 148);
-            this.cmdAddEquip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmdAddEquip.Name = "cmdAddEquip";
-            this.cmdAddEquip.Size = new System.Drawing.Size(100, 28);
-            this.cmdAddEquip.TabIndex = 5;
-            this.cmdAddEquip.Text = "Ajouter";
-            this.cmdAddEquip.UseVisualStyleBackColor = true;
-            this.cmdAddEquip.Click += new System.EventHandler(this.cmdAddEquip_Click);
+            this.cmdModifierEquip.Location = new System.Drawing.Point(34, 120);
+            this.cmdModifierEquip.Name = "cmdModifierEquip";
+            this.cmdModifierEquip.Size = new System.Drawing.Size(75, 23);
+            this.cmdModifierEquip.TabIndex = 5;
+            this.cmdModifierEquip.Text = "Modifier";
+            this.cmdModifierEquip.UseVisualStyleBackColor = true;
+            this.cmdModifierEquip.Click += new System.EventHandler(this.cmdAddEquip_Click);
             // 
             // frmEquipement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 201);
-            this.Controls.Add(this.cmdAddEquip);
+            this.ClientSize = new System.Drawing.Size(262, 163);
+            this.Controls.Add(this.cmdModifierEquip);
             this.Controls.Add(this.cmdAnnulerEquip);
             this.Controls.Add(this.txtModele);
             this.Controls.Add(this.txtNomEquipement);
             this.Controls.Add(this.lblModele);
             this.Controls.Add(this.lblNomEquipement);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEquipement";
@@ -123,6 +116,6 @@
         private System.Windows.Forms.TextBox txtNomEquipement;
         private System.Windows.Forms.TextBox txtModele;
         private System.Windows.Forms.Button cmdAnnulerEquip;
-        private System.Windows.Forms.Button cmdAddEquip;
+        private System.Windows.Forms.Button cmdModifierEquip;
     }
 }
