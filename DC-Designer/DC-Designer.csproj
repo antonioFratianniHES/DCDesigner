@@ -65,6 +65,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Equipement.cs" />
+    <Compile Include="GestionAjoutEquip.cs" />
     <Compile Include="GestionRack.cs" />
     <Compile Include="FrmSaveLayout.cs">
       <SubType>Form</SubType>

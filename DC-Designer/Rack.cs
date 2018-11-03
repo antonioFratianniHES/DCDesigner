@@ -12,8 +12,9 @@ namespace DC_Designer
 {
     class Rack
     {
-        private Button cmdRackName;
+        
         private TableLayoutPanel rackDesign;
+        private List<Equipement> listEquipement= new List<Equipement>();
 
         public Rack(String nom, int nbU) {
             EmptyRack(nbU,nom);
@@ -33,7 +34,16 @@ namespace DC_Designer
                 ForeColor = SystemColors.ActiveCaption,
                 BackColor = SystemColors.ActiveCaption
             };
-            cmdRackName = CreateRackName(nom);
+            TextBox cmdRackName = new TextBox
+            {
+                Name = "cmdRackName",
+                Size = new Size(20, 20),
+                Text = nom,
+                TextAlign = HorizontalAlignment.Center,
+                AutoSize = true,
+                Enabled = true,
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
+            };
             rackDesign.Controls.Add(cmdRackName, 1, 0);
             rackDesign.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / (taille + 1)));
             for (int i = 1; i < taille+1;i++)
@@ -49,34 +59,30 @@ namespace DC_Designer
                     ForeColor = SystemColors.ButtonFace,
                     Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
                 };
+                b.Click += new EventHandler(cmdEquip_Click);
                 rackDesign.Controls.Add(b, 0, i);
+                listEquipement.Add(new Equipement(b.Text,""));
             }
 
 
             
         }
 
-        public Button CreateRackName(String nom)
-        {
-            Button cmdRackName = new Button
-            {
-                Name = "cmdRackName",
-                Size = new Size(20, 20),
-                Text = nom,
-                AutoSize = true,
-                Enabled = true,
-                ForeColor = SystemColors.ButtonFace,
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
-            };
-            return cmdRackName;
-        }
 
         public TableLayoutPanel GetRackDesign() {
             return rackDesign;
         }
 
-        public Button GetCmdRackName() {
-            return cmdRackName;
+        private void cmdEquip_Click(object sender, EventArgs e)
+        {
+            Button s = (Button)sender;
+            int i = s.Parent.Controls.IndexOf(s);
+            frmEquipement f = new frmEquipement();
+            f.ShowDialog(this.rackDesign.Parent);
+            Equipement equip = (Equipement)listEquipement[i];
+            equip = GestionAjoutEquip.getEquipement();
+            s.Text = equip.getNom();
         }
+
     }
 }

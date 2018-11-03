@@ -20,11 +20,14 @@ namespace DC_Designer
         private void cmdAnnulerEquip_Click(object sender, EventArgs e)
         {
             Close();
+            InitializeComponent();
         }
 
         private void cmdAddEquip_Click(object sender, EventArgs e)
         {
-            //a coder
+            GestionAjoutEquip.setEquipement(txtNomEquipement.Text, txtModele.Text);
+            Close();
+            InitializeComponent();
         }
     }
 }
