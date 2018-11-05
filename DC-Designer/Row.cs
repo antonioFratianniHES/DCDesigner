@@ -18,8 +18,6 @@ namespace DC_Designer
             row.ColumnCount = 1;
             row.AutoSize = true;
 
-
-            
             return row;
         }
 
