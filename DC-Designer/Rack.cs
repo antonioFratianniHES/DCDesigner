@@ -59,7 +59,7 @@ namespace DC_Designer
                     ForeColor = SystemColors.ButtonFace,
                     Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
                 };
-                b.Click += new EventHandler(cmdEquip_Click);
+                b.Click += new EventHandler(CmdEquip_Click);
                 rackDesign.Controls.Add(b, 0, i);
                 listEquipement.Add(new Equipement(b.Text,""));
             }
@@ -73,22 +73,22 @@ namespace DC_Designer
             return rackDesign;
         }
 
-        private void cmdEquip_Click(object sender, EventArgs e)
+        private void CmdEquip_Click(object sender, EventArgs e)
         {
             Button s = (Button)sender;
             int i = s.Parent.Controls.IndexOf(s)-1;
             Console.Write(i+" ; "+listEquipement.Count);
             frmEquipement f = new frmEquipement();
             Equipement equip = (Equipement)listEquipement[i];
-            GestionAjoutEquip.setEquipement(equip);
+            GestionAjoutEquip.SetEquipement(equip);
             f.ShowDialog(this.rackDesign.Parent);
             f.Dispose();
-            equip = GestionAjoutEquip.getEquipement();
+            equip = GestionAjoutEquip.GetEquipement();
             if (equip !=null)
             {
                 listEquipement[i] = equip;
-                s.Text = equip.getNom();
-                GestionAjoutEquip.setEquipement(null);
+                s.Text = equip.GetNom();
+                GestionAjoutEquip.SetEquipement(null);
             }
             
         }

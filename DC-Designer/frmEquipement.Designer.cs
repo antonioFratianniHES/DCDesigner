@@ -77,7 +77,7 @@
             this.cmdAnnulerEquip.TabIndex = 4;
             this.cmdAnnulerEquip.Text = "Annuler";
             this.cmdAnnulerEquip.UseVisualStyleBackColor = true;
-            this.cmdAnnulerEquip.Click += new System.EventHandler(this.cmdAnnulerEquip_Click);
+            this.cmdAnnulerEquip.Click += new System.EventHandler(this.CmdAnnulerEquip_Click);
             // 
             // cmdModifierEquip
             // 
@@ -87,7 +87,7 @@
             this.cmdModifierEquip.TabIndex = 5;
             this.cmdModifierEquip.Text = "Modifier";
             this.cmdModifierEquip.UseVisualStyleBackColor = true;
-            this.cmdModifierEquip.Click += new System.EventHandler(this.cmdAddEquip_Click);
+            this.cmdModifierEquip.Click += new System.EventHandler(this.CmdAddEquip_Click);
             // 
             // frmEquipement
             // 

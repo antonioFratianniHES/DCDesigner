@@ -11,24 +11,24 @@ namespace DC_Designer
         private static Equipement e;
         private static String oldName;
 
-        public static void setOldName(String name)
+        public static void SetOldName(String name)
         {
             oldName = name;
         }
 
-        public static String getOldName() { return oldName; }
+        public static String GetOldName() { return oldName; }
 
-        public static void setEquipement(String nom,String Descr)
+        public static void SetEquipement(String nom,String Descr)
         {
             e = new Equipement(nom,Descr);
         }
 
-        public static void setEquipement(Equipement equip)
+        public static void SetEquipement(Equipement equip)
         {
             e = equip;
         }
 
-        public static Equipement getEquipement()
+        public static Equipement GetEquipement()
         {
             return e;
         }

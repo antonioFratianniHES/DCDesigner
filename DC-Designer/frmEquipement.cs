@@ -16,11 +16,11 @@ namespace DC_Designer
         public frmEquipement()
         {
             InitializeComponent();
-            equip = GestionAjoutEquip.getEquipement();
+            equip = GestionAjoutEquip.GetEquipement();
             if (equip != null)
             {
-                txtNomEquipement.Text = equip.getNom();
-                txtModele.Text = equip.getDescr();
+                txtNomEquipement.Text = equip.GetNom();
+                txtModele.Text = equip.GetDescr();
             }
             else {
                 txtModele.Text = "(facultatif)";
@@ -28,19 +28,19 @@ namespace DC_Designer
             
         }
 
-        private void cmdAnnulerEquip_Click(object sender, EventArgs e)
+        private void CmdAnnulerEquip_Click(object sender, EventArgs e)
         {
-            GestionAjoutEquip.setEquipement(null);
+            GestionAjoutEquip.SetEquipement(null);
             Close();
             InitializeComponent();
           
         }
 
-        private void cmdAddEquip_Click(object sender, EventArgs e)
+        private void CmdAddEquip_Click(object sender, EventArgs e)
         {
             if (txtNomEquipement.Text != "")
             {
-                GestionAjoutEquip.setEquipement(txtNomEquipement.Text, txtModele.Text);
+                GestionAjoutEquip.SetEquipement(txtNomEquipement.Text, txtModele.Text);
                 Close();
                 InitializeComponent();
           

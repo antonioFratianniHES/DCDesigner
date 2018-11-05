@@ -18,11 +18,11 @@ namespace DC_Designer
             this.description = description;
         }
 
-        public String getNom() { return nom; }
+        public String GetNom() { return nom; }
 
-        public void setNom(String nom) { this.nom= nom; }
+        public void SetNom(String nom) { this.nom= nom; }
 
-        public String getDescr() { return description; }
+        public String GetDescr() { return description; }
 
         public override bool Equals(object obj)
         {

@@ -80,7 +80,7 @@ namespace DC_Designer
         private void LstExistingDC_DoubleClick(object sender, EventArgs e)
         {
             if (lstExistingDC.SelectedValue!=null && tabLayout.Visible == true) {
-                alertSave();
+                AlertSave();
             }
             else { 
             int DcToOpen = lstExistingDC.SelectedIndex;
@@ -92,7 +92,7 @@ namespace DC_Designer
         {
             if (tabLayout.Visible == true)
             {
-                alertSave();
+                AlertSave();
             }
             else tabLayout.Visible = true;
 
@@ -118,10 +118,10 @@ namespace DC_Designer
 
         private void CmdClose_Click(object sender, EventArgs e)
         {
-            alertSave();
+            AlertSave();
         }
 
-        private void alertSave() {
+        private void AlertSave() {
             switch (MessageBox.Show("Do you want to save the Current DC?","Closing",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question))
             {
                 case DialogResult.Yes:
