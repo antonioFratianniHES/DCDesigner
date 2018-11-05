@@ -68,12 +68,6 @@
     <Compile Include="Equipement.cs" />
     <Compile Include="GestionAjoutEquip.cs" />
     <Compile Include="GestionRack.cs" />
-    <Compile Include="FrmSaveLayout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmSaveLayout.Designer.cs">
-      <DependentUpon>FrmSaveLayout.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login.cs" />
     <Compile Include="Rack.cs" />
     <Compile Include="frmAjoutRack.cs">
@@ -114,9 +108,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuHome.resx">
       <DependentUpon>frmMenuHome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSaveLayout.resx">
-      <DependentUpon>FrmSaveLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

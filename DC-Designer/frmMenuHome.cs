@@ -80,8 +80,7 @@ namespace DC_Designer
         private void LstExistingDC_DoubleClick(object sender, EventArgs e)
         {
             if (lstExistingDC.SelectedValue!=null && tabLayout.Visible == true) {
-                FrmSaveLayout save = new FrmSaveLayout();
-                save.ShowDialog(this);
+                alertSave();
             }
             else { 
             int DcToOpen = lstExistingDC.SelectedIndex;
@@ -93,8 +92,7 @@ namespace DC_Designer
         {
             if (tabLayout.Visible == true)
             {
-                FrmSaveLayout save = new FrmSaveLayout();
-                save.ShowDialog(this);
+                alertSave();
             }
             else tabLayout.Visible = true;
 
@@ -107,8 +105,6 @@ namespace DC_Designer
 
         private void CmdAddRow_Click(object sender, EventArgs e)
         {
-            //add row
-            
             dcLayout.Controls.Add(CreateAddRackButton(), 0, dcLayout.RowCount);
             dcLayout.RowCount += 1;
         }
@@ -122,9 +118,25 @@ namespace DC_Designer
 
         private void CmdClose_Click(object sender, EventArgs e)
         {
-            FrmSaveLayout save = new FrmSaveLayout();
-            save.ShowDialog(this);
-            InitTab();
+            alertSave();
+        }
+
+        private void alertSave() {
+            switch (MessageBox.Show("Do you want to save the Current DC?","Closing",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question))
+            {
+                case DialogResult.Yes:
+                    SaveLayout();
+                    InitTab();
+                    break;
+
+                case DialogResult.No:
+                    InitTab();
+                    break;
+
+                case DialogResult.Cancel:
+                    // "Cancel" processing
+                    break;
+            }
         }
     }
 }

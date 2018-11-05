@@ -31,5 +31,9 @@ namespace DC_Designer
                    nom == equipement.nom;
         }
 
+        public override int GetHashCode()
+        {
+            return 1933275133 + EqualityComparer<string>.Default.GetHashCode(nom);
+        }
     }
 }
