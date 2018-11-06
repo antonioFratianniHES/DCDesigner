@@ -19,12 +19,35 @@ namespace DC_Designer
             frmConnexion f = new frmConnexion();
             f.ShowDialog(this);
             userName = Login.GetUser();
-            if (userName=="admin")
-            {
-                cmbClient.Show();
-            }
+            ViewByUser();
         }
 
+        private void ViewByUser()
+        {
+            if (userName == "admin")
+            {
+                cmbClient.Show();
+                lblFiltreClient.Show();
+                cmdAddUser.Show();
+                cmdCreateNewDC.Hide();
+                cmdSave.Hide();
+            }
+            AfficherListDC();
+        }
+
+        private void AfficherListDC()
+        {
+            if (userName == "admin") {
+                //TODO
+                //afficherToutLesDC
+                //ajout de tous les clients dans le filtre drop
+            }
+            else
+            {
+                //TODO
+                //afficherParClient
+            }
+        }
 
         private Button CreateAddRackButton()
         {
@@ -57,6 +80,7 @@ namespace DC_Designer
         }
 
         public void SaveLayout() {
+            //TODO
             //sauve les données des rack
         }
 
@@ -82,10 +106,9 @@ namespace DC_Designer
             if (lstExistingDC.SelectedValue!=null && tabLayout.Visible == true) {
                 AlertSave();
             }
-            else { 
             int DcToOpen = lstExistingDC.SelectedIndex;
-                //afficher les données du layout selectionné
-            }
+            //TODO
+            //afficher rack sauver pour admin sans modification possible
         }
 
         private void CmdCreateNewDC_Click(object sender, EventArgs e)
@@ -118,7 +141,12 @@ namespace DC_Designer
 
         private void CmdClose_Click(object sender, EventArgs e)
         {
-            AlertSave();
+            if (userName != "admin")
+            {
+                AlertSave();
+            }
+            InitTab();
+            
         }
 
         private void AlertSave() {
@@ -137,6 +165,18 @@ namespace DC_Designer
                     // "Cancel" processing
                     break;
             }
+        }
+
+        private void CmbClient_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO
+            //changer la liste pour afficher que les clients selectionner
+        }
+
+        private void CmdAddUser_Click(object sender, EventArgs e)
+        {
+            FrmAddUser f = new FrmAddUser();
+            f.ShowDialog(this);
         }
     }
 }
