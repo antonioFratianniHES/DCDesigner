@@ -20,6 +20,7 @@ namespace DC_Designer
             if (nomRack == "" || tailleRack == 0) {
                 return null;
             }
+            
             return new Rack(nomRack, tailleRack);
         }
     }

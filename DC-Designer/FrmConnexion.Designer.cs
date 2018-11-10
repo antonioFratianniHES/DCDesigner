@@ -38,9 +38,10 @@
             // 
             // cmdLogin
             // 
-            this.cmdLogin.Location = new System.Drawing.Point(151, 75);
+            this.cmdLogin.Location = new System.Drawing.Point(162, 71);
+            this.cmdLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdLogin.Name = "cmdLogin";
-            this.cmdLogin.Size = new System.Drawing.Size(75, 23);
+            this.cmdLogin.Size = new System.Drawing.Size(100, 28);
             this.cmdLogin.TabIndex = 2;
             this.cmdLogin.Text = "login";
             this.cmdLogin.UseVisualStyleBackColor = true;
@@ -48,9 +49,11 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(27, 75);
+            this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cmdCancel.Location = new System.Drawing.Point(16, 71);
+            this.cmdCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
+            this.cmdCancel.Size = new System.Drawing.Size(100, 28);
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
@@ -58,43 +61,50 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(126, 12);
+            this.txtUsername.Location = new System.Drawing.Point(130, 6);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(100, 20);
+            this.txtUsername.Size = new System.Drawing.Size(132, 22);
             this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(126, 38);
+            this.txtPassword.Location = new System.Drawing.Point(130, 38);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.Size = new System.Drawing.Size(132, 22);
             this.txtPassword.TabIndex = 1;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(24, 18);
+            this.lblUsername.Location = new System.Drawing.Point(13, 9);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblUsername.Size = new System.Drawing.Size(73, 17);
             this.lblUsername.TabIndex = 4;
             this.lblUsername.Text = "Username";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(27, 44);
+            this.lblPassword.Location = new System.Drawing.Point(13, 41);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(53, 13);
+            this.lblPassword.Size = new System.Drawing.Size(69, 17);
             this.lblPassword.TabIndex = 5;
             this.lblPassword.Text = "Password";
             // 
             // frmConnexion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AcceptButton = this.cmdLogin;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.CancelButton = this.cmdCancel;
-            this.ClientSize = new System.Drawing.Size(243, 110);
+            this.ClientSize = new System.Drawing.Size(274, 113);
             this.ControlBox = false;
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
@@ -102,12 +112,14 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdLogin);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConnexion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DC-Designer";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

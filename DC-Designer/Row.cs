@@ -10,17 +10,17 @@ namespace DC_Designer
 {
     class Row
     {
-        private String rowName;
-        private TableLayoutPanel row;
-        public TableLayoutPanel EmptyRow(String rowName)
-        {
-            row.Name = rowName;
-            row.ColumnCount = 1;
-            row.AutoSize = true;
+        private int rowNum;
+        
+        private List<Rack> lstRacks = new List<Rack>();
 
-            return row;
+        public Row(int rowNum, List<Rack> lstRacks) {
+            this.rowNum = rowNum;
+            this.lstRacks = lstRacks;
         }
 
-
+        public int GetRowNum() { return rowNum; }
+        public List<Rack> GetRacks() { return lstRacks; }
+        public void AddRack(Rack rack){ lstRacks.Add(rack);}
     }
 }

@@ -12,28 +12,34 @@ namespace DC_Designer
 {
     class Rack
     {
-        
-        private TableLayoutPanel rackDesign;
+        private String rackName;
+        private TableLayoutPanel rackDesign= new TableLayoutPanel()
+        {
+            ColumnCount = 1,
+            CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble,
+            Anchor = AnchorStyles.Left | AnchorStyles.Top,
+            Width = 100,
+            AllowDrop = true,
+            AutoSize = true,
+            ForeColor = SystemColors.ActiveCaption,
+            BackColor = SystemColors.ActiveCaption
+        };
         private List<Equipement> listEquipement= new List<Equipement>();
 
-        public Rack(String nom, int nbU) {
+        public Rack(String nom, int nbU) { //création d'un rack vide
             EmptyRack(nbU,nom);
         }
 
-        public void EmptyRack(int taille,String nom) {
-            rackDesign = new TableLayoutPanel
-            {
-                RowCount = taille + 1,
-                ColumnCount = 1,
-                CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble,
-                Anchor = AnchorStyles.Left | AnchorStyles.Top,
-                Width = 100,
-                Height = 20 * (taille + 1),
-                AllowDrop = true,
-                AutoSize = true,
-                ForeColor = SystemColors.ActiveCaption,
-                BackColor = SystemColors.ActiveCaption
-            };
+        public Rack(string rackName, List<Equipement> listEquipement) //création d'un rack avec équipement
+        {
+            this.rackName = rackName;
+            this.listEquipement = listEquipement;
+            rackDesign = EmptyRack(listEquipement.Count, rackName);
+        }
+
+        public TableLayoutPanel EmptyRack(int taille,String nom) {
+            rackDesign.RowCount = taille + 1;
+            rackDesign.Height = 20 * (taille + 1);
             TextBox cmdRackName = new TextBox
             {
                 Name = "cmdRackName",
@@ -63,10 +69,10 @@ namespace DC_Designer
                 rackDesign.Controls.Add(b, 0, i);
                 listEquipement.Add(new Equipement(b.Text,""));
             }
-
-
-            
+            return rackDesign;
         }
+
+
 
 
         public TableLayoutPanel GetRackDesign() {
@@ -77,7 +83,6 @@ namespace DC_Designer
         {
             Button s = (Button)sender;
             int i = s.Parent.Controls.IndexOf(s)-1;
-            Console.Write(i+" ; "+listEquipement.Count);
             frmEquipement f = new frmEquipement();
             Equipement equip = (Equipement)listEquipement[i];
             GestionAjoutEquip.SetEquipement(equip);

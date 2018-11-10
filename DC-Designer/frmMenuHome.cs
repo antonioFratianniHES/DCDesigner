@@ -13,6 +13,7 @@ namespace DC_Designer
     public partial class FrmMenuHome : Form
     {
         private String userName;
+        private List<DC> dCs = new List<DC>();
         public FrmMenuHome()
         {
             InitializeComponent();
@@ -24,13 +25,19 @@ namespace DC_Designer
 
         private void ViewByUser()
         {
+            tblDcDesigner.Show();
+            tblDcDesigner.TabPages.Remove(tblLayout);
             if (userName == "admin")
             {
                 cmbClient.Show();
                 lblFiltreClient.Show();
-                cmdAddUser.Show();
+                tblUserManager.Show();
                 cmdCreateNewDC.Hide();
                 cmdSave.Hide();
+            }
+            else
+            {
+                tblDcDesigner.TabPages.Remove(tblUserManager);
             }
             AfficherListDC();
         }
@@ -38,6 +45,11 @@ namespace DC_Designer
         private void AfficherListDC()
         {
             if (userName == "admin") {
+                foreach (var dC in dCs)
+                {
+                   lstExistingDC.Items.Add( dC.GetNom());
+                    cmbClient.Items.Add(dC.GetNom());
+                }
                 //TODO
                 //afficherToutLesDC
                 //ajout de tous les clients dans le filtre drop
@@ -75,8 +87,7 @@ namespace DC_Designer
             dcLayout.ColumnCount = 1;
             dcLayout.RowCount = 1;
             txtNomDC.Text = "";
-            newTab.Name="New Layout";
-            tabLayout.Visible = false;
+            tblDcDesigner.TabPages.Remove(tblLayout);
         }
 
         public void SaveLayout() {
@@ -103,27 +114,43 @@ namespace DC_Designer
 
         private void LstExistingDC_DoubleClick(object sender, EventArgs e)
         {
-            if (lstExistingDC.SelectedValue!=null && tabLayout.Visible == true) {
+            if (lstExistingDC.SelectedValue!=null && tblDcDesigner.Visible == true) {
                 AlertSave();
             }
-            int DcToOpen = lstExistingDC.SelectedIndex;
+            int dCToOpen = lstExistingDC.SelectedIndex;
+            DC dC = dCs[dCToOpen];
+            dcLayout.RowCount = dC.GetRows().Count;
+            int i = 0;
+            int j = 0;
+            foreach (var row in dC.GetRows())
+            {
+                dcLayout.ColumnCount = row.GetRacks().Count;
+                foreach (var rack in row.GetRacks())
+                {
+                    dcLayout.Controls.Add(rack.GetRackDesign(),i,j);
+                    j++;
+                }
+                i++;
+            }
+           
             //TODO
             //afficher rack sauver pour admin sans modification possible
         }
 
         private void CmdCreateNewDC_Click(object sender, EventArgs e)
         {
-            if (tabLayout.Visible == true)
+            if (tblDcDesigner.Contains(tblLayout))
             {
                 AlertSave();
             }
-            else tabLayout.Visible = true;
+            else
+            {
+                tblDcDesigner.TabPages.Add(tblLayout);
+            }
+            
 
             Button cmdAddRack = CreateAddRackButton();
             dcLayout.Controls.Add(cmdAddRack, 0, 0);
-            dcLayout.AllowDrop = true;
-            tabLayout.AllowDrop = true;
-
         }
 
         private void CmdAddRow_Click(object sender, EventArgs e)
@@ -144,9 +171,7 @@ namespace DC_Designer
             if (userName != "admin")
             {
                 AlertSave();
-            }
-            InitTab();
-            
+            }            
         }
 
         private void AlertSave() {
@@ -160,9 +185,7 @@ namespace DC_Designer
                 case DialogResult.No:
                     InitTab();
                     break;
-
                 case DialogResult.Cancel:
-                    // "Cancel" processing
                     break;
             }
         }
@@ -173,10 +196,79 @@ namespace DC_Designer
             //changer la liste pour afficher que les clients selectionner
         }
 
+
         private void CmdAddUser_Click(object sender, EventArgs e)
         {
-            FrmAddUser f = new FrmAddUser();
-            f.ShowDialog(this);
+            lstUsers.Items.Add(txtUserName);
+            //TODO
+            //ajout de l'user à la base
+        }
+
+
+        private void CmbEntreprise_TextChanged(object sender, EventArgs e)
+        {
+            int index = cmbEntreprise.FindString(cmbEntreprise.Text);
+            if (index != 0)
+            {
+                cmbEntreprise.SelectedIndex = index;
+            }
+        }
+
+        private void CmdRemoveUser_Click(object sender, EventArgs e)
+        {
+            if (lstUsers.Items.Count!=0)
+            {
+                switch (MessageBox.Show("Do you want to remove the selected user?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    case DialogResult.Yes:
+                        lstUsers.Items.Remove(lstUsers.SelectedItem);
+                        //TODO
+                        //remove de la base
+                        break;
+
+                    case DialogResult.No:
+
+                        break;
+
+                }
+            }
+
+        }
+
+        private void CmdRemoveClient_Click(object sender, EventArgs e)
+        {
+            if (lstClient.Items.Count!=0)
+            {
+                switch (MessageBox.Show("Do you want to remove the selected Client?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    case DialogResult.Yes:
+                        lstClient.Items.Remove(lstClient.SelectedItem);
+                        //TODO
+                        //remove de la base
+                        break;
+
+                    case DialogResult.No:
+
+                        break;
+
+                }
+
+            }
+
+        }
+
+        private void CmdAddClient_Click(object sender, EventArgs e)
+        {
+            if (txtClient.Text!="" && txtClient.Text.Length>1 &&!lstClient.Items.Contains(txtClient.Text))
+            {
+                lstClient.Items.Add(txtClient.Text);
+                cmbClient.Items.Add(txtClient.Text);
+                txtClient.Text = "";
+                cmbEntreprise.Items.Add(txtClient.Text);
+            }
+                        
+            //TODO
+            //Ajout à la base
         }
     }
 }
