@@ -57,11 +57,12 @@ namespace DC_Designer
                 rackDesign.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / (taille + 1)));
                 Button b = new Button
                 {
-                    Name = String.Concat("cmdEquipe",i),
+                    Name = String.Concat("cmdEquipe", i),
                     Size = new Size(20, 20),
                     Text = "Empty",
                     AutoSize = true,
                     Enabled = true,
+                    AllowDrop = true,
                     ForeColor = SystemColors.ButtonFace,
                     Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
                 };

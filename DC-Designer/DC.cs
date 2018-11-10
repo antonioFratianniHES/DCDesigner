@@ -10,11 +10,13 @@ namespace DC_Designer
     {
         String nomDc;
         List<Row> rows = new List<Row>();
+        
 
         public DC(String nomDc, List<Row> rows)
         {
             this.nomDc = nomDc;
             this.rows = rows;
+
         }
 
         public String GetNom() { return nomDc; }
