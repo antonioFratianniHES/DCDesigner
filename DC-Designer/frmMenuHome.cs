@@ -13,6 +13,7 @@ namespace DC_Designer
     public partial class FrmMenuHome : Form
     {
         private String userName;
+        private String userCompany;
         private List<DC> dCs = new List<DC>();
         public FrmMenuHome()
         {
@@ -29,13 +30,13 @@ namespace DC_Designer
             
             tblDcDesigner.TabPages.Remove(tabLayout);
             tblDcDesigner.TabPages.Remove(tabUserManager);
-            tblDcDesigner.TabPages.Remove(tabClientManager);
+            tblDcDesigner.TabPages.Remove(tabCompanyManager);
             tblDcDesigner.Show();
             if (userName == "admin")
             {
                 cmdAddGestionUser.Show();
-                cmbClient.Show();
-                lblFiltreClient.Show();
+                cmbFiltreCompany.Show();
+                lblFiltreCompany.Show();
                 
                 cmdCreateNewDC.Hide();
                 cmdSave.Hide();
@@ -48,8 +49,8 @@ namespace DC_Designer
             if (userName == "admin") {
                 foreach (var dC in dCs)
                 {
-                   lstExistingLayout.Items.Add( dC.GetNom());
-                    cmbClient.Items.Add(dC.GetNom());
+                    lstExistingLayout.Items.Add(dC.GetNom());
+                    cmbFiltreCompany.Items.Add(dC.GetNom());
                 }
                 //TODO
                 //afficherToutLesDC
@@ -57,6 +58,15 @@ namespace DC_Designer
             }
             else
             {
+                foreach (var dC in dCs) { 
+
+                    if (dC.GetCompany().Equals(userCompany))
+                    {
+                        lstExistingLayout.Items.Add(dC.GetNom());
+                        cmbFiltreCompany.Items.Add(dC.GetNom());
+                    }
+                    
+                }
                 //TODO
                 //afficherParClient
             }
@@ -216,11 +226,7 @@ namespace DC_Designer
 
         private void CmbEntreprise_TextChanged(object sender, EventArgs e)
         {
-            int index = cmbEntreprise.FindString(cmbEntreprise.Text);
-            if (index != 0)
-            {
-                cmbEntreprise.SelectedIndex = index;
-            }
+            
         }
 
         private void CmdRemoveUser_Click(object sender, EventArgs e)
@@ -246,12 +252,12 @@ namespace DC_Designer
 
         private void CmdRemoveClient_Click(object sender, EventArgs e)
         {
-            if (lstClient.Items.Count!=0)
+            if (lstCompany.Items.Count!=0)
             {
                 switch (MessageBox.Show("Do you want to remove the selected Client?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
-                        lstClient.Items.Remove(lstClient.SelectedItem);
+                        lstCompany.Items.Remove(lstCompany.SelectedItem);
                         //TODO
                         //remove de la base
                         break;
@@ -268,14 +274,14 @@ namespace DC_Designer
 
         private void CmdAddClient_Click(object sender, EventArgs e)
         {
-            if (txtNameClient.Text!="" && txtNameClient.Text.Length>1)
+            if (txtNameCompany.Text!="" && txtNameCompany.Text.Length>1)
             {
-                lstClient.Items.Add(txtNameClient.Text);
-                cmbClient.Items.Add(txtNameClient.Text);
-                cmbEntreprise.Items.Add(txtNameClient.Text);
-                txtNameClient.Text = "";
-                txtAddressClient.Text = "";
-                txtTelClient.Text = "";
+                lstCompany.Items.Add(txtNameCompany.Text);
+                cmbFiltreCompany.Items.Add(txtNameCompany.Text);
+                cmbEntreprise.Items.Add(txtNameCompany.Text);
+                txtNameCompany.Text = "";
+                txtAddressCompany.Text = "";
+                txtTelCompany.Text = "";
 
                 //TODO
                 //Ajout à la base
@@ -296,31 +302,38 @@ namespace DC_Designer
 
         private void CmdCloseClientManager_Click(object sender, EventArgs e)
         {
-            tblDcDesigner.TabPages.Remove(tabClientManager);
+            tblDcDesigner.TabPages.Remove(tabCompanyManager);
         }
 
         private void CmdNewClient_Click(object sender, EventArgs e)
         {
-            tblDcDesigner.TabPages.Add(tabClientManager);
-            tblDcDesigner.SelectedTab = tabClientManager;
+            tblDcDesigner.TabPages.Add(tabCompanyManager);
+            tblDcDesigner.SelectedTab = tabCompanyManager;
         }
 
         private void CmdLogOut_Click(object sender, EventArgs e)
         {
-            switch (MessageBox.Show("Do you want to log out?", "logging out", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            switch (MessageBox.Show("Do you want to log out and save?", "logging out", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
             {
                 case DialogResult.Yes:
+                    if (userName != "admin")
+                    {
+                        SaveLayout();
+                    }
+                    else { SaveUserClient(); }
                     Application.Restart();
                     break;
-
                 case DialogResult.No:
+                    Application.Restart();
+                    break;
+                case DialogResult.Cancel:
 
                     break;
 
             }
         }
 
-        private void cmdExit_Click(object sender, EventArgs e)
+        private void CmdExit_Click(object sender, EventArgs e)
         {
             switch (MessageBox.Show("Do you want to save before quiting?", "quiting", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Stop))
             {
@@ -343,6 +356,17 @@ namespace DC_Designer
         {
             //TODO
             //save client et user dans la base
+        }
+
+        private void LstCompany_DoubleClick(object sender, EventArgs e)
+        {
+            //TODO modify Company
+        }
+
+
+        private void LstUsers_DoubleClick(object sender, EventArgs e)
+        {
+            //TODO modify user
         }
     }
 }

@@ -32,11 +32,12 @@
             this.lblExistingLayout = new System.Windows.Forms.Label();
             this.cmdCreateNewDC = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cmdExit = new System.Windows.Forms.Button();
             this.cmdLogOut = new System.Windows.Forms.Button();
             this.lblUserNameLogged = new System.Windows.Forms.Label();
             this.cmdAddGestionUser = new System.Windows.Forms.Button();
-            this.lblFiltreClient = new System.Windows.Forms.Label();
-            this.cmbClient = new System.Windows.Forms.ComboBox();
+            this.lblFiltreCompany = new System.Windows.Forms.Label();
+            this.cmbFiltreCompany = new System.Windows.Forms.ComboBox();
             this.tblDcDesigner = new System.Windows.Forms.TabControl();
             this.tabLayout = new System.Windows.Forms.TabPage();
             this.cmdAddRow = new System.Windows.Forms.Button();
@@ -47,28 +48,29 @@
             this.dcLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tabUserManager = new System.Windows.Forms.TabPage();
             this.cmdCloseUserManager = new System.Windows.Forms.Button();
-            this.cmdNewClient = new System.Windows.Forms.Button();
+            this.cmdNewCompany = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.cmbEntreprise = new System.Windows.Forms.ComboBox();
-            this.lblClient = new System.Windows.Forms.Label();
+            this.lblEntrepriseCompany = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.lblNom = new System.Windows.Forms.Label();
             this.cmdRemoveUser = new System.Windows.Forms.Button();
             this.cmdAddUser = new System.Windows.Forms.Button();
             this.lstUsers = new System.Windows.Forms.ListBox();
-            this.tabClientManager = new System.Windows.Forms.TabPage();
-            this.cmdRemoveClient = new System.Windows.Forms.Button();
-            this.txtAddressClient = new System.Windows.Forms.TextBox();
-            this.txtTelClient = new System.Windows.Forms.TextBox();
-            this.txtNameClient = new System.Windows.Forms.TextBox();
-            this.lblAdresseClient = new System.Windows.Forms.Label();
-            this.lblTelClient = new System.Windows.Forms.Label();
-            this.cmdCloseClientManager = new System.Windows.Forms.Button();
-            this.cmdAddClient = new System.Windows.Forms.Button();
-            this.lblNameClient = new System.Windows.Forms.Label();
-            this.lstClient = new System.Windows.Forms.ListBox();
-            this.cmdExit = new System.Windows.Forms.Button();
+            this.tabCompanyManager = new System.Windows.Forms.TabPage();
+            this.cmdRemoveCompany = new System.Windows.Forms.Button();
+            this.txtAddressCompany = new System.Windows.Forms.TextBox();
+            this.txtTelCompany = new System.Windows.Forms.TextBox();
+            this.txtNameCompany = new System.Windows.Forms.TextBox();
+            this.lblAdresseCompany = new System.Windows.Forms.Label();
+            this.lblTelCompany = new System.Windows.Forms.Label();
+            this.cmdCloseCompanyManager = new System.Windows.Forms.Button();
+            this.cmdAddCompany = new System.Windows.Forms.Button();
+            this.lblNameCompany = new System.Windows.Forms.Label();
+            this.lstCompany = new System.Windows.Forms.ListBox();
+            this.lblUsersList = new System.Windows.Forms.Label();
+            this.lblCompanyList = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,7 +78,7 @@
             this.tblDcDesigner.SuspendLayout();
             this.tabLayout.SuspendLayout();
             this.tabUserManager.SuspendLayout();
-            this.tabClientManager.SuspendLayout();
+            this.tabCompanyManager.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstExistingLayout
@@ -98,16 +100,16 @@
             this.lblExistingLayout.Name = "lblExistingLayout";
             this.lblExistingLayout.Size = new System.Drawing.Size(103, 17);
             this.lblExistingLayout.TabIndex = 2;
-            this.lblExistingLayout.Text = "Existing Layout";
+            this.lblExistingLayout.Text = "&Existing Layout";
             // 
             // cmdCreateNewDC
             // 
             this.cmdCreateNewDC.Location = new System.Drawing.Point(23, 174);
             this.cmdCreateNewDC.Margin = new System.Windows.Forms.Padding(4);
             this.cmdCreateNewDC.Name = "cmdCreateNewDC";
-            this.cmdCreateNewDC.Size = new System.Drawing.Size(225, 69);
+            this.cmdCreateNewDC.Size = new System.Drawing.Size(225, 55);
             this.cmdCreateNewDC.TabIndex = 0;
-            this.cmdCreateNewDC.Text = "New Data Center";
+            this.cmdCreateNewDC.Text = "&New Data Center";
             this.cmdCreateNewDC.UseVisualStyleBackColor = true;
             this.cmdCreateNewDC.Click += new System.EventHandler(this.CmdCreateNewDC_Click);
             // 
@@ -128,8 +130,8 @@
             this.splitContainer1.Panel1.Controls.Add(this.cmdLogOut);
             this.splitContainer1.Panel1.Controls.Add(this.lblUserNameLogged);
             this.splitContainer1.Panel1.Controls.Add(this.cmdAddGestionUser);
-            this.splitContainer1.Panel1.Controls.Add(this.lblFiltreClient);
-            this.splitContainer1.Panel1.Controls.Add(this.cmbClient);
+            this.splitContainer1.Panel1.Controls.Add(this.lblFiltreCompany);
+            this.splitContainer1.Panel1.Controls.Add(this.cmbFiltreCompany);
             this.splitContainer1.Panel1.Controls.Add(this.cmdCreateNewDC);
             this.splitContainer1.Panel1.Controls.Add(this.lstExistingLayout);
             this.splitContainer1.Panel1.Controls.Add(this.lblExistingLayout);
@@ -142,13 +144,23 @@
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 6;
             // 
+            // cmdExit
+            // 
+            this.cmdExit.Location = new System.Drawing.Point(184, 9);
+            this.cmdExit.Name = "cmdExit";
+            this.cmdExit.Size = new System.Drawing.Size(75, 26);
+            this.cmdExit.TabIndex = 8;
+            this.cmdExit.Text = "E&XIT";
+            this.cmdExit.UseVisualStyleBackColor = true;
+            this.cmdExit.Click += new System.EventHandler(this.CmdExit_Click);
+            // 
             // cmdLogOut
             // 
             this.cmdLogOut.Location = new System.Drawing.Point(102, 9);
             this.cmdLogOut.Name = "cmdLogOut";
             this.cmdLogOut.Size = new System.Drawing.Size(75, 26);
             this.cmdLogOut.TabIndex = 7;
-            this.cmdLogOut.Text = "LogOut";
+            this.cmdLogOut.Text = "&LogOut";
             this.cmdLogOut.UseVisualStyleBackColor = true;
             this.cmdLogOut.Click += new System.EventHandler(this.CmdLogOut_Click);
             // 
@@ -165,41 +177,41 @@
             // 
             this.cmdAddGestionUser.Location = new System.Drawing.Point(23, 86);
             this.cmdAddGestionUser.Name = "cmdAddGestionUser";
-            this.cmdAddGestionUser.Size = new System.Drawing.Size(224, 67);
+            this.cmdAddGestionUser.Size = new System.Drawing.Size(224, 51);
             this.cmdAddGestionUser.TabIndex = 5;
-            this.cmdAddGestionUser.Text = "User Manager";
+            this.cmdAddGestionUser.Text = "&User Manager";
             this.cmdAddGestionUser.UseVisualStyleBackColor = true;
             this.cmdAddGestionUser.Visible = false;
             this.cmdAddGestionUser.Click += new System.EventHandler(this.CmdAddGestionUser_Click);
             // 
-            // lblFiltreClient
+            // lblFiltreCompany
             // 
-            this.lblFiltreClient.AutoSize = true;
-            this.lblFiltreClient.Location = new System.Drawing.Point(19, 270);
-            this.lblFiltreClient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFiltreClient.Name = "lblFiltreClient";
-            this.lblFiltreClient.Size = new System.Drawing.Size(93, 17);
-            this.lblFiltreClient.TabIndex = 4;
-            this.lblFiltreClient.Text = "filter by Client";
-            this.lblFiltreClient.Visible = false;
+            this.lblFiltreCompany.AutoSize = true;
+            this.lblFiltreCompany.Location = new System.Drawing.Point(20, 247);
+            this.lblFiltreCompany.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFiltreCompany.Name = "lblFiltreCompany";
+            this.lblFiltreCompany.Size = new System.Drawing.Size(121, 17);
+            this.lblFiltreCompany.TabIndex = 4;
+            this.lblFiltreCompany.Text = "&Filter by Company";
+            this.lblFiltreCompany.Visible = false;
             // 
-            // cmbClient
+            // cmbFiltreCompany
             // 
-            this.cmbClient.FormattingEnabled = true;
-            this.cmbClient.Location = new System.Drawing.Point(118, 267);
-            this.cmbClient.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbClient.Name = "cmbClient";
-            this.cmbClient.Size = new System.Drawing.Size(130, 24);
-            this.cmbClient.TabIndex = 3;
-            this.cmbClient.Visible = false;
-            this.cmbClient.SelectedIndexChanged += new System.EventHandler(this.CmbClient_SelectedIndexChanged);
+            this.cmbFiltreCompany.FormattingEnabled = true;
+            this.cmbFiltreCompany.Location = new System.Drawing.Point(22, 268);
+            this.cmbFiltreCompany.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbFiltreCompany.Name = "cmbFiltreCompany";
+            this.cmbFiltreCompany.Size = new System.Drawing.Size(155, 24);
+            this.cmbFiltreCompany.TabIndex = 3;
+            this.cmbFiltreCompany.Visible = false;
+            this.cmbFiltreCompany.SelectedIndexChanged += new System.EventHandler(this.CmbClient_SelectedIndexChanged);
             // 
             // tblDcDesigner
             // 
             this.tblDcDesigner.AllowDrop = true;
             this.tblDcDesigner.Controls.Add(this.tabLayout);
             this.tblDcDesigner.Controls.Add(this.tabUserManager);
-            this.tblDcDesigner.Controls.Add(this.tabClientManager);
+            this.tblDcDesigner.Controls.Add(this.tabCompanyManager);
             this.tblDcDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblDcDesigner.Location = new System.Drawing.Point(0, 0);
             this.tblDcDesigner.Margin = new System.Windows.Forms.Padding(4);
@@ -235,7 +247,7 @@
             this.cmdAddRow.Name = "cmdAddRow";
             this.cmdAddRow.Size = new System.Drawing.Size(100, 28);
             this.cmdAddRow.TabIndex = 14;
-            this.cmdAddRow.Text = "Add Row";
+            this.cmdAddRow.Text = "Add &Row";
             this.cmdAddRow.UseVisualStyleBackColor = true;
             this.cmdAddRow.Click += new System.EventHandler(this.CmdAddRow_Click);
             // 
@@ -256,7 +268,7 @@
             this.lblNomDC.Name = "lblNomDC";
             this.lblNomDC.Size = new System.Drawing.Size(56, 17);
             this.lblNomDC.TabIndex = 11;
-            this.lblNomDC.Text = "NomDC";
+            this.lblNomDC.Text = "Nom&DC";
             // 
             // cmdClose
             // 
@@ -265,7 +277,7 @@
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(100, 28);
             this.cmdClose.TabIndex = 10;
-            this.cmdClose.Text = "Close";
+            this.cmdClose.Text = "&Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.CmdClose_Click);
             // 
@@ -276,7 +288,7 @@
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(100, 28);
             this.cmdSave.TabIndex = 9;
-            this.cmdSave.Text = "Save";
+            this.cmdSave.Text = "&Save";
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.CmdSave_Click);
             // 
@@ -298,12 +310,13 @@
             // 
             // tabUserManager
             // 
+            this.tabUserManager.Controls.Add(this.lblUsersList);
             this.tabUserManager.Controls.Add(this.cmdCloseUserManager);
-            this.tabUserManager.Controls.Add(this.cmdNewClient);
+            this.tabUserManager.Controls.Add(this.cmdNewCompany);
             this.tabUserManager.Controls.Add(this.txtPassword);
             this.tabUserManager.Controls.Add(this.lblPassword);
             this.tabUserManager.Controls.Add(this.cmbEntreprise);
-            this.tabUserManager.Controls.Add(this.lblClient);
+            this.tabUserManager.Controls.Add(this.lblEntrepriseCompany);
             this.tabUserManager.Controls.Add(this.txtUserName);
             this.tabUserManager.Controls.Add(this.lblNom);
             this.tabUserManager.Controls.Add(this.cmdRemoveUser);
@@ -323,19 +336,19 @@
             this.cmdCloseUserManager.Name = "cmdCloseUserManager";
             this.cmdCloseUserManager.Size = new System.Drawing.Size(60, 26);
             this.cmdCloseUserManager.TabIndex = 21;
-            this.cmdCloseUserManager.Text = "Close";
+            this.cmdCloseUserManager.Text = "&Close";
             this.cmdCloseUserManager.UseVisualStyleBackColor = true;
             this.cmdCloseUserManager.Click += new System.EventHandler(this.CmdCloseUserManager_Click);
             // 
-            // cmdNewClient
+            // cmdNewCompany
             // 
-            this.cmdNewClient.Location = new System.Drawing.Point(630, 117);
-            this.cmdNewClient.Name = "cmdNewClient";
-            this.cmdNewClient.Size = new System.Drawing.Size(100, 26);
-            this.cmdNewClient.TabIndex = 16;
-            this.cmdNewClient.Text = "New Client";
-            this.cmdNewClient.UseVisualStyleBackColor = true;
-            this.cmdNewClient.Click += new System.EventHandler(this.CmdNewClient_Click);
+            this.cmdNewCompany.Location = new System.Drawing.Point(630, 117);
+            this.cmdNewCompany.Name = "cmdNewCompany";
+            this.cmdNewCompany.Size = new System.Drawing.Size(122, 26);
+            this.cmdNewCompany.TabIndex = 16;
+            this.cmdNewCompany.Text = "Ne&w Company";
+            this.cmdNewCompany.UseVisualStyleBackColor = true;
+            this.cmdNewCompany.Click += new System.EventHandler(this.CmdNewClient_Click);
             // 
             // txtPassword
             // 
@@ -350,8 +363,9 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Location = new System.Drawing.Point(445, 84);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(0, 17);
+            this.lblPassword.Size = new System.Drawing.Size(69, 17);
             this.lblPassword.TabIndex = 14;
+            this.lblPassword.Text = "&Password";
             // 
             // cmbEntreprise
             // 
@@ -360,15 +374,15 @@
             this.cmbEntreprise.Name = "cmbEntreprise";
             this.cmbEntreprise.Size = new System.Drawing.Size(100, 24);
             this.cmbEntreprise.TabIndex = 13;
-            this.cmbEntreprise.TextChanged += new System.EventHandler(this.CmbEntreprise_TextChanged);
             // 
-            // lblClient
+            // lblEntrepriseCompany
             // 
-            this.lblClient.AutoSize = true;
-            this.lblClient.Location = new System.Drawing.Point(445, 119);
-            this.lblClient.Name = "lblClient";
-            this.lblClient.Size = new System.Drawing.Size(0, 17);
-            this.lblClient.TabIndex = 12;
+            this.lblEntrepriseCompany.AutoSize = true;
+            this.lblEntrepriseCompany.Location = new System.Drawing.Point(445, 119);
+            this.lblEntrepriseCompany.Name = "lblEntrepriseCompany";
+            this.lblEntrepriseCompany.Size = new System.Drawing.Size(67, 17);
+            this.lblEntrepriseCompany.TabIndex = 12;
+            this.lblEntrepriseCompany.Text = "&Company";
             // 
             // txtUserName
             // 
@@ -382,8 +396,9 @@
             this.lblNom.AutoSize = true;
             this.lblNom.Location = new System.Drawing.Point(445, 50);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(0, 17);
+            this.lblNom.Size = new System.Drawing.Size(73, 17);
             this.lblNom.TabIndex = 10;
+            this.lblNom.Text = "Userna&me";
             // 
             // cmdRemoveUser
             // 
@@ -391,7 +406,7 @@
             this.cmdRemoveUser.Name = "cmdRemoveUser";
             this.cmdRemoveUser.Size = new System.Drawing.Size(123, 39);
             this.cmdRemoveUser.TabIndex = 6;
-            this.cmdRemoveUser.Text = "Remove User";
+            this.cmdRemoveUser.Text = "&Remove User";
             this.cmdRemoveUser.UseVisualStyleBackColor = true;
             this.cmdRemoveUser.Click += new System.EventHandler(this.CmdRemoveUser_Click);
             // 
@@ -399,9 +414,9 @@
             // 
             this.cmdAddUser.Location = new System.Drawing.Point(630, 47);
             this.cmdAddUser.Name = "cmdAddUser";
-            this.cmdAddUser.Size = new System.Drawing.Size(100, 39);
+            this.cmdAddUser.Size = new System.Drawing.Size(122, 39);
             this.cmdAddUser.TabIndex = 5;
-            this.cmdAddUser.Text = "Add User";
+            this.cmdAddUser.Text = "&Add User";
             this.cmdAddUser.UseVisualStyleBackColor = true;
             this.cmdAddUser.Click += new System.EventHandler(this.CmdAddUser_Click);
             // 
@@ -414,124 +429,135 @@
             this.lstUsers.Name = "lstUsers";
             this.lstUsers.Size = new System.Drawing.Size(224, 212);
             this.lstUsers.TabIndex = 2;
+            this.lstUsers.DoubleClick += new System.EventHandler(this.LstUsers_DoubleClick);
             // 
-            // tabClientManager
+            // tabCompanyManager
             // 
-            this.tabClientManager.Controls.Add(this.cmdRemoveClient);
-            this.tabClientManager.Controls.Add(this.txtAddressClient);
-            this.tabClientManager.Controls.Add(this.txtTelClient);
-            this.tabClientManager.Controls.Add(this.txtNameClient);
-            this.tabClientManager.Controls.Add(this.lblAdresseClient);
-            this.tabClientManager.Controls.Add(this.lblTelClient);
-            this.tabClientManager.Controls.Add(this.cmdCloseClientManager);
-            this.tabClientManager.Controls.Add(this.cmdAddClient);
-            this.tabClientManager.Controls.Add(this.lblNameClient);
-            this.tabClientManager.Controls.Add(this.lstClient);
-            this.tabClientManager.Location = new System.Drawing.Point(4, 25);
-            this.tabClientManager.Name = "tabClientManager";
-            this.tabClientManager.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClientManager.Size = new System.Drawing.Size(902, 601);
-            this.tabClientManager.TabIndex = 2;
-            this.tabClientManager.Text = "Client Manager";
-            this.tabClientManager.UseVisualStyleBackColor = true;
+            this.tabCompanyManager.Controls.Add(this.lblCompanyList);
+            this.tabCompanyManager.Controls.Add(this.cmdRemoveCompany);
+            this.tabCompanyManager.Controls.Add(this.txtAddressCompany);
+            this.tabCompanyManager.Controls.Add(this.txtTelCompany);
+            this.tabCompanyManager.Controls.Add(this.txtNameCompany);
+            this.tabCompanyManager.Controls.Add(this.lblAdresseCompany);
+            this.tabCompanyManager.Controls.Add(this.lblTelCompany);
+            this.tabCompanyManager.Controls.Add(this.cmdCloseCompanyManager);
+            this.tabCompanyManager.Controls.Add(this.cmdAddCompany);
+            this.tabCompanyManager.Controls.Add(this.lblNameCompany);
+            this.tabCompanyManager.Controls.Add(this.lstCompany);
+            this.tabCompanyManager.Location = new System.Drawing.Point(4, 25);
+            this.tabCompanyManager.Name = "tabCompanyManager";
+            this.tabCompanyManager.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCompanyManager.Size = new System.Drawing.Size(902, 601);
+            this.tabCompanyManager.TabIndex = 2;
+            this.tabCompanyManager.Text = "Client Manager";
+            this.tabCompanyManager.UseVisualStyleBackColor = true;
             // 
-            // cmdRemoveClient
+            // cmdRemoveCompany
             // 
-            this.cmdRemoveClient.Location = new System.Drawing.Point(27, 252);
-            this.cmdRemoveClient.Name = "cmdRemoveClient";
-            this.cmdRemoveClient.Size = new System.Drawing.Size(75, 29);
-            this.cmdRemoveClient.TabIndex = 29;
-            this.cmdRemoveClient.Text = "Remove";
-            this.cmdRemoveClient.UseVisualStyleBackColor = true;
-            this.cmdRemoveClient.Click += new System.EventHandler(this.CmdRemoveClient_Click);
+            this.cmdRemoveCompany.Location = new System.Drawing.Point(259, 47);
+            this.cmdRemoveCompany.Name = "cmdRemoveCompany";
+            this.cmdRemoveCompany.Size = new System.Drawing.Size(75, 29);
+            this.cmdRemoveCompany.TabIndex = 29;
+            this.cmdRemoveCompany.Text = "&Remove";
+            this.cmdRemoveCompany.UseVisualStyleBackColor = true;
+            this.cmdRemoveCompany.Click += new System.EventHandler(this.CmdRemoveClient_Click);
             // 
-            // txtAddressClient
+            // txtAddressCompany
             // 
-            this.txtAddressClient.Location = new System.Drawing.Point(451, 90);
-            this.txtAddressClient.Name = "txtAddressClient";
-            this.txtAddressClient.Size = new System.Drawing.Size(100, 22);
-            this.txtAddressClient.TabIndex = 28;
+            this.txtAddressCompany.Location = new System.Drawing.Point(504, 104);
+            this.txtAddressCompany.Name = "txtAddressCompany";
+            this.txtAddressCompany.Size = new System.Drawing.Size(100, 22);
+            this.txtAddressCompany.TabIndex = 28;
             // 
-            // txtTelClient
+            // txtTelCompany
             // 
-            this.txtTelClient.Location = new System.Drawing.Point(451, 61);
-            this.txtTelClient.Name = "txtTelClient";
-            this.txtTelClient.Size = new System.Drawing.Size(100, 22);
-            this.txtTelClient.TabIndex = 27;
+            this.txtTelCompany.Location = new System.Drawing.Point(504, 75);
+            this.txtTelCompany.Name = "txtTelCompany";
+            this.txtTelCompany.Size = new System.Drawing.Size(100, 22);
+            this.txtTelCompany.TabIndex = 27;
             // 
-            // txtNameClient
+            // txtNameCompany
             // 
-            this.txtNameClient.Location = new System.Drawing.Point(451, 33);
-            this.txtNameClient.Name = "txtNameClient";
-            this.txtNameClient.Size = new System.Drawing.Size(100, 22);
-            this.txtNameClient.TabIndex = 26;
+            this.txtNameCompany.Location = new System.Drawing.Point(504, 47);
+            this.txtNameCompany.Name = "txtNameCompany";
+            this.txtNameCompany.Size = new System.Drawing.Size(100, 22);
+            this.txtNameCompany.TabIndex = 26;
             // 
-            // lblAdresseClient
+            // lblAdresseCompany
             // 
-            this.lblAdresseClient.AutoSize = true;
-            this.lblAdresseClient.Location = new System.Drawing.Point(384, 93);
-            this.lblAdresseClient.Name = "lblAdresseClient";
-            this.lblAdresseClient.Size = new System.Drawing.Size(59, 17);
-            this.lblAdresseClient.TabIndex = 25;
-            this.lblAdresseClient.Text = "adresse";
+            this.lblAdresseCompany.AutoSize = true;
+            this.lblAdresseCompany.Location = new System.Drawing.Point(437, 107);
+            this.lblAdresseCompany.Name = "lblAdresseCompany";
+            this.lblAdresseCompany.Size = new System.Drawing.Size(60, 17);
+            this.lblAdresseCompany.TabIndex = 25;
+            this.lblAdresseCompany.Text = "A&dresse";
             // 
-            // lblTelClient
+            // lblTelCompany
             // 
-            this.lblTelClient.AutoSize = true;
-            this.lblTelClient.Location = new System.Drawing.Point(384, 64);
-            this.lblTelClient.Name = "lblTelClient";
-            this.lblTelClient.Size = new System.Drawing.Size(23, 17);
-            this.lblTelClient.TabIndex = 24;
-            this.lblTelClient.Text = "tel";
+            this.lblTelCompany.AutoSize = true;
+            this.lblTelCompany.Location = new System.Drawing.Point(437, 78);
+            this.lblTelCompany.Name = "lblTelCompany";
+            this.lblTelCompany.Size = new System.Drawing.Size(28, 17);
+            this.lblTelCompany.TabIndex = 24;
+            this.lblTelCompany.Text = "&Tel";
             // 
-            // cmdCloseClientManager
+            // cmdCloseCompanyManager
             // 
-            this.cmdCloseClientManager.Location = new System.Drawing.Point(810, 6);
-            this.cmdCloseClientManager.Name = "cmdCloseClientManager";
-            this.cmdCloseClientManager.Size = new System.Drawing.Size(60, 26);
-            this.cmdCloseClientManager.TabIndex = 23;
-            this.cmdCloseClientManager.Text = "Close";
-            this.cmdCloseClientManager.UseVisualStyleBackColor = true;
-            this.cmdCloseClientManager.Click += new System.EventHandler(this.CmdCloseClientManager_Click);
+            this.cmdCloseCompanyManager.Location = new System.Drawing.Point(807, 6);
+            this.cmdCloseCompanyManager.Name = "cmdCloseCompanyManager";
+            this.cmdCloseCompanyManager.Size = new System.Drawing.Size(60, 26);
+            this.cmdCloseCompanyManager.TabIndex = 23;
+            this.cmdCloseCompanyManager.Text = "&Close";
+            this.cmdCloseCompanyManager.UseVisualStyleBackColor = true;
+            this.cmdCloseCompanyManager.Click += new System.EventHandler(this.CmdCloseClientManager_Click);
             // 
-            // cmdAddClient
+            // cmdAddCompany
             // 
-            this.cmdAddClient.Location = new System.Drawing.Point(591, 36);
-            this.cmdAddClient.Name = "cmdAddClient";
-            this.cmdAddClient.Size = new System.Drawing.Size(90, 23);
-            this.cmdAddClient.TabIndex = 22;
-            this.cmdAddClient.Text = "Add Client";
-            this.cmdAddClient.UseVisualStyleBackColor = true;
-            this.cmdAddClient.Click += new System.EventHandler(this.CmdAddClient_Click);
+            this.cmdAddCompany.Location = new System.Drawing.Point(617, 47);
+            this.cmdAddCompany.Name = "cmdAddCompany";
+            this.cmdAddCompany.Size = new System.Drawing.Size(111, 30);
+            this.cmdAddCompany.TabIndex = 22;
+            this.cmdAddCompany.Text = "&Add Company";
+            this.cmdAddCompany.UseVisualStyleBackColor = true;
+            this.cmdAddCompany.Click += new System.EventHandler(this.CmdAddClient_Click);
             // 
-            // lblNameClient
+            // lblNameCompany
             // 
-            this.lblNameClient.AutoSize = true;
-            this.lblNameClient.Location = new System.Drawing.Point(384, 36);
-            this.lblNameClient.Name = "lblNameClient";
-            this.lblNameClient.Size = new System.Drawing.Size(45, 17);
-            this.lblNameClient.TabIndex = 21;
-            this.lblNameClient.Text = "Name";
+            this.lblNameCompany.AutoSize = true;
+            this.lblNameCompany.Location = new System.Drawing.Point(437, 50);
+            this.lblNameCompany.Name = "lblNameCompany";
+            this.lblNameCompany.Size = new System.Drawing.Size(45, 17);
+            this.lblNameCompany.TabIndex = 21;
+            this.lblNameCompany.Text = "Na&me";
             // 
-            // lstClient
+            // lstCompany
             // 
-            this.lstClient.FormattingEnabled = true;
-            this.lstClient.ItemHeight = 16;
-            this.lstClient.Location = new System.Drawing.Point(27, 30);
-            this.lstClient.Margin = new System.Windows.Forms.Padding(4);
-            this.lstClient.Name = "lstClient";
-            this.lstClient.Size = new System.Drawing.Size(224, 196);
-            this.lstClient.TabIndex = 20;
+            this.lstCompany.FormattingEnabled = true;
+            this.lstCompany.ItemHeight = 16;
+            this.lstCompany.Location = new System.Drawing.Point(28, 47);
+            this.lstCompany.Margin = new System.Windows.Forms.Padding(4);
+            this.lstCompany.Name = "lstCompany";
+            this.lstCompany.Size = new System.Drawing.Size(224, 212);
+            this.lstCompany.TabIndex = 20;
+            this.lstCompany.DoubleClick += new System.EventHandler(this.LstCompany_DoubleClick);
             // 
-            // cmdExit
+            // lblUsersList
             // 
-            this.cmdExit.Location = new System.Drawing.Point(184, 9);
-            this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(75, 26);
-            this.cmdExit.TabIndex = 8;
-            this.cmdExit.Text = "EXIT";
-            this.cmdExit.UseVisualStyleBackColor = true;
-            this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
+            this.lblUsersList.AutoSize = true;
+            this.lblUsersList.Location = new System.Drawing.Point(28, 23);
+            this.lblUsersList.Name = "lblUsersList";
+            this.lblUsersList.Size = new System.Drawing.Size(71, 17);
+            this.lblUsersList.TabIndex = 22;
+            this.lblUsersList.Text = "Users &List";
+            // 
+            // lblCompanyList
+            // 
+            this.lblCompanyList.AutoSize = true;
+            this.lblCompanyList.Location = new System.Drawing.Point(27, 20);
+            this.lblCompanyList.Name = "lblCompanyList";
+            this.lblCompanyList.Size = new System.Drawing.Size(100, 17);
+            this.lblCompanyList.TabIndex = 30;
+            this.lblCompanyList.Text = "Companys &List";
             // 
             // FrmMenuHome
             // 
@@ -556,8 +582,8 @@
             this.tabLayout.PerformLayout();
             this.tabUserManager.ResumeLayout(false);
             this.tabUserManager.PerformLayout();
-            this.tabClientManager.ResumeLayout(false);
-            this.tabClientManager.PerformLayout();
+            this.tabCompanyManager.ResumeLayout(false);
+            this.tabCompanyManager.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -576,34 +602,36 @@
         private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.Button cmdAddRow;
-        private System.Windows.Forms.ComboBox cmbClient;
-        private System.Windows.Forms.Label lblFiltreClient;
+        private System.Windows.Forms.ComboBox cmbFiltreCompany;
+        private System.Windows.Forms.Label lblFiltreCompany;
         private System.Windows.Forms.Button cmdAddGestionUser;
-        private System.Windows.Forms.TabPage tabClientManager;
-        private System.Windows.Forms.Label lblNameClient;
-        private System.Windows.Forms.ListBox lstClient;
-        private System.Windows.Forms.Button cmdCloseClientManager;
-        private System.Windows.Forms.Button cmdAddClient;
+        private System.Windows.Forms.TabPage tabCompanyManager;
+        private System.Windows.Forms.Label lblNameCompany;
+        private System.Windows.Forms.ListBox lstCompany;
+        private System.Windows.Forms.Button cmdCloseCompanyManager;
+        private System.Windows.Forms.Button cmdAddCompany;
         private System.Windows.Forms.TabPage tabUserManager;
         private System.Windows.Forms.Button cmdCloseUserManager;
-        private System.Windows.Forms.Button cmdNewClient;
+        private System.Windows.Forms.Button cmdNewCompany;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.ComboBox cmbEntreprise;
-        private System.Windows.Forms.Label lblClient;
+        private System.Windows.Forms.Label lblEntrepriseCompany;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.Button cmdRemoveUser;
         private System.Windows.Forms.Button cmdAddUser;
         private System.Windows.Forms.ListBox lstUsers;
-        private System.Windows.Forms.Button cmdRemoveClient;
-        private System.Windows.Forms.TextBox txtAddressClient;
-        private System.Windows.Forms.TextBox txtTelClient;
-        private System.Windows.Forms.TextBox txtNameClient;
-        private System.Windows.Forms.Label lblAdresseClient;
-        private System.Windows.Forms.Label lblTelClient;
+        private System.Windows.Forms.Button cmdRemoveCompany;
+        private System.Windows.Forms.TextBox txtAddressCompany;
+        private System.Windows.Forms.TextBox txtTelCompany;
+        private System.Windows.Forms.TextBox txtNameCompany;
+        private System.Windows.Forms.Label lblAdresseCompany;
+        private System.Windows.Forms.Label lblTelCompany;
         private System.Windows.Forms.Button cmdLogOut;
         private System.Windows.Forms.Label lblUserNameLogged;
         private System.Windows.Forms.Button cmdExit;
+        private System.Windows.Forms.Label lblUsersList;
+        private System.Windows.Forms.Label lblCompanyList;
     }
 }
