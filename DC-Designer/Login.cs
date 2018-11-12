@@ -13,7 +13,7 @@ namespace DC_Designer
         internal static void SetUser(string u) {
             //recupérer user dans la base
             user = u;
-            company = "test";
+            
         }
         internal static String GetUser() { return user; }
 

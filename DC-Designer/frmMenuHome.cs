@@ -13,11 +13,17 @@ namespace DC_Designer
     public partial class FrmMenuHome : Form
     {
         private String userName;
-        private String userCompany;
+        private String userCompany="test1";
+        private List<User> users = new List<User>();
         private List<DC> dCs = new List<DC>();
+        private List<Company> companies = new List<Company>();
+        private List<DC> filteredDcs = new List<DC>();
+        private DC newDC;
+
         public FrmMenuHome()
         {
             InitializeComponent();
+            TestValue();
             frmConnexion f = new frmConnexion();
             f.ShowDialog(this);
             userName = Login.GetUser();
@@ -27,30 +33,43 @@ namespace DC_Designer
 
         private void ViewByUser()
         {
-            
-            tblDcDesigner.TabPages.Remove(tabLayout);
-            tblDcDesigner.TabPages.Remove(tabUserManager);
-            tblDcDesigner.TabPages.Remove(tabCompanyManager);
+            tblDcDesigner.TabPages.Clear();
             tblDcDesigner.Show();
             if (userName == "admin")
             {
                 cmdAddGestionUser.Show();
                 cmbFiltreCompany.Show();
                 lblFiltreCompany.Show();
-                
                 cmdCreateNewDC.Hide();
+                txtNomDC.Enabled = false;
                 cmdSave.Hide();
+                PopulateLists();
             }
             AfficherListDC();
         }
 
+        private void PopulateLists()
+        {
+            for (int i = 0; i < users.Count; i++)
+            {
+                lstUsers.Items.Add(users[i].GetUserName());
+            }
+            for (int i = 0; i < companies.Count; i++)
+            {
+                lstCompany.Items.Add(companies[i].getName());
+                cmbUserCompany.Items.Add(companies[i].getName());
+                cmbEditUserCompany.Items.Add(companies[i].getName());
+            }
+        }
+
         private void AfficherListDC()
         {
+            lstExistingLayout.Items.Clear();
             if (userName == "admin") {
                 foreach (var dC in dCs)
                 {
                     lstExistingLayout.Items.Add(dC.GetNom());
-                    cmbFiltreCompany.Items.Add(dC.GetNom());
+                    cmbFiltreCompany.Items.Add(dC.GetCompany());
                 }
                 //TODO
                 //afficherToutLesDC
@@ -62,8 +81,8 @@ namespace DC_Designer
 
                     if (dC.GetCompany().Equals(userCompany))
                     {
+                        filteredDcs.Add(dC);
                         lstExistingLayout.Items.Add(dC.GetNom());
-                        cmbFiltreCompany.Items.Add(dC.GetNom());
                     }
                     
                 }
@@ -72,83 +91,72 @@ namespace DC_Designer
             }
         }
 
-        private Button CreateAddRackButton()
-        {
-            Button cmdAddRack = new Button
-            {
-                Name = "cmdAddRack",
-                Text = "+",
-                Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0),
-                ForeColor = SystemColors.HotTrack,
-                Size = new Size(49, 51),
-                TextAlign = ContentAlignment.MiddleCenter,
-                AutoSize = true,
-                Anchor = AnchorStyles.None,
-                AutoSizeMode = AutoSizeMode.GrowAndShrink
-            };
-            cmdAddRack.Click += new EventHandler(CmdAddRack_Click);
-            return cmdAddRack;
-        }
 
 
 
         public void InitTab() {
             //remet la tab à zero
-            dcLayout.Controls.Clear();
-            dcLayout.ColumnCount = 1;
-            dcLayout.RowCount = 1;
             txtNomDC.Text = "";
+            pnlLayout.Controls.Clear();
             tblDcDesigner.TabPages.Remove(tabLayout);
         }
 
         public void SaveLayout() {
+            if (tblDcDesigner.TabPages.Contains(tabLayout))
+            {
+                if (!dCs.Contains(newDC))
+                {
+                    newDC.SetNom(txtNomDC.Text);
+                    dCs.Add(newDC);
+                    filteredDcs.Add(newDC);
+                    lstExistingLayout.Items.Add(newDC.GetNom());
+                }
+                newDC.SetNom(txtNomDC.Text);
+
+            }
+            AfficherListDC();
             //TODO
             //sauve les données des rack
         }
 
-        private void CmdAddRack_Click(object sender, EventArgs e)
-        {
-            FrmAjoutRack f = new FrmAjoutRack();
-            f.ShowDialog(this);
-            Rack r = GestionRack.GetRack();
-            if (r != null)
-            {
-                Button cmdAddRack = (Button)sender;
-                TableLayoutPanelCellPosition cellNewRack = dcLayout.GetCellPosition(cmdAddRack);
-                dcLayout.ColumnCount++;
-                dcLayout.Controls.Remove(cmdAddRack);
-                dcLayout.Controls.Add(r.GetRackDesign(), cellNewRack.Column, cellNewRack.Row);
-                dcLayout.Controls.Add(cmdAddRack, cellNewRack.Column + 1, cellNewRack.Row);
-            }
-        }
-
+      
         private void LstExistingDC_DoubleClick(object sender, EventArgs e)
         {
-            if (lstExistingLayout.SelectedValue != null)
+            if (lstExistingLayout.SelectedItem!=null)
             {
-   
-                if (tblDcDesigner.Visible == true) {
+                if (tblDcDesigner.TabPages.Contains(tabLayout) && userName != "admin") {
                     AlertSave();
                 }
                 int dCToOpen = lstExistingLayout.SelectedIndex;
-                DC dC = dCs[dCToOpen];
-                dcLayout.RowCount = dC.GetRows().Count;
-                int i = 0;
-                int j = 0;
-                foreach (var row in dC.GetRows())
+                
+                if ((userName=="admin" && cmbFiltreCompany.SelectedText != "") || userName!="admin")
                 {
-                    dcLayout.ColumnCount = row.GetRacks().Count + 1;
-                    foreach (var rack in row.GetRacks())
-                    {
-                        dcLayout.Controls.Add(rack.GetRackDesign(), i, j);
-                        j++;
-                    }
-                    if (userName != "admin")
-                    {
-                        dcLayout.Controls.Add(CreateAddRackButton(),i,j+1);
-                    }
-                    i++;
+                    newDC = filteredDcs[dCToOpen];
                 }
+                else
+                {
+                    newDC = dCs[dCToOpen];
+                }
+                
+                if (userName=="admin" && tblDcDesigner.TabPages.Contains(tabLayout))
+                {
+                    tblDcDesigner.TabPages.Remove(tabLayout);
+                    pnlLayout.Controls.Add(newDC.GetDcDesign());
+                    //pnlLayout.Controls.Add(newDC.GetDcDesingWithoutEdit());
+                }
+                else
+                {
+                    pnlLayout.Controls.Add(newDC.GetDcDesign());
+                    
+                }
+                if(!tblDcDesigner.TabPages.Contains(tabLayout)){ 
+                    tblDcDesigner.TabPages.Add(tabLayout);
+                    tblDcDesigner.SelectedTab = tabLayout;
+                   
+                    txtNomDC.Text = newDC.GetNom();
+                    
+                }
+                lstExistingLayout.ClearSelected();
             }
 
             //TODO
@@ -161,20 +169,21 @@ namespace DC_Designer
             {
                 AlertSave();
             }
-            else
+            if (!tblDcDesigner.TabPages.Contains(tabLayout))
             {
                 tblDcDesigner.TabPages.Add(tabLayout);
             }
+              
+              
             
-
-            Button cmdAddRack = CreateAddRackButton();
-            dcLayout.Controls.Add(cmdAddRack, 0, 0);
+            newDC = new DC("NewLayout", userCompany, new List<Row>());
+            pnlLayout.Controls.Add(newDC.GetDcDesign());
+            
         }
 
         private void CmdAddRow_Click(object sender, EventArgs e)
         {
-            dcLayout.Controls.Add(CreateAddRackButton(), 0, dcLayout.RowCount);
-            dcLayout.RowCount += 1;
+            newDC.Addrows();
         }
 
        
@@ -189,7 +198,12 @@ namespace DC_Designer
             if (userName != "admin")
             {
                 AlertSave();
-            }            
+            }
+            if (tblDcDesigner.TabPages.Contains(tabLayout))
+            {
+                pnlLayout.Controls.Clear();
+                tblDcDesigner.TabPages.Remove(tabLayout);
+            }
         }
 
         private void AlertSave() {
@@ -211,6 +225,19 @@ namespace DC_Designer
         private void CmbClient_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO
+            lstExistingLayout.Items.Clear();
+            foreach (var dc in dCs)
+            {
+                if (dc.GetCompany().Equals(cmbFiltreCompany.Text))
+                {
+                    filteredDcs.Add(dc);
+                    lstExistingLayout.Items.Add(dc.GetNom());
+                }
+                    
+                
+            }         
+            
+            
             //changer la liste pour afficher que les clients selectionner
         }
 
@@ -219,15 +246,13 @@ namespace DC_Designer
         {
             lstUsers.Items.Add(txtUserName.Text);
             txtUserName.Text = "";
+            txtPassword.Text = "";
+            cmbUserCompany.Text = "";
+            users.Add(new User(txtUserName.Text, cmbUserCompany.SelectedText));
             //TODO
             //ajout de l'user à la base
         }
 
-
-        private void CmbEntreprise_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         private void CmdRemoveUser_Click(object sender, EventArgs e)
         {
@@ -236,6 +261,7 @@ namespace DC_Designer
                 switch (MessageBox.Show("Do you want to remove the selected user?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
+                        users.RemoveAt(lstUsers.SelectedIndex);
                         lstUsers.Items.Remove(lstUsers.SelectedItem);
                         //TODO
                         //remove de la base
@@ -257,7 +283,9 @@ namespace DC_Designer
                 switch (MessageBox.Show("Do you want to remove the selected Client?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
+                        companies.RemoveAt(lstCompany.SelectedIndex);
                         lstCompany.Items.Remove(lstCompany.SelectedItem);
+                        
                         //TODO
                         //remove de la base
                         break;
@@ -278,11 +306,12 @@ namespace DC_Designer
             {
                 lstCompany.Items.Add(txtNameCompany.Text);
                 cmbFiltreCompany.Items.Add(txtNameCompany.Text);
-                cmbEntreprise.Items.Add(txtNameCompany.Text);
+                cmbUserCompany.Items.Add(txtNameCompany.Text);
+                cmbEditUserCompany.Items.Add(txtNameCompany.Text);
                 txtNameCompany.Text = "";
                 txtAddressCompany.Text = "";
                 txtTelCompany.Text = "";
-
+                companies.Add(new Company(txtNameCompany.Text, txtAddressCompany.Text, txtTelCompany.Text));
                 //TODO
                 //Ajout à la base
             }
@@ -292,7 +321,11 @@ namespace DC_Designer
 
         private void CmdAddGestionUser_Click(object sender, EventArgs e)
         {
-            tblDcDesigner.TabPages.Add(tabUserManager);
+            if (!tblDcDesigner.TabPages.Contains(tabUserManager))
+            {
+                tblDcDesigner.TabPages.Add(tabUserManager);
+            }
+            tblDcDesigner.SelectedTab = tabUserManager;
         }
 
         private void CmdCloseUserManager_Click(object sender, EventArgs e)
@@ -307,7 +340,10 @@ namespace DC_Designer
 
         private void CmdNewClient_Click(object sender, EventArgs e)
         {
-            tblDcDesigner.TabPages.Add(tabCompanyManager);
+            if (!tblDcDesigner.TabPages.Contains(tabCompanyManager))
+            {
+                tblDcDesigner.TabPages.Add(tabCompanyManager);
+            }
             tblDcDesigner.SelectedTab = tabCompanyManager;
         }
 
@@ -316,7 +352,7 @@ namespace DC_Designer
             switch (MessageBox.Show("Do you want to log out and save?", "logging out", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
             {
                 case DialogResult.Yes:
-                    if (userName != "admin")
+                    if (userName != "admin"  )
                     {
                         SaveLayout();
                     }
@@ -343,6 +379,7 @@ namespace DC_Designer
                         SaveLayout();
                     }
                     else { SaveUserClient(); }
+                    Close();
                     break;
 
                 case DialogResult.No:
@@ -358,15 +395,73 @@ namespace DC_Designer
             //save client et user dans la base
         }
 
-        private void LstCompany_DoubleClick(object sender, EventArgs e)
+ 
+
+        private void CmdCloseUser_Click(object sender, EventArgs e)
         {
-            //TODO modify Company
+            tblDcDesigner.TabPages.Remove(tabEditUser);
         }
 
-
-        private void LstUsers_DoubleClick(object sender, EventArgs e)
+        private void CmdCloseCompany_Click(object sender, EventArgs e)
         {
-            //TODO modify user
+            tblDcDesigner.TabPages.Remove(tabEditCompany);
         }
+
+        private void CmdEditUser_Click(object sender, EventArgs e)
+        {
+            if (lstUsers.Items.Count!=0)
+            {
+                if (!tblDcDesigner.TabPages.Contains(tabEditUser))
+                {
+                    tblDcDesigner.TabPages.Add(tabEditUser);
+                }
+                User editable = users[lstUsers.SelectedIndex];
+                txtEditUserUsername.Text = editable.GetUserName();
+                cmbEditUserCompany.Text = editable.GetCompany();
+                tblDcDesigner.SelectedTab = tabEditUser;
+            }
+            
+        }
+
+        private void CmdEditCompany_Click(object sender, EventArgs e)
+        {
+            if (!tblDcDesigner.TabPages.Contains(tabEditCompany))
+            {
+                tblDcDesigner.TabPages.Add(tabEditCompany);
+            }
+            tblDcDesigner.SelectedTab = tabEditCompany;
+            Company companyToEdit = companies[lstCompany.SelectedIndex];
+            txtEditCompanyName.Text = companyToEdit.getName();
+            txtEditCompanyTel.Text = companyToEdit.getTel();
+            txtEditCompanyAddress.Text = companyToEdit.getAddress();
+        }
+
+        private void TestValue()
+        {
+            companies.Add(new Company("test1","address1","001"));
+            companies.Add(new Company("test2", "address2","002"));
+            users.Add(new User("test1","test1"));
+            users.Add(new User("test2", "test2"));
+            List<Row> row1 = new List<Row>();
+            List<Rack> racks1 = new List<Rack>();
+            Rack rack1 = new Rack("r1",4);
+            Rack rack2 = new Rack("r2", 3);
+            racks1.Add(rack1);
+            racks1.Add(rack2);
+            Row r1 = new Row(0, racks1);
+            row1.Add(r1);
+            dCs.Add(new DC("dc1","test1",row1));
+            row1 = new List<Row>();
+            racks1 = new List<Rack>();
+            rack1 = new Rack("r1", 2);
+            rack2 = new Rack("r2", 2);
+            racks1.Add(rack1);
+            racks1.Add(rack2);
+            r1 = new Row(0, racks1);
+            row1.Add(r1);
+            dCs.Add(new DC("dc2", "test2", row1));
+            //private List<DC> dCs = new List<DC>();
+        }
+
     }
 }

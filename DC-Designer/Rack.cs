@@ -30,11 +30,17 @@ namespace DC_Designer
             EmptyRack(nbU,nom);
         }
 
-        public Rack(string rackName, List<Equipement> listEquipement) //création d'un rack avec équipement
+        public Rack(String rackName, List<Equipement> listEquipement) //création d'un rack avec équipement
         {
             this.rackName = rackName;
             this.listEquipement = listEquipement;
             rackDesign = EmptyRack(listEquipement.Count, rackName);
+            rackDesign.Controls[0].Text = rackName;
+            for (int i = 0; i < listEquipement.Count; i++)
+            {
+                
+                rackDesign.Controls[i + 1].Text = listEquipement[i].GetNom();
+            }
         }
 
         public TableLayoutPanel EmptyRack(int taille,String nom) {
@@ -84,9 +90,10 @@ namespace DC_Designer
         {
             Button s = (Button)sender;
             int i = s.Parent.Controls.IndexOf(s)-1;
-            frmEquipement f = new frmEquipement();
+            
             Equipement equip = (Equipement)listEquipement[i];
             GestionAjoutEquip.SetEquipement(equip);
+            frmEquipement f = new frmEquipement();
             f.ShowDialog(this.rackDesign.Parent);
             f.Dispose();
             equip = GestionAjoutEquip.GetEquipement();
