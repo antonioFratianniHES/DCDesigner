@@ -819,6 +819,7 @@
             // 
             // pnlLayout
             // 
+            this.pnlLayout.AllowDrop = true;
             this.pnlLayout.AutoSize = true;
             this.pnlLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLayout.Location = new System.Drawing.Point(6, 70);

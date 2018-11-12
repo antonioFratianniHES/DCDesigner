@@ -142,7 +142,7 @@ namespace DC_Designer
                 {
                     tblDcDesigner.TabPages.Remove(tabLayout);
                     pnlLayout.Controls.Add(newDC.GetDcDesign());
-                    //pnlLayout.Controls.Add(newDC.GetDcDesingWithoutEdit());
+                   //pnlLayout.Controls.Add(newDC.GetDcDesingWithoutEdit());
                 }
                 else
                 {

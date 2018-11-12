@@ -34,6 +34,9 @@ namespace DC_Designer
                 
 
             };
+          //  dcDesign.DragDrop += new DragEventHandler(tableLayoutPanelDrop_DragDrop);
+           // dcDesign.DragEnter += new DragEventHandler(tableLayoutPanelDrop_DragEnter);
+            //dcDesign.DragOver += new DragEventHandler(tableLayoutPanelDrop_DragOver);
             rows.Add(new Row(dcDesign.RowCount-1, new List<Rack>()));
             Button cmdAddRack = CreateAddRackButton();
             dcDesign.Controls.Add(cmdAddRack, 0, 0);
@@ -44,18 +47,16 @@ namespace DC_Designer
         public TableLayoutPanel GetDcDesingWithoutEdit()
         {
             TableLayoutPanel design = new TableLayoutPanel();
-            for (int i = 0; i < dcDesign.RowCount; i++)
+            int j = 0;
+            foreach (Row row in rows)
             {
-                for (int j = 0; j < dcDesign.ColumnCount; j++)
+                List<Rack> racks = row.GetRacks();
+                for (int i = 0; i <racks.Count ; i++)
                 {
-                    if (dcDesign.GetControlFromPosition(i,j).Name!="cmdaddRack")
-                    {
-                        design.Controls.Add(dcDesign.GetControlFromPosition(i, j));
-                    }
+                    design.Controls.Add(racks[i].GetRackDesign(), i, j);
                 }
+                j++;
             }
-
-
             return design;
         }
 
@@ -129,5 +130,27 @@ namespace DC_Designer
             hashCode = hashCode * -1521134295 + EqualityComparer<List<Row>>.Default.GetHashCode(rows);
             return hashCode;
         }
+
+        //fonction drag and drop pas encore au point
+       /* private void tableLayoutPanelDrop_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(System.Windows.Forms.Button)))
+                e.Effect = DragDropEffects.All;
+
+        }
+
+
+        private void tableLayoutPanelDrop_DragOver(object sender, DragEventArgs e)
+        {
+            ((Control)e.Data.GetData(typeof(System.Windows.Forms.Button))).BringToFront();
+
+        }
+
+  
+
+        private void tableLayoutPanelDrop_DragDrop(object sender, DragEventArgs e)
+        {
+            ((Button)e.Data.GetData(typeof(System.Windows.Forms.Button))).BringToFront();
+        }*/
     }
 }

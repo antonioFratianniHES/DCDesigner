@@ -73,15 +73,19 @@ namespace DC_Designer
                     Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
                 };
                 b.Click += new EventHandler(CmdEquip_Click);
+               // b.MouseDown += new MouseEventHandler(CmdEquip_MouseDown);
                 rackDesign.Controls.Add(b, 0, i);
                 listEquipement.Add(new Equipement(b.Text,""));
+                
             }
             return rackDesign;
         }
-
-
-
-
+        //fonction de drag and drop pas encore au point
+       /* private void CmdEquip_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((Control)sender).DoDragDrop(sender, DragDropEffects.All);
+        }
+        */
         public TableLayoutPanel GetRackDesign() {
             return rackDesign;
         }
@@ -105,6 +109,8 @@ namespace DC_Designer
             }
             
         }
+
+        
 
     }
 }
