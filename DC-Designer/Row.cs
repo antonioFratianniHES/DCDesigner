@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -22,5 +23,24 @@ namespace DC_Designer
         public int GetRowNum() { return rowNum; }
         public List<Rack> GetRacks() { return lstRacks; }
         public void AddRack(Rack rack){ lstRacks.Add(rack);}
+
+        internal void Save(int nomRow,int dcid)
+        {
+            int rowId;
+            OracleConnection con = new OracleConnection();
+            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            con.Open();
+
+            OracleCommand cmdAddDc = new OracleCommand("insert into vwrange(dcid) VALUES(" + dcid + ")", con);
+            OracleCommand cmdgetDcId = new OracleCommand("select rangeid from vwrange where nomRange ='" + nomRow + "' and dcid="+dcid, con);
+            OracleDataReader dr2 = cmdgetDcId.ExecuteReader();
+            rowId = dr2.GetInt32(0);
+            con.Close();
+            int i = 0;
+            foreach (Rack rack in lstRacks)
+            {
+                rack.Save(i++,rowId);
+            }
+        }
     }
 }

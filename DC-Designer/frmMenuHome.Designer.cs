@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lstExistingLayout = new System.Windows.Forms.ListBox();
+            this.dataSetDataFinal = new DC_Designer.DataSetDataFinal();
             this.lblExistingLayout = new System.Windows.Forms.Label();
             this.cmdCreateNewDC = new System.Windows.Forms.Button();
             this.spltHomeMenu = new System.Windows.Forms.SplitContainer();
@@ -40,6 +42,7 @@
             this.cmbFiltreCompany = new System.Windows.Forms.ComboBox();
             this.tblDcDesigner = new System.Windows.Forms.TabControl();
             this.tabLayout = new System.Windows.Forms.TabPage();
+            this.pnlLayout = new System.Windows.Forms.Panel();
             this.cmdAddRow = new System.Windows.Forms.Button();
             this.txtNomDC = new System.Windows.Forms.TextBox();
             this.lblNomDC = new System.Windows.Forms.Label();
@@ -92,7 +95,11 @@
             this.lblEditCompanyTel = new System.Windows.Forms.Label();
             this.cmdModifyCompany = new System.Windows.Forms.Button();
             this.lblEditCompanyName = new System.Windows.Forms.Label();
-            this.pnlLayout = new System.Windows.Forms.Panel();
+            this.cOMPANYBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cOMPANYTableAdapter = new DC_Designer.DataSetDataFinalTableAdapters.COMPANYTableAdapter();
+            this.eMPLOYEEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eMPLOYEETableAdapter = new DC_Designer.DataSetDataFinalTableAdapters.EMPLOYEETableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetDataFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spltHomeMenu)).BeginInit();
             this.spltHomeMenu.Panel1.SuspendLayout();
             this.spltHomeMenu.Panel2.SuspendLayout();
@@ -103,31 +110,43 @@
             this.tabCompanyManager.SuspendLayout();
             this.tabEditUser.SuspendLayout();
             this.tabEditCompany.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cOMPANYBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eMPLOYEEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstExistingLayout
             // 
+            this.lstExistingLayout.DisplayMember = "DCNAME";
             this.lstExistingLayout.FormattingEnabled = true;
-            this.lstExistingLayout.Location = new System.Drawing.Point(17, 256);
+            this.lstExistingLayout.ItemHeight = 16;
+            this.lstExistingLayout.Location = new System.Drawing.Point(12, 316);
+            this.lstExistingLayout.Margin = new System.Windows.Forms.Padding(4);
             this.lstExistingLayout.Name = "lstExistingLayout";
-            this.lstExistingLayout.Size = new System.Drawing.Size(169, 199);
+            this.lstExistingLayout.Size = new System.Drawing.Size(224, 244);
             this.lstExistingLayout.TabIndex = 2;
             this.lstExistingLayout.DoubleClick += new System.EventHandler(this.LstExistingDC_DoubleClick);
+            // 
+            // dataSetDataFinal
+            // 
+            this.dataSetDataFinal.DataSetName = "DataSetDataFinal";
+            this.dataSetDataFinal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblExistingLayout
             // 
             this.lblExistingLayout.AutoSize = true;
-            this.lblExistingLayout.Location = new System.Drawing.Point(14, 240);
+            this.lblExistingLayout.Location = new System.Drawing.Point(19, 295);
+            this.lblExistingLayout.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExistingLayout.Name = "lblExistingLayout";
-            this.lblExistingLayout.Size = new System.Drawing.Size(78, 13);
+            this.lblExistingLayout.Size = new System.Drawing.Size(103, 17);
             this.lblExistingLayout.TabIndex = 1;
             this.lblExistingLayout.Text = "&Existing Layout";
             // 
             // cmdCreateNewDC
             // 
-            this.cmdCreateNewDC.Location = new System.Drawing.Point(17, 141);
+            this.cmdCreateNewDC.Location = new System.Drawing.Point(23, 174);
+            this.cmdCreateNewDC.Margin = new System.Windows.Forms.Padding(4);
             this.cmdCreateNewDC.Name = "cmdCreateNewDC";
-            this.cmdCreateNewDC.Size = new System.Drawing.Size(169, 45);
+            this.cmdCreateNewDC.Size = new System.Drawing.Size(225, 55);
             this.cmdCreateNewDC.TabIndex = 0;
             this.cmdCreateNewDC.Text = "&New Data Center";
             this.cmdCreateNewDC.UseVisualStyleBackColor = true;
@@ -140,6 +159,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spltHomeMenu.IsSplitterFixed = true;
             this.spltHomeMenu.Location = new System.Drawing.Point(1, 1);
+            this.spltHomeMenu.Margin = new System.Windows.Forms.Padding(4);
             this.spltHomeMenu.Name = "spltHomeMenu";
             // 
             // spltHomeMenu.Panel1
@@ -158,16 +178,17 @@
             // spltHomeMenu.Panel2
             // 
             this.spltHomeMenu.Panel2.Controls.Add(this.tblDcDesigner);
-            this.spltHomeMenu.Size = new System.Drawing.Size(889, 512);
-            this.spltHomeMenu.SplitterDistance = 202;
+            this.spltHomeMenu.Size = new System.Drawing.Size(1185, 630);
+            this.spltHomeMenu.SplitterDistance = 269;
+            this.spltHomeMenu.SplitterWidth = 5;
             this.spltHomeMenu.TabIndex = 6;
             // 
             // cmdExit
             // 
-            this.cmdExit.Location = new System.Drawing.Point(138, 7);
-            this.cmdExit.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdExit.Location = new System.Drawing.Point(184, 9);
+            this.cmdExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(56, 21);
+            this.cmdExit.Size = new System.Drawing.Size(75, 26);
             this.cmdExit.TabIndex = 8;
             this.cmdExit.Text = "E&xit";
             this.cmdExit.UseVisualStyleBackColor = true;
@@ -175,10 +196,10 @@
             // 
             // cmdLogOut
             // 
-            this.cmdLogOut.Location = new System.Drawing.Point(76, 7);
-            this.cmdLogOut.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdLogOut.Location = new System.Drawing.Point(101, 9);
+            this.cmdLogOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdLogOut.Name = "cmdLogOut";
-            this.cmdLogOut.Size = new System.Drawing.Size(56, 21);
+            this.cmdLogOut.Size = new System.Drawing.Size(75, 26);
             this.cmdLogOut.TabIndex = 7;
             this.cmdLogOut.Text = "&Log Out";
             this.cmdLogOut.UseVisualStyleBackColor = true;
@@ -187,19 +208,18 @@
             // lblUserNameLogged
             // 
             this.lblUserNameLogged.AutoSize = true;
-            this.lblUserNameLogged.Location = new System.Drawing.Point(17, 10);
-            this.lblUserNameLogged.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUserNameLogged.Location = new System.Drawing.Point(23, 12);
             this.lblUserNameLogged.Name = "lblUserNameLogged";
-            this.lblUserNameLogged.Size = new System.Drawing.Size(55, 13);
+            this.lblUserNameLogged.Size = new System.Drawing.Size(73, 17);
             this.lblUserNameLogged.TabIndex = 6;
             this.lblUserNameLogged.Text = "userName";
             // 
             // cmdAddGestionUser
             // 
-            this.cmdAddGestionUser.Location = new System.Drawing.Point(17, 70);
-            this.cmdAddGestionUser.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdAddGestionUser.Location = new System.Drawing.Point(23, 86);
+            this.cmdAddGestionUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdAddGestionUser.Name = "cmdAddGestionUser";
-            this.cmdAddGestionUser.Size = new System.Drawing.Size(168, 41);
+            this.cmdAddGestionUser.Size = new System.Drawing.Size(224, 50);
             this.cmdAddGestionUser.TabIndex = 5;
             this.cmdAddGestionUser.Text = "&User Manager";
             this.cmdAddGestionUser.UseVisualStyleBackColor = true;
@@ -209,19 +229,23 @@
             // lblFiltreCompany
             // 
             this.lblFiltreCompany.AutoSize = true;
-            this.lblFiltreCompany.Location = new System.Drawing.Point(15, 201);
+            this.lblFiltreCompany.Location = new System.Drawing.Point(20, 247);
+            this.lblFiltreCompany.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFiltreCompany.Name = "lblFiltreCompany";
-            this.lblFiltreCompany.Size = new System.Drawing.Size(90, 13);
+            this.lblFiltreCompany.Size = new System.Drawing.Size(121, 17);
             this.lblFiltreCompany.TabIndex = 3;
             this.lblFiltreCompany.Text = "&Filter by Company";
             this.lblFiltreCompany.Visible = false;
             // 
             // cmbFiltreCompany
             // 
+            this.cmbFiltreCompany.DataSource = this.cOMPANYBindingSource;
+            this.cmbFiltreCompany.DisplayMember = "CONAME";
             this.cmbFiltreCompany.FormattingEnabled = true;
-            this.cmbFiltreCompany.Location = new System.Drawing.Point(16, 218);
+            this.cmbFiltreCompany.Location = new System.Drawing.Point(21, 268);
+            this.cmbFiltreCompany.Margin = new System.Windows.Forms.Padding(4);
             this.cmbFiltreCompany.Name = "cmbFiltreCompany";
-            this.cmbFiltreCompany.Size = new System.Drawing.Size(117, 21);
+            this.cmbFiltreCompany.Size = new System.Drawing.Size(155, 24);
             this.cmbFiltreCompany.TabIndex = 4;
             this.cmbFiltreCompany.Visible = false;
             this.cmbFiltreCompany.SelectedIndexChanged += new System.EventHandler(this.CmbClient_SelectedIndexChanged);
@@ -236,9 +260,10 @@
             this.tblDcDesigner.Controls.Add(this.tabEditCompany);
             this.tblDcDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblDcDesigner.Location = new System.Drawing.Point(0, 0);
+            this.tblDcDesigner.Margin = new System.Windows.Forms.Padding(4);
             this.tblDcDesigner.Name = "tblDcDesigner";
             this.tblDcDesigner.SelectedIndex = 0;
-            this.tblDcDesigner.Size = new System.Drawing.Size(683, 512);
+            this.tblDcDesigner.Size = new System.Drawing.Size(911, 630);
             this.tblDcDesigner.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tblDcDesigner.TabIndex = 0;
             this.tblDcDesigner.Visible = false;
@@ -254,19 +279,31 @@
             this.tabLayout.Controls.Add(this.cmdSave);
             this.tabLayout.Controls.Add(this.dcLayout);
             this.tabLayout.Location = new System.Drawing.Point(4, 25);
-            this.tabLayout.Margin = new System.Windows.Forms.Padding(2);
+            this.tabLayout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabLayout.Name = "tabLayout";
-            this.tabLayout.Padding = new System.Windows.Forms.Padding(2);
-            this.tabLayout.Size = new System.Drawing.Size(675, 483);
+            this.tabLayout.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabLayout.Size = new System.Drawing.Size(903, 601);
             this.tabLayout.TabIndex = 0;
             this.tabLayout.Text = "Layout";
             this.tabLayout.UseVisualStyleBackColor = true;
             // 
+            // pnlLayout
+            // 
+            this.pnlLayout.AllowDrop = true;
+            this.pnlLayout.AutoSize = true;
+            this.pnlLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlLayout.Location = new System.Drawing.Point(8, 86);
+            this.pnlLayout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlLayout.Name = "pnlLayout";
+            this.pnlLayout.Size = new System.Drawing.Size(0, 0);
+            this.pnlLayout.TabIndex = 6;
+            // 
             // cmdAddRow
             // 
-            this.cmdAddRow.Location = new System.Drawing.Point(18, 40);
+            this.cmdAddRow.Location = new System.Drawing.Point(24, 49);
+            this.cmdAddRow.Margin = new System.Windows.Forms.Padding(4);
             this.cmdAddRow.Name = "cmdAddRow";
-            this.cmdAddRow.Size = new System.Drawing.Size(75, 23);
+            this.cmdAddRow.Size = new System.Drawing.Size(100, 28);
             this.cmdAddRow.TabIndex = 5;
             this.cmdAddRow.Text = "Add &Row";
             this.cmdAddRow.UseVisualStyleBackColor = true;
@@ -275,25 +312,28 @@
             // txtNomDC
             // 
             this.txtNomDC.AllowDrop = true;
-            this.txtNomDC.Location = new System.Drawing.Point(65, 14);
+            this.txtNomDC.Location = new System.Drawing.Point(87, 17);
+            this.txtNomDC.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomDC.Name = "txtNomDC";
-            this.txtNomDC.Size = new System.Drawing.Size(100, 20);
+            this.txtNomDC.Size = new System.Drawing.Size(132, 22);
             this.txtNomDC.TabIndex = 2;
             // 
             // lblNomDC
             // 
             this.lblNomDC.AutoSize = true;
-            this.lblNomDC.Location = new System.Drawing.Point(15, 17);
+            this.lblNomDC.Location = new System.Drawing.Point(20, 21);
+            this.lblNomDC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomDC.Name = "lblNomDC";
-            this.lblNomDC.Size = new System.Drawing.Size(44, 13);
+            this.lblNomDC.Size = new System.Drawing.Size(56, 17);
             this.lblNomDC.TabIndex = 1;
             this.lblNomDC.Text = "Nom&DC";
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(605, 5);
+            this.cmdClose.Location = new System.Drawing.Point(807, 6);
+            this.cmdClose.Margin = new System.Windows.Forms.Padding(4);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(45, 21);
+            this.cmdClose.Size = new System.Drawing.Size(60, 26);
             this.cmdClose.TabIndex = 4;
             this.cmdClose.Text = "&Close";
             this.cmdClose.UseVisualStyleBackColor = true;
@@ -301,9 +341,10 @@
             // 
             // cmdSave
             // 
-            this.cmdSave.Location = new System.Drawing.Point(178, 12);
+            this.cmdSave.Location = new System.Drawing.Point(237, 15);
+            this.cmdSave.Margin = new System.Windows.Forms.Padding(4);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(75, 23);
+            this.cmdSave.Size = new System.Drawing.Size(100, 28);
             this.cmdSave.TabIndex = 3;
             this.cmdSave.Text = "&Save";
             this.cmdSave.UseVisualStyleBackColor = true;
@@ -317,8 +358,8 @@
             this.dcLayout.ColumnCount = 2;
             this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.dcLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.dcLayout.Location = new System.Drawing.Point(18, 61);
-            this.dcLayout.Margin = new System.Windows.Forms.Padding(2);
+            this.dcLayout.Location = new System.Drawing.Point(24, 75);
+            this.dcLayout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dcLayout.Name = "dcLayout";
             this.dcLayout.RowCount = 1;
             this.dcLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -341,19 +382,20 @@
             this.tabUserManager.Controls.Add(this.cmdAddUser);
             this.tabUserManager.Controls.Add(this.lstUsers);
             this.tabUserManager.Location = new System.Drawing.Point(4, 25);
-            this.tabUserManager.Margin = new System.Windows.Forms.Padding(2);
+            this.tabUserManager.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabUserManager.Name = "tabUserManager";
-            this.tabUserManager.Padding = new System.Windows.Forms.Padding(2);
-            this.tabUserManager.Size = new System.Drawing.Size(675, 483);
+            this.tabUserManager.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabUserManager.Size = new System.Drawing.Size(903, 601);
             this.tabUserManager.TabIndex = 1;
             this.tabUserManager.Text = "User Manager";
             this.tabUserManager.UseVisualStyleBackColor = true;
             // 
             // cmdEditUser
             // 
-            this.cmdEditUser.Location = new System.Drawing.Point(194, 75);
+            this.cmdEditUser.Location = new System.Drawing.Point(259, 92);
+            this.cmdEditUser.Margin = new System.Windows.Forms.Padding(4);
             this.cmdEditUser.Name = "cmdEditUser";
-            this.cmdEditUser.Size = new System.Drawing.Size(92, 32);
+            this.cmdEditUser.Size = new System.Drawing.Size(123, 39);
             this.cmdEditUser.TabIndex = 23;
             this.cmdEditUser.Text = "E&dit";
             this.cmdEditUser.UseVisualStyleBackColor = true;
@@ -362,19 +404,18 @@
             // lblUsersList
             // 
             this.lblUsersList.AutoSize = true;
-            this.lblUsersList.Location = new System.Drawing.Point(21, 19);
-            this.lblUsersList.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsersList.Location = new System.Drawing.Point(28, 23);
             this.lblUsersList.Name = "lblUsersList";
-            this.lblUsersList.Size = new System.Drawing.Size(53, 13);
+            this.lblUsersList.Size = new System.Drawing.Size(71, 17);
             this.lblUsersList.TabIndex = 22;
             this.lblUsersList.Text = "Users &List";
             // 
             // cmdCloseUserManager
             // 
-            this.cmdCloseUserManager.Location = new System.Drawing.Point(605, 5);
-            this.cmdCloseUserManager.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdCloseUserManager.Location = new System.Drawing.Point(807, 6);
+            this.cmdCloseUserManager.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdCloseUserManager.Name = "cmdCloseUserManager";
-            this.cmdCloseUserManager.Size = new System.Drawing.Size(45, 21);
+            this.cmdCloseUserManager.Size = new System.Drawing.Size(60, 26);
             this.cmdCloseUserManager.TabIndex = 21;
             this.cmdCloseUserManager.Text = "&Close";
             this.cmdCloseUserManager.UseVisualStyleBackColor = true;
@@ -382,10 +423,10 @@
             // 
             // cmdNewCompany
             // 
-            this.cmdNewCompany.Location = new System.Drawing.Point(472, 95);
-            this.cmdNewCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdNewCompany.Location = new System.Drawing.Point(629, 117);
+            this.cmdNewCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdNewCompany.Name = "cmdNewCompany";
-            this.cmdNewCompany.Size = new System.Drawing.Size(92, 21);
+            this.cmdNewCompany.Size = new System.Drawing.Size(123, 26);
             this.cmdNewCompany.TabIndex = 16;
             this.cmdNewCompany.Text = "Ne&w Company";
             this.cmdNewCompany.UseVisualStyleBackColor = true;
@@ -393,66 +434,65 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(393, 68);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPassword.Location = new System.Drawing.Point(524, 84);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(76, 20);
+            this.txtPassword.Size = new System.Drawing.Size(100, 22);
             this.txtPassword.TabIndex = 15;
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(334, 68);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPassword.Location = new System.Drawing.Point(445, 84);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(53, 13);
+            this.lblPassword.Size = new System.Drawing.Size(69, 17);
             this.lblPassword.TabIndex = 14;
             this.lblPassword.Text = "&Password";
             // 
             // cmbUserCompany
             // 
+            this.cmbUserCompany.DataSource = this.cOMPANYBindingSource;
+            this.cmbUserCompany.DisplayMember = "CONAME";
             this.cmbUserCompany.FormattingEnabled = true;
-            this.cmbUserCompany.Location = new System.Drawing.Point(393, 97);
-            this.cmbUserCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbUserCompany.Location = new System.Drawing.Point(524, 119);
+            this.cmbUserCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbUserCompany.Name = "cmbUserCompany";
-            this.cmbUserCompany.Size = new System.Drawing.Size(76, 21);
+            this.cmbUserCompany.Size = new System.Drawing.Size(100, 24);
             this.cmbUserCompany.TabIndex = 13;
             // 
             // lblEntrepriseCompany
             // 
             this.lblEntrepriseCompany.AutoSize = true;
-            this.lblEntrepriseCompany.Location = new System.Drawing.Point(334, 97);
-            this.lblEntrepriseCompany.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEntrepriseCompany.Location = new System.Drawing.Point(445, 119);
             this.lblEntrepriseCompany.Name = "lblEntrepriseCompany";
-            this.lblEntrepriseCompany.Size = new System.Drawing.Size(51, 13);
+            this.lblEntrepriseCompany.Size = new System.Drawing.Size(67, 17);
             this.lblEntrepriseCompany.TabIndex = 12;
             this.lblEntrepriseCompany.Text = "&Company";
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(393, 38);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUserName.Location = new System.Drawing.Point(524, 47);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(76, 20);
+            this.txtUserName.Size = new System.Drawing.Size(100, 22);
             this.txtUserName.TabIndex = 11;
             // 
             // lblNom
             // 
             this.lblNom.AutoSize = true;
-            this.lblNom.Location = new System.Drawing.Point(334, 41);
-            this.lblNom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNom.Location = new System.Drawing.Point(445, 50);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(55, 13);
+            this.lblNom.Size = new System.Drawing.Size(73, 17);
             this.lblNom.TabIndex = 10;
             this.lblNom.Text = "Userna&me";
             // 
             // cmdRemoveUser
             // 
-            this.cmdRemoveUser.Location = new System.Drawing.Point(194, 38);
-            this.cmdRemoveUser.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdRemoveUser.Location = new System.Drawing.Point(259, 47);
+            this.cmdRemoveUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdRemoveUser.Name = "cmdRemoveUser";
-            this.cmdRemoveUser.Size = new System.Drawing.Size(92, 32);
+            this.cmdRemoveUser.Size = new System.Drawing.Size(123, 39);
             this.cmdRemoveUser.TabIndex = 6;
             this.cmdRemoveUser.Text = "&Remove User";
             this.cmdRemoveUser.UseVisualStyleBackColor = true;
@@ -460,10 +500,10 @@
             // 
             // cmdAddUser
             // 
-            this.cmdAddUser.Location = new System.Drawing.Point(472, 38);
-            this.cmdAddUser.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdAddUser.Location = new System.Drawing.Point(629, 47);
+            this.cmdAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdAddUser.Name = "cmdAddUser";
-            this.cmdAddUser.Size = new System.Drawing.Size(92, 32);
+            this.cmdAddUser.Size = new System.Drawing.Size(123, 39);
             this.cmdAddUser.TabIndex = 5;
             this.cmdAddUser.Text = "&Add User";
             this.cmdAddUser.UseVisualStyleBackColor = true;
@@ -471,10 +511,14 @@
             // 
             // lstUsers
             // 
+            this.lstUsers.DataSource = this.eMPLOYEEBindingSource;
+            this.lstUsers.DisplayMember = "EMPNAME";
             this.lstUsers.FormattingEnabled = true;
-            this.lstUsers.Location = new System.Drawing.Point(21, 38);
+            this.lstUsers.ItemHeight = 16;
+            this.lstUsers.Location = new System.Drawing.Point(28, 47);
+            this.lstUsers.Margin = new System.Windows.Forms.Padding(4);
             this.lstUsers.Name = "lstUsers";
-            this.lstUsers.Size = new System.Drawing.Size(169, 173);
+            this.lstUsers.Size = new System.Drawing.Size(224, 212);
             this.lstUsers.TabIndex = 2;
             this.lstUsers.DoubleClick += new System.EventHandler(this.CmdEditUser_Click);
             // 
@@ -493,19 +537,20 @@
             this.tabCompanyManager.Controls.Add(this.lblNameCompany);
             this.tabCompanyManager.Controls.Add(this.lstCompany);
             this.tabCompanyManager.Location = new System.Drawing.Point(4, 25);
-            this.tabCompanyManager.Margin = new System.Windows.Forms.Padding(2);
+            this.tabCompanyManager.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabCompanyManager.Name = "tabCompanyManager";
-            this.tabCompanyManager.Padding = new System.Windows.Forms.Padding(2);
-            this.tabCompanyManager.Size = new System.Drawing.Size(675, 483);
+            this.tabCompanyManager.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabCompanyManager.Size = new System.Drawing.Size(903, 601);
             this.tabCompanyManager.TabIndex = 2;
             this.tabCompanyManager.Text = "Company Manager";
             this.tabCompanyManager.UseVisualStyleBackColor = true;
             // 
             // cmdEditCompany
             // 
-            this.cmdEditCompany.Location = new System.Drawing.Point(194, 67);
+            this.cmdEditCompany.Location = new System.Drawing.Point(259, 82);
+            this.cmdEditCompany.Margin = new System.Windows.Forms.Padding(4);
             this.cmdEditCompany.Name = "cmdEditCompany";
-            this.cmdEditCompany.Size = new System.Drawing.Size(56, 22);
+            this.cmdEditCompany.Size = new System.Drawing.Size(75, 27);
             this.cmdEditCompany.TabIndex = 31;
             this.cmdEditCompany.Text = "E&dit";
             this.cmdEditCompany.UseVisualStyleBackColor = true;
@@ -514,19 +559,18 @@
             // lblCompanyList
             // 
             this.lblCompanyList.AutoSize = true;
-            this.lblCompanyList.Location = new System.Drawing.Point(20, 16);
-            this.lblCompanyList.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCompanyList.Location = new System.Drawing.Point(27, 20);
             this.lblCompanyList.Name = "lblCompanyList";
-            this.lblCompanyList.Size = new System.Drawing.Size(75, 13);
+            this.lblCompanyList.Size = new System.Drawing.Size(100, 17);
             this.lblCompanyList.TabIndex = 30;
             this.lblCompanyList.Text = "Companys &List";
             // 
             // cmdRemoveCompany
             // 
-            this.cmdRemoveCompany.Location = new System.Drawing.Point(194, 38);
-            this.cmdRemoveCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdRemoveCompany.Location = new System.Drawing.Point(259, 47);
+            this.cmdRemoveCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdRemoveCompany.Name = "cmdRemoveCompany";
-            this.cmdRemoveCompany.Size = new System.Drawing.Size(56, 24);
+            this.cmdRemoveCompany.Size = new System.Drawing.Size(75, 30);
             this.cmdRemoveCompany.TabIndex = 29;
             this.cmdRemoveCompany.Text = "&Remove";
             this.cmdRemoveCompany.UseVisualStyleBackColor = true;
@@ -534,54 +578,52 @@
             // 
             // txtAddressCompany
             // 
-            this.txtAddressCompany.Location = new System.Drawing.Point(378, 84);
-            this.txtAddressCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.txtAddressCompany.Location = new System.Drawing.Point(504, 103);
+            this.txtAddressCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAddressCompany.Name = "txtAddressCompany";
-            this.txtAddressCompany.Size = new System.Drawing.Size(76, 20);
+            this.txtAddressCompany.Size = new System.Drawing.Size(100, 22);
             this.txtAddressCompany.TabIndex = 28;
             // 
             // txtTelCompany
             // 
-            this.txtTelCompany.Location = new System.Drawing.Point(378, 61);
-            this.txtTelCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTelCompany.Location = new System.Drawing.Point(504, 75);
+            this.txtTelCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTelCompany.Name = "txtTelCompany";
-            this.txtTelCompany.Size = new System.Drawing.Size(76, 20);
+            this.txtTelCompany.Size = new System.Drawing.Size(100, 22);
             this.txtTelCompany.TabIndex = 27;
             // 
             // txtNameCompany
             // 
-            this.txtNameCompany.Location = new System.Drawing.Point(378, 38);
-            this.txtNameCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNameCompany.Location = new System.Drawing.Point(504, 47);
+            this.txtNameCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNameCompany.Name = "txtNameCompany";
-            this.txtNameCompany.Size = new System.Drawing.Size(76, 20);
+            this.txtNameCompany.Size = new System.Drawing.Size(100, 22);
             this.txtNameCompany.TabIndex = 26;
             // 
             // lblAdresseCompany
             // 
             this.lblAdresseCompany.AutoSize = true;
-            this.lblAdresseCompany.Location = new System.Drawing.Point(328, 87);
-            this.lblAdresseCompany.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAdresseCompany.Location = new System.Drawing.Point(437, 107);
             this.lblAdresseCompany.Name = "lblAdresseCompany";
-            this.lblAdresseCompany.Size = new System.Drawing.Size(45, 13);
+            this.lblAdresseCompany.Size = new System.Drawing.Size(60, 17);
             this.lblAdresseCompany.TabIndex = 25;
             this.lblAdresseCompany.Text = "A&dresse";
             // 
             // lblTelCompany
             // 
             this.lblTelCompany.AutoSize = true;
-            this.lblTelCompany.Location = new System.Drawing.Point(328, 63);
-            this.lblTelCompany.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTelCompany.Location = new System.Drawing.Point(437, 78);
             this.lblTelCompany.Name = "lblTelCompany";
-            this.lblTelCompany.Size = new System.Drawing.Size(22, 13);
+            this.lblTelCompany.Size = new System.Drawing.Size(28, 17);
             this.lblTelCompany.TabIndex = 24;
             this.lblTelCompany.Text = "&Tel";
             // 
             // cmdCloseCompanyManager
             // 
-            this.cmdCloseCompanyManager.Location = new System.Drawing.Point(605, 5);
-            this.cmdCloseCompanyManager.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdCloseCompanyManager.Location = new System.Drawing.Point(807, 6);
+            this.cmdCloseCompanyManager.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdCloseCompanyManager.Name = "cmdCloseCompanyManager";
-            this.cmdCloseCompanyManager.Size = new System.Drawing.Size(45, 21);
+            this.cmdCloseCompanyManager.Size = new System.Drawing.Size(60, 26);
             this.cmdCloseCompanyManager.TabIndex = 23;
             this.cmdCloseCompanyManager.Text = "&Close";
             this.cmdCloseCompanyManager.UseVisualStyleBackColor = true;
@@ -589,10 +631,10 @@
             // 
             // cmdAddCompany
             // 
-            this.cmdAddCompany.Location = new System.Drawing.Point(463, 38);
-            this.cmdAddCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdAddCompany.Location = new System.Drawing.Point(617, 47);
+            this.cmdAddCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdAddCompany.Name = "cmdAddCompany";
-            this.cmdAddCompany.Size = new System.Drawing.Size(83, 24);
+            this.cmdAddCompany.Size = new System.Drawing.Size(111, 30);
             this.cmdAddCompany.TabIndex = 22;
             this.cmdAddCompany.Text = "&Add Company";
             this.cmdAddCompany.UseVisualStyleBackColor = true;
@@ -601,19 +643,22 @@
             // lblNameCompany
             // 
             this.lblNameCompany.AutoSize = true;
-            this.lblNameCompany.Location = new System.Drawing.Point(328, 41);
-            this.lblNameCompany.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNameCompany.Location = new System.Drawing.Point(437, 50);
             this.lblNameCompany.Name = "lblNameCompany";
-            this.lblNameCompany.Size = new System.Drawing.Size(35, 13);
+            this.lblNameCompany.Size = new System.Drawing.Size(45, 17);
             this.lblNameCompany.TabIndex = 21;
             this.lblNameCompany.Text = "Na&me";
             // 
             // lstCompany
             // 
+            this.lstCompany.DataSource = this.cOMPANYBindingSource;
+            this.lstCompany.DisplayMember = "CONAME";
             this.lstCompany.FormattingEnabled = true;
-            this.lstCompany.Location = new System.Drawing.Point(21, 38);
+            this.lstCompany.ItemHeight = 16;
+            this.lstCompany.Location = new System.Drawing.Point(28, 47);
+            this.lstCompany.Margin = new System.Windows.Forms.Padding(4);
             this.lstCompany.Name = "lstCompany";
-            this.lstCompany.Size = new System.Drawing.Size(169, 173);
+            this.lstCompany.Size = new System.Drawing.Size(224, 212);
             this.lstCompany.TabIndex = 20;
             this.lstCompany.DoubleClick += new System.EventHandler(this.CmdEditCompany_Click);
             // 
@@ -629,19 +674,20 @@
             this.tabEditUser.Controls.Add(this.lblEditUserUsername);
             this.tabEditUser.Controls.Add(this.cmdModfiyUser);
             this.tabEditUser.Location = new System.Drawing.Point(4, 25);
+            this.tabEditUser.Margin = new System.Windows.Forms.Padding(4);
             this.tabEditUser.Name = "tabEditUser";
-            this.tabEditUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditUser.Size = new System.Drawing.Size(675, 483);
+            this.tabEditUser.Padding = new System.Windows.Forms.Padding(4);
+            this.tabEditUser.Size = new System.Drawing.Size(903, 601);
             this.tabEditUser.TabIndex = 3;
             this.tabEditUser.Text = "User";
             this.tabEditUser.UseVisualStyleBackColor = true;
             // 
             // cmdCloseUser
             // 
-            this.cmdCloseUser.Location = new System.Drawing.Point(605, 5);
-            this.cmdCloseUser.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdCloseUser.Location = new System.Drawing.Point(807, 6);
+            this.cmdCloseUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdCloseUser.Name = "cmdCloseUser";
-            this.cmdCloseUser.Size = new System.Drawing.Size(45, 21);
+            this.cmdCloseUser.Size = new System.Drawing.Size(60, 26);
             this.cmdCloseUser.TabIndex = 25;
             this.cmdCloseUser.Text = "&Close";
             this.cmdCloseUser.UseVisualStyleBackColor = true;
@@ -649,10 +695,10 @@
             // 
             // cmdNewCompanyEdit
             // 
-            this.cmdNewCompanyEdit.Location = new System.Drawing.Point(153, 68);
-            this.cmdNewCompanyEdit.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdNewCompanyEdit.Location = new System.Drawing.Point(204, 84);
+            this.cmdNewCompanyEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdNewCompanyEdit.Name = "cmdNewCompanyEdit";
-            this.cmdNewCompanyEdit.Size = new System.Drawing.Size(92, 21);
+            this.cmdNewCompanyEdit.Size = new System.Drawing.Size(123, 26);
             this.cmdNewCompanyEdit.TabIndex = 24;
             this.cmdNewCompanyEdit.Text = "Ne&w Company";
             this.cmdNewCompanyEdit.UseVisualStyleBackColor = true;
@@ -660,66 +706,65 @@
             // 
             // txtEditUserPassword
             // 
-            this.txtEditUserPassword.Location = new System.Drawing.Point(74, 41);
-            this.txtEditUserPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEditUserPassword.Location = new System.Drawing.Point(99, 50);
+            this.txtEditUserPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEditUserPassword.Name = "txtEditUserPassword";
             this.txtEditUserPassword.PasswordChar = '*';
-            this.txtEditUserPassword.Size = new System.Drawing.Size(76, 20);
+            this.txtEditUserPassword.Size = new System.Drawing.Size(100, 22);
             this.txtEditUserPassword.TabIndex = 23;
             // 
             // lblEditUserPassword
             // 
             this.lblEditUserPassword.AutoSize = true;
-            this.lblEditUserPassword.Location = new System.Drawing.Point(15, 41);
-            this.lblEditUserPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEditUserPassword.Location = new System.Drawing.Point(20, 50);
             this.lblEditUserPassword.Name = "lblEditUserPassword";
-            this.lblEditUserPassword.Size = new System.Drawing.Size(53, 13);
+            this.lblEditUserPassword.Size = new System.Drawing.Size(69, 17);
             this.lblEditUserPassword.TabIndex = 22;
             this.lblEditUserPassword.Text = "&Password";
             // 
             // cmbEditUserCompany
             // 
+            this.cmbEditUserCompany.DataSource = this.cOMPANYBindingSource;
+            this.cmbEditUserCompany.DisplayMember = "CONAME";
             this.cmbEditUserCompany.FormattingEnabled = true;
-            this.cmbEditUserCompany.Location = new System.Drawing.Point(74, 70);
-            this.cmbEditUserCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbEditUserCompany.Location = new System.Drawing.Point(99, 86);
+            this.cmbEditUserCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbEditUserCompany.Name = "cmbEditUserCompany";
-            this.cmbEditUserCompany.Size = new System.Drawing.Size(76, 21);
+            this.cmbEditUserCompany.Size = new System.Drawing.Size(100, 24);
             this.cmbEditUserCompany.TabIndex = 21;
             // 
             // lblEditUserCompany
             // 
             this.lblEditUserCompany.AutoSize = true;
-            this.lblEditUserCompany.Location = new System.Drawing.Point(15, 70);
-            this.lblEditUserCompany.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEditUserCompany.Location = new System.Drawing.Point(20, 86);
             this.lblEditUserCompany.Name = "lblEditUserCompany";
-            this.lblEditUserCompany.Size = new System.Drawing.Size(51, 13);
+            this.lblEditUserCompany.Size = new System.Drawing.Size(67, 17);
             this.lblEditUserCompany.TabIndex = 20;
             this.lblEditUserCompany.Text = "&Company";
             // 
             // txtEditUserUsername
             // 
-            this.txtEditUserUsername.Location = new System.Drawing.Point(74, 11);
-            this.txtEditUserUsername.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEditUserUsername.Location = new System.Drawing.Point(99, 14);
+            this.txtEditUserUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEditUserUsername.Name = "txtEditUserUsername";
-            this.txtEditUserUsername.Size = new System.Drawing.Size(76, 20);
+            this.txtEditUserUsername.Size = new System.Drawing.Size(100, 22);
             this.txtEditUserUsername.TabIndex = 19;
             // 
             // lblEditUserUsername
             // 
             this.lblEditUserUsername.AutoSize = true;
-            this.lblEditUserUsername.Location = new System.Drawing.Point(15, 14);
-            this.lblEditUserUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEditUserUsername.Location = new System.Drawing.Point(20, 17);
             this.lblEditUserUsername.Name = "lblEditUserUsername";
-            this.lblEditUserUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblEditUserUsername.Size = new System.Drawing.Size(73, 17);
             this.lblEditUserUsername.TabIndex = 18;
             this.lblEditUserUsername.Text = "Userna&me";
             // 
             // cmdModfiyUser
             // 
-            this.cmdModfiyUser.Location = new System.Drawing.Point(153, 10);
-            this.cmdModfiyUser.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdModfiyUser.Location = new System.Drawing.Point(204, 12);
+            this.cmdModfiyUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdModfiyUser.Name = "cmdModfiyUser";
-            this.cmdModfiyUser.Size = new System.Drawing.Size(92, 21);
+            this.cmdModfiyUser.Size = new System.Drawing.Size(123, 26);
             this.cmdModfiyUser.TabIndex = 17;
             this.cmdModfiyUser.Text = "&Modify";
             this.cmdModfiyUser.UseVisualStyleBackColor = true;
@@ -735,19 +780,20 @@
             this.tabEditCompany.Controls.Add(this.cmdModifyCompany);
             this.tabEditCompany.Controls.Add(this.lblEditCompanyName);
             this.tabEditCompany.Location = new System.Drawing.Point(4, 25);
+            this.tabEditCompany.Margin = new System.Windows.Forms.Padding(4);
             this.tabEditCompany.Name = "tabEditCompany";
-            this.tabEditCompany.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditCompany.Size = new System.Drawing.Size(675, 483);
+            this.tabEditCompany.Padding = new System.Windows.Forms.Padding(4);
+            this.tabEditCompany.Size = new System.Drawing.Size(903, 601);
             this.tabEditCompany.TabIndex = 4;
             this.tabEditCompany.Text = "Company";
             this.tabEditCompany.UseVisualStyleBackColor = true;
             // 
             // cmdCloseCompany
             // 
-            this.cmdCloseCompany.Location = new System.Drawing.Point(605, 5);
-            this.cmdCloseCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdCloseCompany.Location = new System.Drawing.Point(807, 6);
+            this.cmdCloseCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdCloseCompany.Name = "cmdCloseCompany";
-            this.cmdCloseCompany.Size = new System.Drawing.Size(45, 21);
+            this.cmdCloseCompany.Size = new System.Drawing.Size(60, 26);
             this.cmdCloseCompany.TabIndex = 36;
             this.cmdCloseCompany.Text = "&Close";
             this.cmdCloseCompany.UseVisualStyleBackColor = true;
@@ -755,54 +801,52 @@
             // 
             // txtEditCompanyAddress
             // 
-            this.txtEditCompanyAddress.Location = new System.Drawing.Point(69, 56);
-            this.txtEditCompanyAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEditCompanyAddress.Location = new System.Drawing.Point(92, 69);
+            this.txtEditCompanyAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEditCompanyAddress.Name = "txtEditCompanyAddress";
-            this.txtEditCompanyAddress.Size = new System.Drawing.Size(76, 20);
+            this.txtEditCompanyAddress.Size = new System.Drawing.Size(100, 22);
             this.txtEditCompanyAddress.TabIndex = 35;
             // 
             // txtEditCompanyTel
             // 
-            this.txtEditCompanyTel.Location = new System.Drawing.Point(69, 33);
-            this.txtEditCompanyTel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEditCompanyTel.Location = new System.Drawing.Point(92, 41);
+            this.txtEditCompanyTel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEditCompanyTel.Name = "txtEditCompanyTel";
-            this.txtEditCompanyTel.Size = new System.Drawing.Size(76, 20);
+            this.txtEditCompanyTel.Size = new System.Drawing.Size(100, 22);
             this.txtEditCompanyTel.TabIndex = 34;
             // 
             // txtEditCompanyName
             // 
-            this.txtEditCompanyName.Location = new System.Drawing.Point(69, 10);
-            this.txtEditCompanyName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEditCompanyName.Location = new System.Drawing.Point(92, 12);
+            this.txtEditCompanyName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEditCompanyName.Name = "txtEditCompanyName";
-            this.txtEditCompanyName.Size = new System.Drawing.Size(76, 20);
+            this.txtEditCompanyName.Size = new System.Drawing.Size(100, 22);
             this.txtEditCompanyName.TabIndex = 33;
             // 
             // lblEditCompanyAddress
             // 
             this.lblEditCompanyAddress.AutoSize = true;
-            this.lblEditCompanyAddress.Location = new System.Drawing.Point(19, 59);
-            this.lblEditCompanyAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEditCompanyAddress.Location = new System.Drawing.Point(25, 73);
             this.lblEditCompanyAddress.Name = "lblEditCompanyAddress";
-            this.lblEditCompanyAddress.Size = new System.Drawing.Size(45, 13);
+            this.lblEditCompanyAddress.Size = new System.Drawing.Size(60, 17);
             this.lblEditCompanyAddress.TabIndex = 32;
             this.lblEditCompanyAddress.Text = "A&dresse";
             // 
             // lblEditCompanyTel
             // 
             this.lblEditCompanyTel.AutoSize = true;
-            this.lblEditCompanyTel.Location = new System.Drawing.Point(19, 35);
-            this.lblEditCompanyTel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEditCompanyTel.Location = new System.Drawing.Point(25, 43);
             this.lblEditCompanyTel.Name = "lblEditCompanyTel";
-            this.lblEditCompanyTel.Size = new System.Drawing.Size(22, 13);
+            this.lblEditCompanyTel.Size = new System.Drawing.Size(28, 17);
             this.lblEditCompanyTel.TabIndex = 31;
             this.lblEditCompanyTel.Text = "&Tel";
             // 
             // cmdModifyCompany
             // 
-            this.cmdModifyCompany.Location = new System.Drawing.Point(154, 10);
-            this.cmdModifyCompany.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdModifyCompany.Location = new System.Drawing.Point(205, 12);
+            this.cmdModifyCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmdModifyCompany.Name = "cmdModifyCompany";
-            this.cmdModifyCompany.Size = new System.Drawing.Size(83, 20);
+            this.cmdModifyCompany.Size = new System.Drawing.Size(111, 25);
             this.cmdModifyCompany.TabIndex = 30;
             this.cmdModifyCompany.Text = "&Modify";
             this.cmdModifyCompany.UseVisualStyleBackColor = true;
@@ -810,36 +854,45 @@
             // lblEditCompanyName
             // 
             this.lblEditCompanyName.AutoSize = true;
-            this.lblEditCompanyName.Location = new System.Drawing.Point(19, 13);
-            this.lblEditCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEditCompanyName.Location = new System.Drawing.Point(25, 16);
             this.lblEditCompanyName.Name = "lblEditCompanyName";
-            this.lblEditCompanyName.Size = new System.Drawing.Size(35, 13);
+            this.lblEditCompanyName.Size = new System.Drawing.Size(45, 17);
             this.lblEditCompanyName.TabIndex = 29;
             this.lblEditCompanyName.Text = "Na&me";
             // 
-            // pnlLayout
+            // cOMPANYBindingSource
             // 
-            this.pnlLayout.AllowDrop = true;
-            this.pnlLayout.AutoSize = true;
-            this.pnlLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlLayout.Location = new System.Drawing.Point(6, 70);
-            this.pnlLayout.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlLayout.Name = "pnlLayout";
-            this.pnlLayout.Size = new System.Drawing.Size(0, 0);
-            this.pnlLayout.TabIndex = 6;
+            this.cOMPANYBindingSource.DataMember = "COMPANY";
+            this.cOMPANYBindingSource.DataSource = this.dataSetDataFinal;
+            // 
+            // cOMPANYTableAdapter
+            // 
+            this.cOMPANYTableAdapter.ClearBeforeFill = true;
+            // 
+            // eMPLOYEEBindingSource
+            // 
+            this.eMPLOYEEBindingSource.DataMember = "EMPLOYEE";
+            this.eMPLOYEEBindingSource.DataSource = this.dataSetDataFinal;
+            // 
+            // eMPLOYEETableAdapter
+            // 
+            this.eMPLOYEETableAdapter.ClearBeforeFill = true;
             // 
             // FrmMenuHome
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(887, 514);
+            this.ClientSize = new System.Drawing.Size(1183, 633);
             this.Controls.Add(this.spltHomeMenu);
             this.IsMdiContainer = true;
-            this.MinimumSize = new System.Drawing.Size(900, 544);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(1194, 659);
             this.Name = "FrmMenuHome";
             this.Text = "MenuHome";
+            this.Load += new System.EventHandler(this.FrmMenuHome_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetDataFinal)).EndInit();
             this.spltHomeMenu.Panel1.ResumeLayout(false);
             this.spltHomeMenu.Panel1.PerformLayout();
             this.spltHomeMenu.Panel2.ResumeLayout(false);
@@ -856,6 +909,8 @@
             this.tabEditUser.PerformLayout();
             this.tabEditCompany.ResumeLayout(false);
             this.tabEditCompany.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cOMPANYBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eMPLOYEEBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -927,5 +982,10 @@
         private System.Windows.Forms.Button cmdEditUser;
         private System.Windows.Forms.Button cmdEditCompany;
         private System.Windows.Forms.Panel pnlLayout;
+        private DataSetDataFinal dataSetDataFinal;
+        private System.Windows.Forms.BindingSource cOMPANYBindingSource;
+        private DataSetDataFinalTableAdapters.COMPANYTableAdapter cOMPANYTableAdapter;
+        private System.Windows.Forms.BindingSource eMPLOYEEBindingSource;
+        private DataSetDataFinalTableAdapters.EMPLOYEETableAdapter eMPLOYEETableAdapter;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -34,9 +35,6 @@ namespace DC_Designer
                 
 
             };
-          //  dcDesign.DragDrop += new DragEventHandler(tableLayoutPanelDrop_DragDrop);
-           // dcDesign.DragEnter += new DragEventHandler(tableLayoutPanelDrop_DragEnter);
-            //dcDesign.DragOver += new DragEventHandler(tableLayoutPanelDrop_DragOver);
             rows.Add(new Row(dcDesign.RowCount-1, new List<Rack>()));
             Button cmdAddRack = CreateAddRackButton();
             dcDesign.Controls.Add(cmdAddRack, 0, 0);
@@ -78,7 +76,27 @@ namespace DC_Designer
 
         public void SetCompany(String company) { this.company = company; }
 
+        public int Save()
+        {
+            int dcid;
+            OracleConnection con = new OracleConnection();
+            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            con.Open();
+            OracleCommand cmdgetId = new OracleCommand("select companyid from vw_company where companyname='" + company+ "'", con);
+            OracleDataReader dr = cmdgetId.ExecuteReader();
 
+            OracleCommand cmdAddDc = new OracleCommand("insert into vw_datacenter(datacentername,coid,nbrangee) VALUES('" + nomDc + "','" +dr.GetInt32(0)  + "','" + rows.Count + "')", con);
+            OracleCommand cmdgetDcId = new OracleCommand("select dcid from vw_datacenter where datacentername='" +nomDc + "'", con);
+            OracleDataReader dr2 = cmdgetDcId.ExecuteReader();
+            dcid = dr2.GetInt32(0);
+            con.Close();
+            int i = 0;
+            foreach (Row row in rows)
+            {
+                row.Save(i++, dcid);
+            }
+                return dcid;
+        }
 
         private Button CreateAddRackButton()
         {
@@ -130,27 +148,5 @@ namespace DC_Designer
             hashCode = hashCode * -1521134295 + EqualityComparer<List<Row>>.Default.GetHashCode(rows);
             return hashCode;
         }
-
-        //fonction drag and drop pas encore au point
-       /* private void tableLayoutPanelDrop_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(typeof(System.Windows.Forms.Button)))
-                e.Effect = DragDropEffects.All;
-
-        }
-
-
-        private void tableLayoutPanelDrop_DragOver(object sender, DragEventArgs e)
-        {
-            ((Control)e.Data.GetData(typeof(System.Windows.Forms.Button))).BringToFront();
-
-        }
-
-  
-
-        private void tableLayoutPanelDrop_DragDrop(object sender, DragEventArgs e)
-        {
-            ((Button)e.Data.GetData(typeof(System.Windows.Forms.Button))).BringToFront();
-        }*/
     }
 }

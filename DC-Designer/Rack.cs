@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace DC_Designer
     class Rack
     {
         private String rackName;
+        private int nbU;
         private TableLayoutPanel rackDesign= new TableLayoutPanel()
         {
             ColumnCount = 1,
@@ -28,6 +30,7 @@ namespace DC_Designer
 
         public Rack(String nom, int nbU) { //création d'un rack vide
             EmptyRack(nbU,nom);
+            this.nbU = nbU;
         }
 
         public Rack(String rackName, List<Equipement> listEquipement) //création d'un rack avec équipement
@@ -40,6 +43,25 @@ namespace DC_Designer
             {
                 
                 rackDesign.Controls[i + 1].Text = listEquipement[i].GetNom();
+            }
+        }
+
+        internal void Save(int rangeeposition,int rowId)
+        {
+            int rackId;
+            OracleConnection con = new OracleConnection();
+            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            con.Open();
+            
+            OracleCommand cmdAddRack = new OracleCommand("insert into vw_rack(rackname,racksize,rangeeid,rangeeposition) VALUES('" + rackName + "'," + nbU + "," + rowId + "," + rangeeposition + ")", con);
+            OracleCommand cmdgetDcId = new OracleCommand("select rackid from vw_datacenter where rackname='" + rackName + "' and rangeeid= '"+ rowId + "'", con);
+            OracleDataReader dr2 = cmdgetDcId.ExecuteReader();
+            rackId = dr2.GetInt32(0);
+            con.Close();
+            foreach (Equipement equipement in listEquipement)
+            {
+                
+                equipement.Save(rackId);
             }
         }
 

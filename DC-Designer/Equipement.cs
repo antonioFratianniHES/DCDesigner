@@ -35,5 +35,10 @@ namespace DC_Designer
         {
             return 1933275133 + EqualityComparer<string>.Default.GetHashCode(nom);
         }
+
+        internal void Save(int rackId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

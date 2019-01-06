@@ -39,7 +39,7 @@
             // cmdLogin
             // 
             this.cmdLogin.Location = new System.Drawing.Point(162, 71);
-            this.cmdLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdLogin.Margin = new System.Windows.Forms.Padding(4);
             this.cmdLogin.Name = "cmdLogin";
             this.cmdLogin.Size = new System.Drawing.Size(100, 28);
             this.cmdLogin.TabIndex = 2;
@@ -51,7 +51,7 @@
             // 
             this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancel.Location = new System.Drawing.Point(16, 71);
-            this.cmdCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdCancel.Margin = new System.Windows.Forms.Padding(4);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(100, 28);
             this.cmdCancel.TabIndex = 3;
@@ -62,7 +62,7 @@
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(130, 6);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(132, 22);
             this.txtUsername.TabIndex = 0;
@@ -70,7 +70,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(130, 38);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(132, 22);
@@ -113,7 +113,7 @@
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConnexion";

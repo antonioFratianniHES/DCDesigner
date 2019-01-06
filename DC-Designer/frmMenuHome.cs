@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,20 +14,19 @@ namespace DC_Designer
     public partial class FrmMenuHome : Form
     {
         private String userName;
-        private String userCompany="test1";
-        private List<User> users = new List<User>();
-        private List<DC> dCs = new List<DC>();
-        private List<Company> companies = new List<Company>();
-        private List<DC> filteredDcs = new List<DC>();
+        private String userCompany;
+        private SortedDictionary<int, String> cmpy = new SortedDictionary<int, String>();
+        private SortedDictionary<int,User> users = new SortedDictionary<int,User>();
+        private SortedDictionary<int,DC> filteredDcs = new SortedDictionary<int,DC>();
         private DC newDC;
 
         public FrmMenuHome()
         {
             InitializeComponent();
-            TestValue();
             frmConnexion f = new frmConnexion();
             f.ShowDialog(this);
             userName = Login.GetUser();
+            userCompany = Login.GetCompany();
             lblUserNameLogged.Text = userName;
             ViewByUser();
         }
@@ -43,52 +43,54 @@ namespace DC_Designer
                 cmdCreateNewDC.Hide();
                 txtNomDC.Enabled = false;
                 cmdSave.Hide();
-                PopulateLists();
             }
+            PopulateLists();
             AfficherListDC();
         }
 
         private void PopulateLists()
         {
-            for (int i = 0; i < users.Count; i++)
+            OracleConnection con = new OracleConnection();
+            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            con.Open();
+            OracleCommand cmd = new OracleCommand("select numero,name,CompanyID from vw_employee" , con);
+            OracleDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
             {
-                lstUsers.Items.Add(users[i].GetUserName());
+                OracleCommand cmdCmpyName = new OracleCommand("select companyName from vw_company where companyid='"+dr.GetInt32(1)+"'", con);
+                OracleDataReader drCmpy = cmd.ExecuteReader();
+                users.Add(dr.GetInt32(0),new User(dr.GetString(1),drCmpy.GetString(0)));
             }
-            for (int i = 0; i < companies.Count; i++)
-            {
-                lstCompany.Items.Add(companies[i].getName());
-                cmbUserCompany.Items.Add(companies[i].getName());
-                cmbEditUserCompany.Items.Add(companies[i].getName());
-            }
+            con.Close();
         }
 
         private void AfficherListDC()
         {
-            lstExistingLayout.Items.Clear();
-            if (userName == "admin") {
-                foreach (var dC in dCs)
-                {
-                    lstExistingLayout.Items.Add(dC.GetNom());
-                    cmbFiltreCompany.Items.Add(dC.GetCompany());
-                }
-                //TODO
-                //afficherToutLesDC
-                //ajout de tous les clients dans le filtre drop
-            }
-            else
-            {
-                foreach (var dC in dCs) { 
-
-                    if (dC.GetCompany().Equals(userCompany))
+            /*  lstExistingLayout.Items.Clear();
+                if (userName == "admin") {
+                    foreach (var dC in dCs)
                     {
-                        filteredDcs.Add(dC);
                         lstExistingLayout.Items.Add(dC.GetNom());
+                        cmbFiltreCompany.Items.Add(dC.GetCompany());
                     }
-                    
-                }
-                //TODO
-                //afficherParClient
-            }
+                    //TODO
+                    //afficherToutLesDC
+                    //ajout de tous les clients dans le filtre drop
+                }  
+                else
+                {
+                    foreach (var dC in dCs) { 
+
+                        if (dC.GetCompany().Equals(userCompany))
+                        {
+                            filteredDcs.Add(dC);
+                            lstExistingLayout.Items.Add(dC.GetNom());
+                        }
+
+                    }
+                    //TODO
+                    //afficherParClient
+                }*/
         }
 
 
@@ -104,11 +106,14 @@ namespace DC_Designer
         public void SaveLayout() {
             if (tblDcDesigner.TabPages.Contains(tabLayout))
             {
-                if (!dCs.Contains(newDC))
+                if (!filteredDcs.ContainsValue(newDC))
                 {
                     newDC.SetNom(txtNomDC.Text);
-                    dCs.Add(newDC);
-                    filteredDcs.Add(newDC);
+                    
+                    int cmpyNo = (from d in cmpy where d.Value == userCompany select d).First().Key;
+                    newDC.SetCompany(userCompany);
+                    int dcId = newDC.Save();
+                    filteredDcs.Add(dcId, newDC);
                     lstExistingLayout.Items.Add(newDC.GetNom());
                 }
                 newDC.SetNom(txtNomDC.Text);
@@ -142,7 +147,6 @@ namespace DC_Designer
                 {
                     tblDcDesigner.TabPages.Remove(tabLayout);
                     pnlLayout.Controls.Add(newDC.GetDcDesign());
-                   //pnlLayout.Controls.Add(newDC.GetDcDesingWithoutEdit());
                 }
                 else
                 {
@@ -225,7 +229,7 @@ namespace DC_Designer
         private void CmbClient_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO
-            lstExistingLayout.Items.Clear();
+          /*  lstExistingLayout.Items.Clear();
             foreach (var dc in dCs)
             {
                 if (dc.GetCompany().Equals(cmbFiltreCompany.Text))
@@ -235,7 +239,7 @@ namespace DC_Designer
                 }
                     
                 
-            }         
+            }     */    
             
             
             //changer la liste pour afficher que les clients selectionner
@@ -244,13 +248,18 @@ namespace DC_Designer
 
         private void CmdAddUser_Click(object sender, EventArgs e)
         {
-            lstUsers.Items.Add(txtUserName.Text);
+            OracleConnection con = new OracleConnection();
+            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            con.Open();
+            int cmpyNo= (from d in cmpy where d.Value == cmbUserCompany.SelectedText select d).First().Key;
+            OracleCommand cmdAddUser = new OracleCommand("insert into vw_employee(NAME,PASSWORD,companyid) VALUES('" + txtUserName.Text + "','" + txtPassword.Text + "','" + cmpyNo + "')", con);
+            OracleCommand cmdgetId = new OracleCommand("select numero from vw_employee where name='"+txtUserName.Text+"'", con);
+            OracleDataReader dr = cmdgetId.ExecuteReader();
+            users.Add(dr.GetInt32(0),new User(txtUserName.Text, cmbUserCompany.SelectedText));
+            con.Close();
             txtUserName.Text = "";
             txtPassword.Text = "";
             cmbUserCompany.Text = "";
-            users.Add(new User(txtUserName.Text, cmbUserCompany.SelectedText));
-            //TODO
-            //ajout de l'user à la base
         }
 
 
@@ -261,10 +270,13 @@ namespace DC_Designer
                 switch (MessageBox.Show("Do you want to remove the selected user?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
-                        users.RemoveAt(lstUsers.SelectedIndex);
-                        lstUsers.Items.Remove(lstUsers.SelectedItem);
-                        //TODO
-                        //remove de la base
+                        int userToRemoveId= (from d in users where d.Value.GetUserName() == lstUsers.SelectedValue.ToString() select d).First().Key;
+                        users.Remove(userToRemoveId);
+                        OracleConnection con = new OracleConnection();
+                        con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+                        con.Open();
+                        OracleCommand cmdAddUser = new OracleCommand("delete from vw_employee where numero =" + userToRemoveId, con);
+                        con.Close();
                         break;
 
                     case DialogResult.No:
@@ -283,7 +295,6 @@ namespace DC_Designer
                 switch (MessageBox.Show("Do you want to remove the selected Client?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
-                        companies.RemoveAt(lstCompany.SelectedIndex);
                         lstCompany.Items.Remove(lstCompany.SelectedItem);
                         
                         //TODO
@@ -311,7 +322,6 @@ namespace DC_Designer
                 txtNameCompany.Text = "";
                 txtAddressCompany.Text = "";
                 txtTelCompany.Text = "";
-                companies.Add(new Company(txtNameCompany.Text, txtAddressCompany.Text, txtTelCompany.Text));
                 //TODO
                 //Ajout à la base
             }
@@ -436,32 +446,16 @@ namespace DC_Designer
             txtEditCompanyAddress.Text = companyToEdit.getAddress();
         }
 
-        private void TestValue()
-        {
-            companies.Add(new Company("test1","address1","001"));
-            companies.Add(new Company("test2", "address2","002"));
-            users.Add(new User("test1","test1"));
-            users.Add(new User("test2", "test2"));
-            List<Row> row1 = new List<Row>();
-            List<Rack> racks1 = new List<Rack>();
-            Rack rack1 = new Rack("r1",4);
-            Rack rack2 = new Rack("r2", 3);
-            racks1.Add(rack1);
-            racks1.Add(rack2);
-            Row r1 = new Row(0, racks1);
-            row1.Add(r1);
-            dCs.Add(new DC("dc1","test1",row1));
-            row1 = new List<Row>();
-            racks1 = new List<Rack>();
-            rack1 = new Rack("r1", 2);
-            rack2 = new Rack("r2", 2);
-            racks1.Add(rack1);
-            racks1.Add(rack2);
-            r1 = new Row(0, racks1);
-            row1.Add(r1);
-            dCs.Add(new DC("dc2", "test2", row1));
-            //private List<DC> dCs = new List<DC>();
-        }
+       
 
+        private void FrmMenuHome_Load(object sender, EventArgs e)
+        {
+            // TODO: cette ligne de code charge les données dans la table 'dataSetDataFinal.EMPLOYEE'. Vous pouvez la déplacer ou la supprimer selon les besoins.
+            this.eMPLOYEETableAdapter.Fill(this.dataSetDataFinal.EMPLOYEE);
+            // TODO: cette ligne de code charge les données dans la table 'dataSetDataFinal.COMPANY'. Vous pouvez la déplacer ou la supprimer selon les besoins.
+            this.cOMPANYTableAdapter.Fill(this.dataSetDataFinal.COMPANY);
+
+
+        }
     }
 }
