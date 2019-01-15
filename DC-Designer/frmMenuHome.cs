@@ -15,10 +15,13 @@ namespace DC_Designer
     {
         private String userName;
         private String userCompany;
+        private int cmpyNo;
         private String adminCmpy="adminCompany";
+        User editableUser;
+        Company companyToEdit;
         OracleConnection con = new OracleConnection
         {
-            ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_user;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_USER"
+            ConnectionString = "DATA SOURCE=HEGLOCAL;PASSWORD=DCDesigner_user;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_USER"
         };
         private SortedDictionary<int, Company> cmpy = new SortedDictionary<int, Company>();
         private SortedDictionary<int,User> users = new SortedDictionary<int,User>();
@@ -32,6 +35,7 @@ namespace DC_Designer
             f.ShowDialog(this);
             userName = Login.GetUser();
             userCompany = Login.GetCompany();
+            cmpyNo = Login.GetCompanyNo();
             lblUserNameLogged.Text = userName;
             ViewByUser();
         }
@@ -50,6 +54,7 @@ namespace DC_Designer
                 cmdSave.Hide();
                 cmdAddRow.Hide();
                 PopulateLists();
+                GestionAjoutEquip.SetEditable(false);
             }
             
             AfficherListDC();
@@ -57,6 +62,8 @@ namespace DC_Designer
 
         private void PopulateLists()
         {
+            users.Clear();
+            cmpy.Clear();
             con.Open();
             OracleCommand cmd = new OracleCommand("select numero,name,CompanyID from vw_employee" , con);
             OracleDataReader dr = cmd.ExecuteReader();
@@ -93,6 +100,8 @@ namespace DC_Designer
         private void AfficherListDC()
         {
             con.Open();
+            filteredDcs.Clear();
+            lstExistingLayout.Items.Clear();
             String stringCmd = "select dcid,datacentername,nbRangee from vw_datacenter";
             if (userCompany != adminCmpy)
             {
@@ -128,22 +137,20 @@ namespace DC_Designer
         public void SaveLayout() {
             if (tblDcDesigner.TabPages.Contains(tabLayout))
             {
+                newDC.SetNom(txtNomDC.Text);
                 if (!filteredDcs.ContainsValue(newDC))
                 {
                     newDC.SetNom(txtNomDC.Text);
-                    
-                    int cmpyNo = (from d in cmpy where d.Value.GetName() == userCompany select d).First().Key;
                     newDC.SetCompany(userCompany);
                     int dcId = newDC.Save();
                     filteredDcs.Add(dcId, newDC);
                     lstExistingLayout.Items.Add(newDC.GetNom());
+                    newDC.Save();
                 }
-                newDC.SetNom(txtNomDC.Text);
-
+                else { newDC.Update(); }
             }
             AfficherListDC();
-            //TODO
-            //sauve les données des rack
+
         }
 
       
@@ -158,6 +165,7 @@ namespace DC_Designer
                 
                 
                 newDC = filteredDcs[dCToOpen];
+                
                
                 
                 if (userCompany==adminCmpy && tblDcDesigner.TabPages.Contains(tabLayout))
@@ -181,8 +189,6 @@ namespace DC_Designer
                 lstExistingLayout.ClearSelected();
             }
 
-            //TODO
-            //afficher rack sauver pour admin sans modification possible
         }
 
         private void CmdCreateNewDC_Click(object sender, EventArgs e)
@@ -267,7 +273,6 @@ namespace DC_Designer
                 i++;
             }
             con.Close();
-            //changer la liste pour afficher que les clients selectionner
         }
 
 
@@ -323,8 +328,8 @@ namespace DC_Designer
                 switch (MessageBox.Show("Do you want to remove the selected Client?", "deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
+                        int cmpyToRemoveID = cmpy[lstCompany.SelectedIndex].GetId();
                         lstCompany.Items.Remove(lstCompany.SelectedItem);
-                        int cmpyToRemoveID = cmpy[lstCompany.SelectedIndex].GetId() ;
                         con.Open();
                         OracleCommand cmdRMUser = new OracleCommand("delete from vw_company where companyid =" + cmpyToRemoveID, con);
                         cmdRMUser.ExecuteNonQuery();
@@ -435,10 +440,11 @@ namespace DC_Designer
                 {
                     tblDcDesigner.TabPages.Add(tabEditUser);
                 }
-                User editable = users[lstUsers.SelectedIndex];
-                txtEditUserUsername.Text = editable.GetUserName();
-                cmbEditUserCompany.Text = editable.GetCompany();
+                editableUser = users[lstUsers.SelectedIndex];
+                txtEditUserUsername.Text = editableUser.GetUserName();
+                cmbEditUserCompany.Text = editableUser.GetCompany();
                 tblDcDesigner.SelectedTab = tabEditUser;
+                
             }
             
         }
@@ -450,7 +456,7 @@ namespace DC_Designer
                 tblDcDesigner.TabPages.Add(tabEditCompany);
             }
             tblDcDesigner.SelectedTab = tabEditCompany;
-            Company companyToEdit = cmpy[lstCompany.SelectedIndex]; // à corriger
+            companyToEdit = cmpy[lstCompany.SelectedIndex];
             txtEditCompanyName.Text = companyToEdit.GetName();
             txtEditCompanyTel.Text = companyToEdit.GetTel();
             txtEditCompanyAddress.Text = companyToEdit.GetAddress();
@@ -460,6 +466,27 @@ namespace DC_Designer
         private void CmdExit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void CmdModfiyUser_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            OracleCommand getcmpyID = new OracleCommand("select coid from vw_company where companyname= '"+cmbEditUserCompany.SelectedText+"'",con);
+            OracleDataReader dr = getcmpyID.ExecuteReader();
+            if (dr.Read())
+            {
+                OracleCommand cmdUpdateUser = new OracleCommand("UPDATE vw_employee SET NAME = '" + txtEditUserUsername.Text + "' , PASSWORD= '" + txtEditUserPassword.Text + "' companyid = "+dr.GetInt16(0) + " WHERE numero =  " + editableUser.GetId(), con);
+                cmdUpdateUser.ExecuteNonQuery();
+            }
+            con.Close();
+        }
+
+        private void CmdModifyCompany_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            OracleCommand cmdUpdateUser = new OracleCommand("UPDATE vw_company SET companyname = '" + txtEditCompanyName.Text + "' , adress= '" + txtEditCompanyAddress.Text + "' WHERE companyid =  " + companyToEdit.GetId(), con);
+            cmdUpdateUser.ExecuteNonQuery();
+            con.Close();
         }
     }
 }

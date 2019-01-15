@@ -10,6 +10,7 @@ namespace DC_Designer
     {
         private static Equipement e;
         private static String oldName;
+        private static bool editable=true;
 
         public static void SetOldName(String name)
         {
@@ -32,6 +33,12 @@ namespace DC_Designer
         {
             return e;
         }
-       
+
+        internal static bool GetEditable()
+        {
+            return editable;
+        }
+
+        public static void SetEditable(bool edit) { editable = edit; }
     }
 }

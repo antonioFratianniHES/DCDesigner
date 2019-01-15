@@ -8,7 +8,7 @@ namespace DC_Designer
 {
     internal class GestionRack
     {
-        static int idRack;
+        static int idRack=-1;
         static string nomRack;
         static int tailleRack;
 

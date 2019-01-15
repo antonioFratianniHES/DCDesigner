@@ -17,6 +17,11 @@ namespace DC_Designer
         private String rackName;
         private int nbU;
         private int rowId;
+        private bool editable=true;
+        OracleConnection con = new OracleConnection
+        {
+            ConnectionString = "DATA SOURCE=HEGLOCAL;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA"
+        };
         private TableLayoutPanel rackDesign= new TableLayoutPanel()
         {
             ColumnCount = 1,
@@ -36,44 +41,63 @@ namespace DC_Designer
             this.nbU = nbU;
         }
 
-        public Rack(String rackName, List<Equipement> listEquipement) //création d'un rack avec équipement
+        public Rack(int id,String rackName, List<Equipement> listEquipement) //création d'un rack avec équipement
         {
+            this.id = id;
             this.rackName = rackName;
             this.listEquipement = listEquipement;
             rackDesign = EmptyRack(listEquipement.Count, rackName);
-            rackDesign.Controls[0].Text = rackName;
-            for (int i = 0; i < listEquipement.Count; i++)
+            int i = 0;
+            while(i < listEquipement.Count)
             {
-                
-                rackDesign.Controls[i + 1].Text = listEquipement[i].GetNom();
+                rackDesign.Controls[i+1].Text = listEquipement[i].GetNom();
+                i++;
             }
+        }
+        public void SetEditable(bool edit) { editable = edit; }
+
+        public Rack(int id, String rackName, List<Equipement> listEquipement,bool edit) {
+            
+            new Rack(id, rackName, listEquipement);
+            SetEditable(edit);
         }
 
         internal void Save(int rangeeposition,int rowId)
         {
-            int rackId;
             this.rowId = rowId;
-            OracleConnection con = new OracleConnection
-            {
-                ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA"
-            };
+
             con.Open();
             
             OracleCommand cmdAddRack = new OracleCommand("insert into vw_rack(rackname,racksize,rangeeid,rangeeposition) VALUES('" + rackName + "'," + nbU + "," + rowId + "," + rangeeposition + ")", con);
+            cmdAddRack.ExecuteNonQuery();
             OracleCommand cmdgetDcId = new OracleCommand("select rackid from vw_datacenter where rackname='" + rackName + "' and rangeeid= '"+ rowId + "'", con);
             OracleDataReader dr2 = cmdgetDcId.ExecuteReader();
-            rackId = dr2.GetInt32(0);
+            if (dr2.Read()) { 
+                id = dr2.GetInt32(0);
+            }
             con.Close();
             foreach (Equipement equipement in listEquipement)
             {
                 
-                equipement.Save(rackId);
+                equipement.Save(id);
             }
+        }
+
+        internal void Update() {
+            foreach (Equipement equipement in listEquipement)
+            {
+                equipement.Update();
+            }
+            con.Open();
+            OracleCommand cmdUpdateRack = new OracleCommand("UPDATE vw_Rack SET rackname = '" + rackName + "' , racksize= " + nbU + "  WHERE rackid =  " + id, con);
+            cmdUpdateRack.ExecuteNonQuery();
+            con.Close();
         }
 
         public TableLayoutPanel EmptyRack(int taille,String nom) {
             rackDesign.RowCount = taille + 1;
             rackDesign.Height = 20 * (taille + 1);
+            List<Equipement> equirack = new List<Equipement>();
             TextBox cmdRackName = new TextBox
             {
                 Name = "cmdRackName",
@@ -85,10 +109,10 @@ namespace DC_Designer
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
             };
             rackDesign.Controls.Add(cmdRackName, 0, 0);
-            rackDesign.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / (taille + 1)));
+            rackDesign.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
             for (int i = 1; i < taille+1;i++)
             {
-                rackDesign.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / (taille + 1)));
+                rackDesign.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
                 Button b = new Button
                 {
                     Name = String.Concat("cmdEquipe", i),
@@ -100,12 +124,16 @@ namespace DC_Designer
                     ForeColor = SystemColors.ButtonFace,
                     Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
                 };
-                b.Click += new EventHandler(CmdEquip_Click);
+                if (editable)
+                {
+                    b.Click += new EventHandler(CmdEquip_Click);
+                }
                // b.MouseDown += new MouseEventHandler(CmdEquip_MouseDown);
                 rackDesign.Controls.Add(b, 0, i);
-                listEquipement.Add(new Equipement(b.Text,""));
+                equirack.Add(new Equipement(b.Text,""));
                 
             }
+            if (listEquipement.Count==0) { listEquipement = equirack; }
             return rackDesign;
         }
         //fonction de drag and drop pas encore au point
@@ -122,7 +150,7 @@ namespace DC_Designer
         {
             Button s = (Button)sender;
             int i = s.Parent.Controls.IndexOf(s)-1;
-            
+            GestionAjoutEquip.SetEditable(editable);
             Equipement equip = (Equipement)listEquipement[i];
             GestionAjoutEquip.SetEquipement(equip);
             frmEquipement f = new frmEquipement();
@@ -139,6 +167,7 @@ namespace DC_Designer
         }
 
         
+
 
     }
 }

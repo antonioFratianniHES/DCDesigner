@@ -15,7 +15,14 @@ namespace DC_Designer
         List<Row> rows;
         String company;
         int dcid;
+        int nbrangee=0;
         private TableLayoutPanel dcDesign;
+        List<Rack> racks = new List<Rack>();
+        List<Equipement> equipements = new List<Equipement>();
+        OracleConnection con = new OracleConnection
+        {
+            ConnectionString = "DATA SOURCE=HEGLOCAL;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA"
+        };
 
         public DC(String nomDc, int dcid,String company,Boolean editable)
         {
@@ -37,7 +44,6 @@ namespace DC_Designer
                 
 
             };
-            rows.Add(new Row(dcDesign.RowCount-1, new List<Rack>()));
             if (editable) { 
                 Button cmdAddRack = CreateAddRackButton();
                 dcDesign.Controls.Add(cmdAddRack, 0, 0);
@@ -46,26 +52,55 @@ namespace DC_Designer
 
         
 
-        public TableLayoutPanel GetDcDesign() { return dcDesign; }
+        public TableLayoutPanel GetDcDesign() {
+            ChargerDonnee();
+            return dcDesign; }
 
-        public TableLayoutPanel GetDcDesingWithoutEdit()
+
+        private void ChargerDonnee()
         {
-            TableLayoutPanel design = new TableLayoutPanel();
-            int j = 0;
-            foreach (Row row in rows)
+            
+            con.Open();
+            OracleCommand cmdgetNbRangee = new OracleCommand("select nbrangee from vw_datacenter where dcid=" + dcid, con);
+            OracleDataReader drnbRangee = cmdgetNbRangee.ExecuteReader();
+            if (drnbRangee.Read())
             {
-                List<Rack> racks = row.GetRacks();
-                for (int i = 0; i <racks.Count ; i++)
-                {
-                    design.Controls.Add(racks[i].GetRackDesign(), i, j);
-                }
-                j++;
+                nbrangee = drnbRangee.GetInt32(0);
             }
-            return design;
+            OracleCommand cmdGetRows = new OracleCommand("select rangeid,rangeenom,dcid from vw_range where dcid = "+dcid,con);
+            OracleDataReader drGetRows = cmdGetRows.ExecuteReader();
+            while (drGetRows.Read()) {
+                List<Rack> racksRange = new List<Rack>();
+                OracleCommand cmdgetRacks = new OracleCommand("select rackid,rackname,racksize,rangeeid,rangeeposition from vw_rack where rangeeid=" + drGetRows.GetInt32(0), con);
+                OracleDataReader drGetRacks = cmdgetRacks.ExecuteReader();
+                while (drGetRacks.Read()) {
+
+                    OracleCommand cmdgetEquip = new OracleCommand("select numero,equipmentname,rackposition from vw_equipment where rackid=" + drGetRacks.GetInt32(0), con);
+                    OracleDataReader drGetEquip = cmdgetEquip.ExecuteReader();
+                    while (drGetEquip.Read())
+                    {
+                        equipements.Add(new Equipement(drGetEquip.GetInt32(0), drGetEquip.GetString(1), "", drGetEquip.GetInt32(2)));
+                    }
+                    Rack rackToAdd = new Rack(drGetRacks.GetInt32(0), drGetRacks.GetString(1), equipements);
+                    racksRange.Add(rackToAdd);
+                    dcDesign.Controls.Add(rackToAdd.GetRackDesign(),drGetRacks.GetInt32(4)-1, Convert.ToInt32(drGetRows.GetString(1))-1);
+                }
+                rows.Add(new Row(drGetRows.GetInt32(0),drGetRows.GetInt32(2), racksRange));
+            }
+
+
+            con.Close();
+
         }
+        public void ShowLayout()
+        {
+            ChargerDonnee();
+            for (int i = 0; i < nbrangee; i++)
+            {
+                Addrows();
+            }
 
-
-
+        }
         public String GetNom() { return nomDc; }
         public List<Row> GetRows() { return rows; }
 
@@ -75,7 +110,7 @@ namespace DC_Designer
 
         public void Addrows()
         {
-            rows.Add(new Row(dcDesign.RowCount-1,new List<Rack>()));
+            nbrangee++;
             dcDesign.RowCount++;
             dcDesign.Controls.Add(CreateAddRackButton(), 0, dcDesign.RowCount-1);
         }
@@ -84,20 +119,19 @@ namespace DC_Designer
 
         public int Save()
         {
-            int dcid;
-            OracleConnection con = new OracleConnection
-            {
-                ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA"
-            };
+                       
             con.Open();
             OracleCommand cmdgetId = new OracleCommand("select companyid from vw_company where companyname='" + company+ "'", con);
             OracleDataReader dr = cmdgetId.ExecuteReader();
-
-            OracleCommand cmdAddDc = new OracleCommand("insert into vw_datacenter(datacentername,coid,nbrangee) VALUES('" + nomDc + "','" +dr.GetInt32(0)  + "','" + rows.Count + "')", con);
-            cmdAddDc.ExecuteNonQuery();
-            OracleCommand cmdgetDcId = new OracleCommand("select dcid from vw_datacenter where datacentername='" +nomDc + "'", con);
-            OracleDataReader dr2 = cmdgetDcId.ExecuteReader();
-            dcid = dr2.GetInt32(0);
+            if (dr.Read()) { 
+                OracleCommand cmdAddDc = new OracleCommand("insert into vw_datacenter(datacentername,coid,nbrangee) VALUES('" + nomDc + "','" +dr.GetInt32(0)  + "','" + rows.Count + "')", con);
+                cmdAddDc.ExecuteNonQuery();
+                OracleCommand cmdgetDcId = new OracleCommand("select dcid from vw_datacenter where datacentername='" +nomDc + "'", con);
+                OracleDataReader dr2 = cmdgetDcId.ExecuteReader();
+                if (dr2.Read()) { 
+                    dcid = dr2.GetInt32(0);
+                }
+            }
             con.Close();
             int i = 0;
             foreach (Row row in rows)
@@ -105,6 +139,17 @@ namespace DC_Designer
                 row.Save(i++, dcid);
             }
                 return dcid;
+        }
+
+        public void Update() {
+            foreach (Row row in rows)
+            {
+                row.Update();
+            }
+            con.Open();
+            OracleCommand cmdUpdateDC = new OracleCommand("UPDATE vw_datacenter SET datacenterNAME = '" + nomDc + "' , nbrangee= " + nbrangee + "  WHERE dcid =  " + dcid, con);
+            cmdUpdateDC.ExecuteNonQuery();
+            con.Close();
         }
 
         private Button CreateAddRackButton()

@@ -26,6 +26,7 @@ namespace DC_Designer
             else {
                 txtModele.Text = "(facultatif)";
             }
+            if (!GestionAjoutEquip.GetEditable()) { cmdModifierEquip.Hide(); txtNomEquipement.Enabled = false; txtModele.Enabled = false; }
             
         }
 

@@ -744,6 +744,7 @@
             this.cmdModfiyUser.TabIndex = 17;
             this.cmdModfiyUser.Text = "&Modify";
             this.cmdModfiyUser.UseVisualStyleBackColor = true;
+            this.cmdModfiyUser.Click += new System.EventHandler(this.CmdModfiyUser_Click);
             // 
             // tabEditCompany
             // 
@@ -826,6 +827,7 @@
             this.cmdModifyCompany.TabIndex = 30;
             this.cmdModifyCompany.Text = "&Modify";
             this.cmdModifyCompany.UseVisualStyleBackColor = true;
+            this.cmdModifyCompany.Click += new System.EventHandler(this.CmdModifyCompany_Click);
             // 
             // lblEditCompanyName
             // 
