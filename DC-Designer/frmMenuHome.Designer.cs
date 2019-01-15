@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lstExistingLayout = new System.Windows.Forms.ListBox();
-            this.dataSetDataFinal = new DC_Designer.DataSetDataFinal();
             this.lblExistingLayout = new System.Windows.Forms.Label();
             this.cmdCreateNewDC = new System.Windows.Forms.Button();
             this.spltHomeMenu = new System.Windows.Forms.SplitContainer();
@@ -95,11 +93,6 @@
             this.lblEditCompanyTel = new System.Windows.Forms.Label();
             this.cmdModifyCompany = new System.Windows.Forms.Button();
             this.lblEditCompanyName = new System.Windows.Forms.Label();
-            this.cOMPANYBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cOMPANYTableAdapter = new DC_Designer.DataSetDataFinalTableAdapters.COMPANYTableAdapter();
-            this.eMPLOYEEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.eMPLOYEETableAdapter = new DC_Designer.DataSetDataFinalTableAdapters.EMPLOYEETableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetDataFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spltHomeMenu)).BeginInit();
             this.spltHomeMenu.Panel1.SuspendLayout();
             this.spltHomeMenu.Panel2.SuspendLayout();
@@ -110,8 +103,6 @@
             this.tabCompanyManager.SuspendLayout();
             this.tabEditUser.SuspendLayout();
             this.tabEditCompany.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cOMPANYBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eMPLOYEEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstExistingLayout
@@ -125,11 +116,6 @@
             this.lstExistingLayout.Size = new System.Drawing.Size(224, 244);
             this.lstExistingLayout.TabIndex = 2;
             this.lstExistingLayout.DoubleClick += new System.EventHandler(this.LstExistingDC_DoubleClick);
-            // 
-            // dataSetDataFinal
-            // 
-            this.dataSetDataFinal.DataSetName = "DataSetDataFinal";
-            this.dataSetDataFinal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblExistingLayout
             // 
@@ -239,8 +225,6 @@
             // 
             // cmbFiltreCompany
             // 
-            this.cmbFiltreCompany.DataSource = this.cOMPANYBindingSource;
-            this.cmbFiltreCompany.DisplayMember = "CONAME";
             this.cmbFiltreCompany.FormattingEnabled = true;
             this.cmbFiltreCompany.Location = new System.Drawing.Point(21, 268);
             this.cmbFiltreCompany.Margin = new System.Windows.Forms.Padding(4);
@@ -248,7 +232,7 @@
             this.cmbFiltreCompany.Size = new System.Drawing.Size(155, 24);
             this.cmbFiltreCompany.TabIndex = 4;
             this.cmbFiltreCompany.Visible = false;
-            this.cmbFiltreCompany.SelectedIndexChanged += new System.EventHandler(this.CmbClient_SelectedIndexChanged);
+            this.cmbFiltreCompany.SelectionChangeCommitted += new System.EventHandler(this.CmbClient_SelectedIndexChanged);
             // 
             // tblDcDesigner
             // 
@@ -452,8 +436,6 @@
             // 
             // cmbUserCompany
             // 
-            this.cmbUserCompany.DataSource = this.cOMPANYBindingSource;
-            this.cmbUserCompany.DisplayMember = "CONAME";
             this.cmbUserCompany.FormattingEnabled = true;
             this.cmbUserCompany.Location = new System.Drawing.Point(524, 119);
             this.cmbUserCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -511,8 +493,6 @@
             // 
             // lstUsers
             // 
-            this.lstUsers.DataSource = this.eMPLOYEEBindingSource;
-            this.lstUsers.DisplayMember = "EMPNAME";
             this.lstUsers.FormattingEnabled = true;
             this.lstUsers.ItemHeight = 16;
             this.lstUsers.Location = new System.Drawing.Point(28, 47);
@@ -651,8 +631,6 @@
             // 
             // lstCompany
             // 
-            this.lstCompany.DataSource = this.cOMPANYBindingSource;
-            this.lstCompany.DisplayMember = "CONAME";
             this.lstCompany.FormattingEnabled = true;
             this.lstCompany.ItemHeight = 16;
             this.lstCompany.Location = new System.Drawing.Point(28, 47);
@@ -724,8 +702,6 @@
             // 
             // cmbEditUserCompany
             // 
-            this.cmbEditUserCompany.DataSource = this.cOMPANYBindingSource;
-            this.cmbEditUserCompany.DisplayMember = "CONAME";
             this.cmbEditUserCompany.FormattingEnabled = true;
             this.cmbEditUserCompany.Location = new System.Drawing.Point(99, 86);
             this.cmbEditUserCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -860,24 +836,6 @@
             this.lblEditCompanyName.TabIndex = 29;
             this.lblEditCompanyName.Text = "Na&me";
             // 
-            // cOMPANYBindingSource
-            // 
-            this.cOMPANYBindingSource.DataMember = "COMPANY";
-            this.cOMPANYBindingSource.DataSource = this.dataSetDataFinal;
-            // 
-            // cOMPANYTableAdapter
-            // 
-            this.cOMPANYTableAdapter.ClearBeforeFill = true;
-            // 
-            // eMPLOYEEBindingSource
-            // 
-            this.eMPLOYEEBindingSource.DataMember = "EMPLOYEE";
-            this.eMPLOYEEBindingSource.DataSource = this.dataSetDataFinal;
-            // 
-            // eMPLOYEETableAdapter
-            // 
-            this.eMPLOYEETableAdapter.ClearBeforeFill = true;
-            // 
             // FrmMenuHome
             // 
             this.AllowDrop = true;
@@ -891,8 +849,6 @@
             this.MinimumSize = new System.Drawing.Size(1194, 659);
             this.Name = "FrmMenuHome";
             this.Text = "MenuHome";
-            this.Load += new System.EventHandler(this.FrmMenuHome_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetDataFinal)).EndInit();
             this.spltHomeMenu.Panel1.ResumeLayout(false);
             this.spltHomeMenu.Panel1.PerformLayout();
             this.spltHomeMenu.Panel2.ResumeLayout(false);
@@ -909,8 +865,6 @@
             this.tabEditUser.PerformLayout();
             this.tabEditCompany.ResumeLayout(false);
             this.tabEditCompany.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cOMPANYBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eMPLOYEEBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -982,10 +936,5 @@
         private System.Windows.Forms.Button cmdEditUser;
         private System.Windows.Forms.Button cmdEditCompany;
         private System.Windows.Forms.Panel pnlLayout;
-        private DataSetDataFinal dataSetDataFinal;
-        private System.Windows.Forms.BindingSource cOMPANYBindingSource;
-        private DataSetDataFinalTableAdapters.COMPANYTableAdapter cOMPANYTableAdapter;
-        private System.Windows.Forms.BindingSource eMPLOYEEBindingSource;
-        private DataSetDataFinalTableAdapters.EMPLOYEETableAdapter eMPLOYEETableAdapter;
     }
 }

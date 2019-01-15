@@ -14,13 +14,15 @@ namespace DC_Designer
         String nomDc;
         List<Row> rows;
         String company;
+        int dcid;
         private TableLayoutPanel dcDesign;
 
-        public DC(String nomDc, String company, List<Row> rows)
+        public DC(String nomDc, int dcid,String company,Boolean editable)
         {
             this.nomDc = nomDc;
             this.company = company;
-            this.rows = rows;
+            this.dcid = dcid;
+            rows = new List<Row>();
             dcDesign = new TableLayoutPanel()
             {
                 AllowDrop = true,
@@ -36,9 +38,13 @@ namespace DC_Designer
 
             };
             rows.Add(new Row(dcDesign.RowCount-1, new List<Rack>()));
-            Button cmdAddRack = CreateAddRackButton();
-            dcDesign.Controls.Add(cmdAddRack, 0, 0);
+            if (editable) { 
+                Button cmdAddRack = CreateAddRackButton();
+                dcDesign.Controls.Add(cmdAddRack, 0, 0);
+            }
         }
+
+        
 
         public TableLayoutPanel GetDcDesign() { return dcDesign; }
 
@@ -79,13 +85,16 @@ namespace DC_Designer
         public int Save()
         {
             int dcid;
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            OracleConnection con = new OracleConnection
+            {
+                ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA"
+            };
             con.Open();
             OracleCommand cmdgetId = new OracleCommand("select companyid from vw_company where companyname='" + company+ "'", con);
             OracleDataReader dr = cmdgetId.ExecuteReader();
 
             OracleCommand cmdAddDc = new OracleCommand("insert into vw_datacenter(datacentername,coid,nbrangee) VALUES('" + nomDc + "','" +dr.GetInt32(0)  + "','" + rows.Count + "')", con);
+            cmdAddDc.ExecuteNonQuery();
             OracleCommand cmdgetDcId = new OracleCommand("select dcid from vw_datacenter where datacentername='" +nomDc + "'", con);
             OracleDataReader dr2 = cmdgetDcId.ExecuteReader();
             dcid = dr2.GetInt32(0);

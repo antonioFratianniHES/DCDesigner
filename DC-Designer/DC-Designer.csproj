@@ -72,11 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Company.cs" />
-    <Compile Include="DataSetDataFinal.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetDataFinal.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DC.cs" />
     <Compile Include="Equipement.cs" />
     <Compile Include="GestionAjoutEquip.cs" />
@@ -135,17 +130,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="DataSetDataFinal.xsc">
-      <DependentUpon>DataSetDataFinal.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetDataFinal.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetDataFinal.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSetDataFinal.xss">
-      <DependentUpon>DataSetDataFinal.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

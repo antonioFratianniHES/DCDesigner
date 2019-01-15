@@ -8,6 +8,7 @@ namespace DC_Designer
 {
     internal class GestionRack
     {
+        static int idRack;
         static string nomRack;
         static int tailleRack;
 
@@ -20,8 +21,8 @@ namespace DC_Designer
             if (nomRack == "" || tailleRack == 0) {
                 return null;
             }
-            
-            return new Rack(nomRack, tailleRack);
+           
+            return new Rack(idRack,nomRack, tailleRack);
         }
     }
 }

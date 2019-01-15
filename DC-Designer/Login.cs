@@ -18,6 +18,7 @@ namespace DC_Designer
             user = u;
             
         }
+        internal static void SetCompany(String c) { company = c; }
         internal static String GetUser() { return user; }
 
         internal static String GetCompany() { return company; }
@@ -25,7 +26,7 @@ namespace DC_Designer
         internal static bool UserOk(String user,String pwd)
         {
             OracleConnection con = new OracleConnection(); 
-            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_user;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_USER";
             con.Open();
             OracleCommand cmd = new OracleCommand("select name,password,CompanyID from vw_employee where name='" + user + "'and password='" + pwd + "'",con);
             OracleDataReader dr = cmd.ExecuteReader();
@@ -34,7 +35,11 @@ namespace DC_Designer
                 int compID = dr.GetInt32(2);
                 OracleCommand cmd2 = new OracleCommand("select companyName from vw_company where companyID='" + compID +"'",con);
                 OracleDataReader dr2 = cmd2.ExecuteReader();
-                //company = dr2.GetString(0);
+                if (dr2.Read())
+                {
+                    SetCompany(dr2.GetString(0));
+                }
+                con.Close();
                 return true;
               }
             con.Close();

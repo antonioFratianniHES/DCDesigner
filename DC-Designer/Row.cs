@@ -27,8 +27,10 @@ namespace DC_Designer
         internal void Save(int nomRow,int dcid)
         {
             int rowId;
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            OracleConnection con = new OracleConnection
+            {
+                ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA"
+            };
             con.Open();
 
             OracleCommand cmdAddDc = new OracleCommand("insert into vwrange(dcid) VALUES(" + dcid + ")", con);

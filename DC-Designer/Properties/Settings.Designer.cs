@@ -22,27 +22,5 @@ namespace DC_Designer.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("DATA SOURCE=XE;PASSWORD=DCDesigner_user;PERSIST SECURITY INFO=True;USER ID=DCDESI" +
-            "GNER_USER")]
-        public string ConnectionStringUser {
-            get {
-                return ((string)(this["ConnectionStringUser"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESI" +
-            "GNER_DATA")]
-        public string ConnectionStringDATA {
-            get {
-                return ((string)(this["ConnectionStringDATA"]));
-            }
-        }
     }
 }

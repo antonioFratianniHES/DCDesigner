@@ -8,14 +8,15 @@ namespace DC_Designer
 {
     class User
     {
-
+        private int id;
         private String userName;
         private String Company;
 
-        public User(string userName, string company)
+        public User(int id, string userName, string company)
         {
+            this.id = id;
             this.userName = userName;
-            Company = company;
+            this.Company = company;
         }
 
         public void SetUserName(String userName) {
@@ -29,5 +30,6 @@ namespace DC_Designer
 
         public String GetUserName() { return userName; }
         public String GetCompany() { return Company; }
+        public int GetId() { return id; }
     }
 }

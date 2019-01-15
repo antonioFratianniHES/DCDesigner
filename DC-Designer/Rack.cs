@@ -13,8 +13,10 @@ namespace DC_Designer
 {
     class Rack
     {
+        private int id;
         private String rackName;
         private int nbU;
+        private int rowId;
         private TableLayoutPanel rackDesign= new TableLayoutPanel()
         {
             ColumnCount = 1,
@@ -28,7 +30,8 @@ namespace DC_Designer
         };
         private List<Equipement> listEquipement= new List<Equipement>();
 
-        public Rack(String nom, int nbU) { //création d'un rack vide
+        public Rack(int id,String nom, int nbU) { //création d'un rack vide
+            this.id = id;
             EmptyRack(nbU,nom);
             this.nbU = nbU;
         }
@@ -49,8 +52,11 @@ namespace DC_Designer
         internal void Save(int rangeeposition,int rowId)
         {
             int rackId;
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA";
+            this.rowId = rowId;
+            OracleConnection con = new OracleConnection
+            {
+                ConnectionString = "DATA SOURCE=XE;PASSWORD=DCDesigner_data;PERSIST SECURITY INFO=True;USER ID=DCDESIGNER_DATA"
+            };
             con.Open();
             
             OracleCommand cmdAddRack = new OracleCommand("insert into vw_rack(rackname,racksize,rangeeid,rangeeposition) VALUES('" + rackName + "'," + nbU + "," + rowId + "," + rangeeposition + ")", con);

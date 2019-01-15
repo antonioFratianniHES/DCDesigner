@@ -8,22 +8,25 @@ namespace DC_Designer
 {
     class Company
     {
+        private int id;
         private String name;
         private String address;
         private String tel;
 
-        public Company(string name, string address, string tel)
+        public Company(int id,string name, string address, string tel)
         {
+            this.id= id;
             this.name = name;
             this.address = address;
             this.tel = tel;
         }
 
-        public String getName() { return name; }
-        public String getAddress() { return address; }
-        public String getTel() { return tel; }
-        public void setName(String name) { this.name = name; }
-        public void setAddress(String address) { this.address = address; }
-        public void setTel(String tel) { this.tel = tel; }
+        public String GetName() { return name; }
+        public String GetAddress() { return address; }
+        public String GetTel() { return tel; }
+        public void SetName(String name) { this.name = name; }
+        public void SetAddress(String address) { this.address = address; }
+        public void SetTel(String tel) { this.tel = tel; }
+        public int GetId() { return id; }
     }
 }
